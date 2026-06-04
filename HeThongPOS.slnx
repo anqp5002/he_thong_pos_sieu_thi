@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/HeThongPOS.Application/HeThongPOS.Application.csproj" />
+    <Project Path="src/HeThongPOS.Core/HeThongPOS.Core.csproj" />
+    <Project Path="src/HeThongPOS.Infrastructure/HeThongPOS.Infrastructure.csproj" />
+    <Project Path="src/HeThongPOS.WPF/HeThongPOS.WPF.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/HeThongPOS.UnitTests/HeThongPOS.UnitTests.csproj" />
+  </Folder>
+</Solution>

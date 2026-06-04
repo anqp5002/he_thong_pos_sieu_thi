@@ -1,0 +1,49 @@
+# .NET
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.userprefs
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+build/
+bld/
+
+# VS files
+.vs/
+*.csproj.user
+*.dbmdl
+*.jfm
+
+# NuGet
+*.nupkg
+**/packages/*
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# IDE
+.idea/
+*.swp
+*.swo
+
+# Env
+.env
+*.env.local
+
+# Docker
+docker-compose.override.yml
+
+# EF Core migrations are tracked, but not the db
+*.mdf
+*.ldf
+
+# OS
+Thumbs.db
+.DS_Store
