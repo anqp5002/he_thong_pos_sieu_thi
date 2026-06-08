@@ -11,6 +11,8 @@ public class NhanVien
     public string HoTen { get; set; } = string.Empty;
     public int VaiTroId { get; set; }
     public bool TrangThai { get; set; } = true;
+    public int FailedLoginAttempts { get; set; } = 0;
+    public bool IsLocked { get; set; } = false;
     public DateTime NgayTao { get; set; } = DateTime.Now;
 
     public VaiTro VaiTro { get; set; } = null!;
