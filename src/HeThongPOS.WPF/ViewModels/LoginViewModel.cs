@@ -48,9 +48,8 @@ public partial class LoginViewModel : ObservableObject
 
         if (isSuccess && user != null)
         {
-            // TODO: Navigate to Main Dashboard based on Role
-            // Temporarily we will just set a success message or navigate to a placeholder view later
-            ErrorMessage = $"Đăng nhập thành công! Xin chào {user.HoTen} ({user.VaiTro.TenVaiTro})";
+            // Chuyển sang màn hình POS sau khi đăng nhập thành công
+            _navigationService.NavigateTo<POSViewModel>();
         }
         else
         {

@@ -35,10 +35,12 @@ public partial class App : System.Windows.Application
 
         // ViewModels
         services.AddTransient<LoginViewModel>();
+        services.AddTransient<POSViewModel>();
 
         // Views
         services.AddTransient<MainWindow>();
         services.AddTransient<LoginView>();
+        services.AddTransient<POSView>();
     }
 
     private async void OnStartup(object sender, StartupEventArgs e)
