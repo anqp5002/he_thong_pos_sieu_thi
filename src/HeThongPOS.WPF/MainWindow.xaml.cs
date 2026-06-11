@@ -11,15 +11,34 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
         
-        // Load ProductsView to test Sprint 1-Dev B
+        LoadPOSView();
+    }
+
+    private void Nav_POS_Click(object sender, RoutedEventArgs e)
+    {
+        LoadPOSView();
+    }
+
+    private void Nav_Reports_Click(object sender, RoutedEventArgs e)
+    {
         var app = (App)System.Windows.Application.Current;
-        var productsViewModel = app.ServiceProvider.GetRequiredService<ProductsViewModel>();
+        var reportsViewModel = app.ServiceProvider.GetRequiredService<ReportsViewModel>();
         
-        var productsView = new ProductsView
+        var reportsView = new ReportsView(reportsViewModel);
+        
+        MainFrame.Content = reportsView;
+    }
+
+    private void LoadPOSView()
+    {
+        var app = (App)System.Windows.Application.Current;
+        var posViewModel = app.ServiceProvider.GetRequiredService<POSViewModel>();
+        
+        var posView = new POSView
         {
-            DataContext = productsViewModel
+            DataContext = posViewModel
         };
         
-        MainFrame.Content = productsView;
+        MainFrame.Content = posView;
     }
 }

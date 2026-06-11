@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using HeThongPOS.Core.Entities;
 using HeThongPOS.Core.Enums;
 using HeThongPOS.Core.Interfaces;
+using HeThongPOS.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace HeThongPOS.Application.Services;
 
@@ -12,11 +14,13 @@ public class OrderService : IOrderService
 {
     private readonly IOrderRepository _orderRepository;
     private readonly IProductRepository _productRepository;
+    private readonly AppDbContext _context;
 
-    public OrderService(IOrderRepository orderRepository, IProductRepository productRepository)
+    public OrderService(IOrderRepository orderRepository, IProductRepository productRepository, AppDbContext context)
     {
         _orderRepository = orderRepository;
         _productRepository = productRepository;
+        _context = context;
     }
 
     public void CalculateOrderTotals(DonHang order)
@@ -85,5 +89,46 @@ public class OrderService : IOrderService
 
         await _orderRepository.AddAsync(order);
         return order;
+    }
+
+    public async Task<bool> CancelOrderAsync(int donHangId)
+    {
+        using var transaction = await _context.Database.BeginTransactionAsync();
+        try
+        {
+            var order = await _context.DonHangs
+                .Include(o => o.ChiTietDonHangs)
+                .FirstOrDefaultAsync(o => o.Id == donHangId);
+
+            if (order == null)
+                throw new Exception($"Không tìm thấy đơn hàng ID {donHangId}");
+
+            if (order.TrangThai == OrderStatus.Cancelled)
+                throw new Exception("Đơn hàng đã bị hủy trước đó.");
+
+            // Khôi phục tồn kho
+            foreach (var item in order.ChiTietDonHangs)
+            {
+                var product = await _productRepository.GetByIdAsync(item.SanPhamId);
+                if (product != null)
+                {
+                    product.TonKho += item.SoLuong;
+                    await _productRepository.UpdateAsync(product);
+                }
+            }
+
+            // Đổi trạng thái
+            order.TrangThai = OrderStatus.Cancelled;
+            _context.DonHangs.Update(order);
+
+            await _context.SaveChangesAsync();
+            await transaction.CommitAsync();
+            return true;
+        }
+        catch (Exception ex)
+        {
+            await transaction.RollbackAsync();
+            throw new Exception($"Lỗi khi hủy đơn hàng: {ex.Message}", ex);
+        }
     }
 }

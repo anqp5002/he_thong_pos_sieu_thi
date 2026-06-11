@@ -31,9 +31,20 @@ public partial class App : System.Windows.Application
         // Services
         services.AddScoped<HeThongPOS.Core.Interfaces.IProductService, HeThongPOS.Application.Services.ProductService>();
         services.AddScoped<HeThongPOS.Core.Interfaces.IOrderService, HeThongPOS.Application.Services.OrderService>();
+        services.AddScoped<HeThongPOS.Core.Interfaces.IPaymentService, HeThongPOS.Application.Services.PaymentService>();
+
+        // WPF Services
+        services.AddSingleton<HeThongPOS.WPF.Services.PrintService>();
+        services.AddSingleton<HeThongPOS.WPF.Services.InvoiceGenerator>();
+
+        services.AddScoped<HeThongPOS.Application.Services.ReportService>();
+        services.AddScoped<HeThongPOS.Application.Services.ExportService>();
 
         // ViewModels
         services.AddTransient<HeThongPOS.WPF.ViewModels.ProductsViewModel>();
+        services.AddTransient<HeThongPOS.WPF.ViewModels.POSViewModel>();
+        services.AddTransient<HeThongPOS.WPF.ViewModels.PaymentViewModel>();
+        services.AddTransient<HeThongPOS.WPF.ViewModels.ReportsViewModel>();
 
         // Views
         services.AddTransient<MainWindow>();

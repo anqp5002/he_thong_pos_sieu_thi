@@ -8,4 +8,5 @@ public interface IOrderService
 {
     Task<DonHang> CreateOrderAsync(int nhanVienId, int? khachHangId, List<ChiTietDonHang> items, string ghiChu = "");
     void CalculateOrderTotals(DonHang order);
+    Task<bool> CancelOrderAsync(int donHangId);
 }

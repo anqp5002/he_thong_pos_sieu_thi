@@ -20,7 +20,7 @@ public class OrderServiceTests
     {
         _orderRepoMock = new Mock<IOrderRepository>();
         _productRepoMock = new Mock<IProductRepository>();
-        _orderService = new OrderService(_orderRepoMock.Object, _productRepoMock.Object);
+        _orderService = new OrderService(_orderRepoMock.Object, _productRepoMock.Object, null);
     }
 
     [Fact]

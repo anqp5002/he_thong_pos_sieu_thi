@@ -8,15 +8,28 @@
             <RowDefinition Height="60"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
         
         <!-- Header -->
-        <Border Grid.Row="0" Background="#1a73e8">
-            <TextBlock Text="HỆ THỐNG POS SIÊU THỊ - SPRINT 0" 
+        <Border Grid.Row="0" Grid.ColumnSpan="2" Background="#1a73e8">
+            <TextBlock Text="HỆ THỐNG POS SIÊU THỊ" 
                        Foreground="White" FontSize="24" FontWeight="Bold"
                        VerticalAlignment="Center" HorizontalAlignment="Center"/>
         </Border>
+
         
-        <!-- Main Content (Navigation) -->
-        <Frame x:Name="MainFrame" Grid.Row="1" NavigationUIVisibility="Hidden"/>
+        <!-- Sidebar Navigation -->
+        <Border Grid.Row="1" Grid.Column="0" Background="#2C3E50">
+            <StackPanel Margin="0,20,0,0">
+                <Button Content="BÁN HÀNG" Click="Nav_POS_Click" Height="50" Background="Transparent" Foreground="White" BorderThickness="0" FontSize="16" FontWeight="Bold"/>
+                <Button Content="BÁO CÁO" Click="Nav_Reports_Click" Height="50" Background="Transparent" Foreground="White" BorderThickness="0" FontSize="16" FontWeight="Bold"/>
+            </StackPanel>
+        </Border>
+        
+        <!-- Main Content -->
+        <Frame x:Name="MainFrame" Grid.Row="1" Grid.Column="1" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>
