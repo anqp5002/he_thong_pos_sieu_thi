@@ -12,6 +12,8 @@
             <converters:BooleanToLoginTextConverter x:Key="BooleanToLoginTextConverter"/>
             <converters:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
             <converters:CurrencyConverter x:Key="CurrencyConverter"/>
+            <converters:StringToBoolConverter x:Key="StringToBoolConverter"/>
+            <converters:StringMatchToVisibilityConverter x:Key="StringMatchToVisibilityConverter"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

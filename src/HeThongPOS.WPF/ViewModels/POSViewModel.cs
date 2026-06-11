@@ -5,9 +5,11 @@ using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using HeThongPOS.Core.Entities;
 using HeThongPOS.Core.Models;
 using HeThongPOS.Infrastructure.Data;
+using HeThongPOS.WPF.Controls;
 
 namespace HeThongPOS.WPF.ViewModels;
 
@@ -32,9 +34,12 @@ public partial class POSViewModel : ObservableObject
     public decimal TongThanhToan => TongTienHang + ThueVAT;
     public int TongSoLuong => GioHang.Sum(x => x.SoLuong);
 
-    public POSViewModel(AppDbContext context)
+    private readonly IServiceProvider _serviceProvider;
+
+    public POSViewModel(AppDbContext context, IServiceProvider serviceProvider)
     {
         _context = context;
+        _serviceProvider = serviceProvider;
         _ = LoadSanPhamAsync();
     }
 
@@ -187,5 +192,31 @@ public partial class POSViewModel : ObservableObject
         OnPropertyChanged(nameof(ThueVAT));
         OnPropertyChanged(nameof(TongThanhToan));
         OnPropertyChanged(nameof(TongSoLuong));
+    }
+
+    [RelayCommand]
+    private void OpenPayment()
+    {
+        if (GioHang.Count == 0)
+        {
+            ErrorMessage = "Giỏ hàng đang trống, không thể thanh toán.";
+            return;
+        }
+
+        var paymentViewModel = _serviceProvider.GetRequiredService<PaymentViewModel>();
+        paymentViewModel.Initialize(TongThanhToan);
+
+        var paymentDialog = _serviceProvider.GetRequiredService<PaymentDialog>();
+        paymentDialog.DataContext = paymentViewModel;
+        
+        bool? result = paymentDialog.ShowDialog();
+        
+        if (result == true)
+        {
+            // Thanh toán thành công, xóa giỏ hàng
+            GioHang.Clear();
+            CapNhatTongTien();
+            ErrorMessage = "Thanh toán thành công!";
+        }
     }
 }
