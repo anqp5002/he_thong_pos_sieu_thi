@@ -35,7 +35,16 @@ public class AppDbContext : DbContext
             new DanhMuc { Id = 4, TenDanhMuc = "Hóa mỹ phẩm" }
         );
         
+        modelBuilder.Entity<VaiTro>().HasData(
+            new VaiTro { Id = 1, TenVaiTro = "Quản lý" }
+        );
+        modelBuilder.Entity<NhanVien>().HasData(
+            new NhanVien { Id = 1, HoTen = "Nhân viên 1", VaiTroId = 1 }
+        );
+        
         modelBuilder.Entity<KhachHang>().HasData(HeThongPOS.Infrastructure.Seeders.DataSeeder.GetSampleCustomers());
         modelBuilder.Entity<SanPham>().HasData(HeThongPOS.Infrastructure.Seeders.DataSeeder.GetSampleProducts());
+        modelBuilder.Entity<DonHang>().HasData(HeThongPOS.Infrastructure.Seeders.DataSeeder.GetSampleOrders());
+        modelBuilder.Entity<ChiTietDonHang>().HasData(HeThongPOS.Infrastructure.Seeders.DataSeeder.GetSampleOrderDetails());
     }
 }
