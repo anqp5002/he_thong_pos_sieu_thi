@@ -44,7 +44,9 @@ public class AppDbContext : DbContext
         
         modelBuilder.Entity<KhachHang>().HasData(HeThongPOS.Infrastructure.Seeders.DataSeeder.GetSampleCustomers());
         modelBuilder.Entity<SanPham>().HasData(HeThongPOS.Infrastructure.Seeders.DataSeeder.GetSampleProducts());
+        modelBuilder.Entity<PhuongThucThanhToan>().HasData(HeThongPOS.Infrastructure.Seeders.DataSeeder.GetSamplePaymentMethods());
         modelBuilder.Entity<DonHang>().HasData(HeThongPOS.Infrastructure.Seeders.DataSeeder.GetSampleOrders());
         modelBuilder.Entity<ChiTietDonHang>().HasData(HeThongPOS.Infrastructure.Seeders.DataSeeder.GetSampleOrderDetails());
+        modelBuilder.Entity<GiaoDich>().HasData(HeThongPOS.Infrastructure.Seeders.DataSeeder.GetSampleTransactions());
     }
 }

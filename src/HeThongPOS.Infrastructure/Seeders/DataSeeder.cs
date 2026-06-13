@@ -97,4 +97,31 @@ public static class DataSeeder
         }
         return details;
     }
+
+    public static List<PhuongThucThanhToan> GetSamplePaymentMethods()
+    {
+        return new List<PhuongThucThanhToan>
+        {
+            new PhuongThucThanhToan { Id = 1, TenPhuongThuc = "Tiền mặt", TrangThai = true },
+            new PhuongThucThanhToan { Id = 2, TenPhuongThuc = "Thẻ ngân hàng", TrangThai = true },
+            new PhuongThucThanhToan { Id = 3, TenPhuongThuc = "Chuyển khoản", TrangThai = true }
+        };
+    }
+
+    public static List<GiaoDich> GetSampleTransactions()
+    {
+        return new List<GiaoDich>
+        {
+            new GiaoDich { Id = 1, DonHangId = 1, PhuongThucThanhToanId = 1, SoTien = 126000m, TrangThai = "SUCCESS", NgayGiaoDich = DateTime.Now.AddDays(-29) },
+            new GiaoDich { Id = 2, DonHangId = 2, PhuongThucThanhToanId = 1, SoTien = 482000m, TrangThai = "SUCCESS", NgayGiaoDich = DateTime.Now.AddDays(-15) },
+            new GiaoDich { Id = 3, DonHangId = 3, PhuongThucThanhToanId = 2, SoTien = 214000m, TrangThai = "SUCCESS", NgayGiaoDich = DateTime.Now.AddDays(-1) },
+            new GiaoDich { Id = 4, DonHangId = 4, PhuongThucThanhToanId = 1, SoTien = 488000m, TrangThai = "SUCCESS", NgayGiaoDich = DateTime.Now.AddDays(-6) },
+            new GiaoDich { Id = 5, DonHangId = 5, PhuongThucThanhToanId = 2, SoTien = 463000m, TrangThai = "SUCCESS", NgayGiaoDich = DateTime.Now.AddDays(-22) },
+            new GiaoDich { Id = 6, DonHangId = 6, PhuongThucThanhToanId = 1, SoTien = 204000m, TrangThai = "SUCCESS", NgayGiaoDich = DateTime.Now.AddDays(-27) },
+            new GiaoDich { Id = 7, DonHangId = 7, PhuongThucThanhToanId = 3, SoTien = 417000m, TrangThai = "SUCCESS", NgayGiaoDich = DateTime.Now.AddDays(-15) },
+            new GiaoDich { Id = 8, DonHangId = 8, PhuongThucThanhToanId = 2, SoTien = 237000m, TrangThai = "SUCCESS", NgayGiaoDich = DateTime.Now.AddDays(-28) },
+            new GiaoDich { Id = 9, DonHangId = 9, PhuongThucThanhToanId = 1, SoTien = 482000m, TrangThai = "SUCCESS", NgayGiaoDich = DateTime.Now.AddDays(-24) },
+            new GiaoDich { Id = 10, DonHangId = 10, PhuongThucThanhToanId = 1, SoTien = 67000m, TrangThai = "SUCCESS", NgayGiaoDich = DateTime.Now.AddDays(-7) }
+        };
+    }
 }
