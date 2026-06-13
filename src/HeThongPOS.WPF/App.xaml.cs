@@ -45,6 +45,7 @@ public partial class App : System.Windows.Application
         services.AddTransient<HeThongPOS.WPF.ViewModels.SettingsViewModel>();
         services.AddTransient<HeThongPOS.WPF.ViewModels.UsersViewModel>();
         services.AddTransient<HeThongPOS.WPF.ViewModels.ProductsViewModel>();
+        services.AddTransient<HeThongPOS.WPF.ViewModels.ShiftViewModel>();
         
         // Views
         services.AddTransient<MainWindow>();
@@ -60,37 +61,36 @@ public partial class App : System.Windows.Application
                 var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
 
                 // Seed roles and cashier users if they don't exist in DB
-                var cashierRole = dbContext.VaiTros.FirstOrDefault(r => r.Id == 2);
+                var cashierRole = dbContext.VaiTros.FirstOrDefault(r => r.TenVaiTro == "Thu ngân");
                 if (cashierRole == null)
                 {
-                    dbContext.VaiTros.Add(new HeThongPOS.Core.Entities.VaiTro { Id = 2, TenVaiTro = "Thu ngân", MoTa = "Nhân viên thu ngân bán hàng" });
+                    cashierRole = new HeThongPOS.Core.Entities.VaiTro { TenVaiTro = "Thu ngân", MoTa = "Nhân viên thu ngân bán hàng" };
+                    dbContext.VaiTros.Add(cashierRole);
                     dbContext.SaveChanges();
                 }
 
-                var cashier1 = dbContext.NhanViens.FirstOrDefault(n => n.Id == 2);
+                var cashier1 = dbContext.NhanViens.FirstOrDefault(n => n.Username == "cashier1");
                 if (cashier1 == null)
                 {
                     dbContext.NhanViens.Add(new HeThongPOS.Core.Entities.NhanVien 
                     { 
-                        Id = 2, 
                         Username = "cashier1", 
                         PasswordHash = BCrypt.Net.BCrypt.HashPassword("123456"),
                         HoTen = "Nguyễn Thu Ngân", 
-                        VaiTroId = 2, 
+                        VaiTroId = cashierRole.Id, 
                         TrangThai = true 
                     });
                 }
 
-                var cashier2 = dbContext.NhanViens.FirstOrDefault(n => n.Id == 3);
+                var cashier2 = dbContext.NhanViens.FirstOrDefault(n => n.Username == "cashier2");
                 if (cashier2 == null)
                 {
                     dbContext.NhanViens.Add(new HeThongPOS.Core.Entities.NhanVien 
                     { 
-                        Id = 3, 
                         Username = "cashier2", 
                         PasswordHash = BCrypt.Net.BCrypt.HashPassword("123456"),
                         HoTen = "Trần Văn Khóa", 
-                        VaiTroId = 2, 
+                        VaiTroId = cashierRole.Id, 
                         TrangThai = false 
                     });
                 }

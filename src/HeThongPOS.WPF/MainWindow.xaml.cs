@@ -14,6 +14,7 @@ public partial class MainWindow : Window
     private readonly UsersView _usersView;
     private readonly SettingsView _settingsView;
     private readonly ProductsView _productsView;
+    private readonly ShiftView _shiftView;
 
     public MainWindow(
         OrdersViewModel ordersViewModel,
@@ -21,7 +22,8 @@ public partial class MainWindow : Window
         ReportsViewModel reportsViewModel,
         UsersViewModel usersViewModel,
         SettingsViewModel settingsViewModel,
-        ProductsViewModel productsViewModel)
+        ProductsViewModel productsViewModel,
+        ShiftViewModel shiftViewModel)
     {
         InitializeComponent();
         
@@ -32,6 +34,7 @@ public partial class MainWindow : Window
         _usersView = new UsersView { DataContext = usersViewModel };
         _settingsView = new SettingsView { DataContext = settingsViewModel };
         _productsView = new ProductsView { DataContext = productsViewModel };
+        _shiftView = new ShiftView { DataContext = shiftViewModel };
 
         // Set initial view
         MainContent.Content = _ordersView;
@@ -109,6 +112,18 @@ public partial class MainWindow : Window
         UpdateActiveButton(BtnProducts);
     }
 
+    private void NavShift_Click(object sender, RoutedEventArgs e)
+    {
+        MainContent.Content = _shiftView;
+        UpdateActiveButton(BtnShift);
+
+        // Refresh shift stats when navigated
+        if (_shiftView.DataContext is ShiftViewModel vm)
+        {
+            vm.LoadShiftDataCommand.Execute(null);
+        }
+    }
+
     public void NavigateToOrders()
     {
         MainContent.Content = _ordersView;
@@ -121,6 +136,7 @@ public partial class MainWindow : Window
         BtnCustomers.Style = (Style)FindResource("OutlinedButton");
         BtnReports.Style = (Style)FindResource("OutlinedButton");
         BtnProducts.Style = (Style)FindResource("OutlinedButton");
+        BtnShift.Style = (Style)FindResource("OutlinedButton");
         BtnUsers.Style = (Style)FindResource("OutlinedButton");
         BtnSettings.Style = (Style)FindResource("OutlinedButton");
         

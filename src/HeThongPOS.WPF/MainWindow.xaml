@@ -34,8 +34,10 @@
                 <!-- Navigation Buttons -->
                 <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Button Content="📦 Đơn hàng" Style="{StaticResource OutlinedButton}" Margin="0,0,10,0" Click="NavOrders_Click" x:Name="BtnOrders"/>
+                    <Button Content="🍎 Sản phẩm" Style="{StaticResource OutlinedButton}" Margin="0,0,10,0" Click="NavProducts_Click" x:Name="BtnProducts"/>
                     <Button Content="👥 Khách hàng" Style="{StaticResource OutlinedButton}" Margin="0,0,10,0" Click="NavCustomers_Click" x:Name="BtnCustomers"/>
                     <Button Content="📊 Báo cáo" Style="{StaticResource OutlinedButton}" Margin="0,0,10,0" Click="NavReports_Click" x:Name="BtnReports"/>
+                    <Button Content="🕒 Ca làm việc" Style="{StaticResource OutlinedButton}" Margin="0,0,10,0" Click="NavShift_Click" x:Name="BtnShift"/>
                     <Button Content="🔑 Nhân viên" Style="{StaticResource OutlinedButton}" Margin="0,0,10,0" Click="NavUsers_Click" x:Name="BtnUsers"/>
                     <Button Content="⚙ Cài đặt" Style="{StaticResource OutlinedButton}" Click="NavSettings_Click" x:Name="BtnSettings"/>
                 </StackPanel>
