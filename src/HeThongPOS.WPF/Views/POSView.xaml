@@ -190,8 +190,8 @@
                 </StackPanel>
 
                 <!-- Nút thanh toán -->
-                <Button Grid.Row="3" Content="Thanh Toán" Style="{StaticResource PrimaryButton}"
-                        Height="50" FontSize="18" Margin="0,5,0,0"/>
+                <Button Grid.Row="3" Content="Thanh Toán" Command="{Binding OpenPaymentCommand}"
+                        Style="{StaticResource PrimaryButton}" Height="50" FontSize="18" Margin="0,5,0,0"/>
             </Grid>
         </Border>
     </Grid>

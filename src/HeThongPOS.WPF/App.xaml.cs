@@ -36,11 +36,15 @@ public partial class App : System.Windows.Application
         // ViewModels
         services.AddTransient<LoginViewModel>();
         services.AddTransient<POSViewModel>();
+        services.AddTransient<PaymentViewModel>();
+        services.AddTransient<DashboardViewModel>();
 
         // Views
         services.AddTransient<MainWindow>();
         services.AddTransient<LoginView>();
         services.AddTransient<POSView>();
+        services.AddTransient<DashboardView>();
+        services.AddTransient<HeThongPOS.WPF.Controls.PaymentDialog>();
     }
 
     private async void OnStartup(object sender, StartupEventArgs e)
