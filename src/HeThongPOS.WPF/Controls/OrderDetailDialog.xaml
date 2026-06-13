@@ -71,7 +71,11 @@
                 <TextBlock Text="{Binding Order.TongThanhToan, StringFormat={}{0:N0} ₫}" FontWeight="Bold" Width="120" TextAlignment="Right" Foreground="#007ACC"/>
             </StackPanel>
 
-            <Button Content="Đóng" Width="80" HorizontalAlignment="Right" IsCancel="True"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="Xem hóa đơn" Command="{Binding PreviewInvoiceCommand}" Style="{StaticResource OutlinedButton}" Margin="0,0,10,0" Width="120"/>
+                <Button Content="In hóa đơn" Command="{Binding PrintInvoiceCommand}" Style="{StaticResource PrimaryButton}" Margin="0,0,10,0" Width="100"/>
+                <Button Content="Đóng" Width="80" IsCancel="True" Style="{StaticResource OutlinedButton}"/>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Window>

@@ -1,0 +1,78 @@
+<UserControl x:Class="HeThongPOS.WPF.Views.OrderSuccessView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- 1. Success Banner Card -->
+        <Border Grid.Row="0" Background="#E6F4EA" CornerRadius="12" BorderBrush="#10B981" BorderThickness="1" Padding="20" Margin="0,0,0,15">
+            <StackPanel HorizontalAlignment="Center">
+                <Border Background="#10B981" Width="50" Height="50" CornerRadius="25" Margin="0,0,0,10" HorizontalAlignment="Center">
+                    <TextBlock Text="✓" Foreground="White" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,2"/>
+                </Border>
+                <TextBlock Text="Thanh toán thành công!" Foreground="#10B981" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock Text="Mã đơn: " Foreground="#555555" FontSize="12"/>
+                    <TextBlock Text="{Binding Order.MaDonHang}" Foreground="{StaticResource TextPrimaryColor}" FontSize="12" FontWeight="SemiBold"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <!-- 2. Transaction Summary Card -->
+        <Border Grid.Row="1" Style="{StaticResource CardBorder}" Padding="20" Margin="0,0,0,20">
+            <StackPanel>
+                <TextBlock Text="Chi tiết thanh toán" FontSize="14" FontWeight="Bold" Foreground="{StaticResource TextPrimaryColor}" Margin="0,0,0,15"/>
+                
+                <!-- Total Amount -->
+                <Grid Margin="0,0,0,10">
+                    <TextBlock Text="Tổng thanh toán" Foreground="{StaticResource TextSecondaryColor}" FontSize="13" VerticalAlignment="Center"/>
+                    <TextBlock Text="{Binding Order.TongThanhToan, StringFormat={}{0:N0} ₫}" Foreground="{StaticResource TextPrimaryColor}" FontSize="15" FontWeight="Bold" HorizontalAlignment="Right"/>
+                </Grid>
+
+                <!-- Payment Method -->
+                <Grid Margin="0,0,0,10">
+                    <TextBlock Text="Phương thức" Foreground="{StaticResource TextSecondaryColor}" FontSize="13" VerticalAlignment="Center"/>
+                    <TextBlock Text="{Binding PaymentMethodName}" Foreground="{StaticResource TextPrimaryColor}" FontSize="14" FontWeight="SemiBold" HorizontalAlignment="Right"/>
+                </Grid>
+
+                <!-- Cash Received -->
+                <Grid Margin="0,0,0,10">
+                    <TextBlock Text="Tiền khách đưa" Foreground="{StaticResource TextSecondaryColor}" FontSize="13" VerticalAlignment="Center"/>
+                    <TextBlock Text="{Binding CashReceived, StringFormat={}{0:N0} ₫}" Foreground="{StaticResource TextPrimaryColor}" FontSize="14" FontWeight="SemiBold" HorizontalAlignment="Right"/>
+                </Grid>
+                
+                <Border Height="1" Background="{StaticResource BorderLightColor}" Margin="0,5,0,10"/>
+
+                <!-- Change Amount -->
+                <Grid>
+                    <TextBlock Text="Tiền thối lại" Foreground="#10B981" FontSize="14" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                    <TextBlock Text="{Binding ChangeAmount, StringFormat={}{0:N0} ₫}" Foreground="#10B981" FontSize="16" FontWeight="Bold" HorizontalAlignment="Right"/>
+                </Grid>
+            </StackPanel>
+        </Border>
+
+        <!-- 3. Action Buttons -->
+        <StackPanel Grid.Row="2" VerticalAlignment="Bottom">
+            <Button Command="{Binding PrintCommand}" Style="{StaticResource PrimaryButton}" Margin="0,0,0,10" Height="45">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="🖨 " FontSize="16" VerticalAlignment="Center"/>
+                    <TextBlock Text="In hóa đơn" FontSize="14" FontWeight="Bold" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+            <Button Command="{Binding NewOrderCommand}" Style="{StaticResource OutlinedButton}" Height="45">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="← " FontSize="16" VerticalAlignment="Center" Margin="0,0,3,0"/>
+                    <TextBlock Text="Đơn hàng mới" FontSize="14" FontWeight="Bold" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

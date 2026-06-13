@@ -34,6 +34,12 @@ public partial class MainWindow : Window
         UpdateActiveButton(BtnCustomers);
     }
 
+    public void NavigateToOrders()
+    {
+        MainContent.Content = _ordersView;
+        UpdateActiveButton(BtnOrders);
+    }
+
     private void UpdateActiveButton(System.Windows.Controls.Button activeBtn)
     {
         BtnOrders.Style = (Style)FindResource("OutlinedButton");
