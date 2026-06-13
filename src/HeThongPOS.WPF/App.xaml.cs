@@ -6,7 +6,7 @@ using System;
 
 namespace HeThongPOS.WPF;
 
-public partial class App : Application
+public partial class App : System.Windows.Application
 {
     public IServiceProvider ServiceProvider { get; private set; }
 
@@ -22,9 +22,19 @@ public partial class App : Application
         // Database
         var connectionString = "Server=localhost,1433;Database=HeThongPOS;User Id=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=true;";
         services.AddDbContext<AppDbContext>(options =>
-            options.UseSqlServer(connectionString));
+            options.UseSqlServer(connectionString), ServiceLifetime.Transient);
+
+        // Repositories
+        services.AddTransient<HeThongPOS.Core.Interfaces.ICustomerRepository, HeThongPOS.Infrastructure.Repositories.CustomerRepository>();
+        services.AddTransient<HeThongPOS.Core.Interfaces.IOrderRepository, HeThongPOS.Infrastructure.Repositories.OrderRepository>();
+
+        // Services
+        services.AddTransient<HeThongPOS.Core.Interfaces.ICustomerService, HeThongPOS.Application.Services.CustomerService>();
+        services.AddTransient<HeThongPOS.Core.Interfaces.IOrderService, HeThongPOS.Application.Services.OrderService>();
 
         // ViewModels
+        services.AddTransient<HeThongPOS.WPF.ViewModels.CustomersViewModel>();
+        services.AddTransient<HeThongPOS.WPF.ViewModels.OrdersViewModel>();
         
         // Views
         services.AddTransient<MainWindow>();

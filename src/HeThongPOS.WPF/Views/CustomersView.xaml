@@ -9,29 +9,48 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
-            <TextBox Width="250" Margin="0,0,10,0" Text="{Binding SearchKeyword, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center" Padding="5" />
-            <Button Content="Tìm kiếm" Command="{Binding SearchCommand}" Width="80" Margin="0,0,10,0"/>
-        </StackPanel>
+        <!-- Header -->
+        <TextBlock Text="Danh sách Khách hàng" FontSize="20" FontWeight="Bold" Foreground="{StaticResource TextPrimaryColor}" Margin="0,0,0,15"/>
 
-        <DataGrid Grid.Row="1" ItemsSource="{Binding Customers}" SelectedItem="{Binding SelectedCustomer}" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50"/>
-                <DataGridTextColumn Header="Họ Tên" Binding="{Binding HoTen}" Width="*"/>
-                <DataGridTextColumn Header="Số Điện Thoại" Binding="{Binding SoDienThoai}" Width="150"/>
-                <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="200"/>
-                <DataGridTextColumn Header="Điểm Tích Lũy" Binding="{Binding DiemTichLuy}" Width="120"/>
-                <DataGridTextColumn Header="Ngày Tạo" Binding="{Binding NgayTao, StringFormat={}{0:dd/MM/yyyy}}" Width="120"/>
-            </DataGrid.Columns>
-        </DataGrid>
+        <Border Grid.Row="1" Style="{StaticResource CardBorder}">
+            <Grid Margin="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                
+                <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,15">
+                    <TextBox Width="300" Margin="0,0,15,0" Text="{Binding SearchKeyword, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center" />
+                    <Button Content="Tìm kiếm" Command="{Binding SearchCommand}" Width="100" Style="{StaticResource PrimaryButton}"/>
+                </StackPanel>
 
-        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
-            <Button Content="Thêm mới" Command="{Binding AddCustomerCommand}" Width="100" Margin="0,0,10,0" />
-            <Button Content="Chỉnh sửa" Command="{Binding EditCustomerCommand}" Width="100" Margin="0,0,10,0"/>
-            <Button Content="Xóa" Command="{Binding DeleteCustomerCommand}" Width="100" Background="#FF4444" Foreground="White"/>
-        </StackPanel>
+                <DataGrid Grid.Row="1" ItemsSource="{Binding Customers}" SelectedItem="{Binding SelectedCustomer}" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50"/>
+                        <DataGridTextColumn Header="Họ Tên" Binding="{Binding HoTen}" Width="*">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="FontWeight" Value="SemiBold"/>
+                                    <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Số Điện Thoại" Binding="{Binding SoDienThoai}" Width="150"/>
+                        <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="200"/>
+                        <DataGridTextColumn Header="Điểm Tích Lũy" Binding="{Binding DiemTichLuy}" Width="120"/>
+                        <DataGridTextColumn Header="Ngày Tạo" Binding="{Binding NgayTao, StringFormat={}{0:dd/MM/yyyy}}" Width="120"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+                    <Button Content="Thêm mới" Command="{Binding AddCustomerCommand}" Width="120" Margin="0,0,15,0" Style="{StaticResource PrimaryButton}"/>
+                    <Button Content="Chỉnh sửa" Command="{Binding EditCustomerCommand}" Width="120" Margin="0,0,15,0" Style="{StaticResource OutlinedButton}"/>
+                    <Button Content="Xóa" Command="{Binding DeleteCustomerCommand}" Width="120" Style="{StaticResource OutlinedButton}" Foreground="{StaticResource DangerColor}" BorderBrush="{StaticResource DangerColor}"/>
+                </StackPanel>
+            </Grid>
+        </Border>
     </Grid>
 </UserControl>
