@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.expression/blend/2008" 
+             xmlns:controls="clr-namespace:HeThongPOS.WPF.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="900">
     <Grid Margin="10">
@@ -54,39 +55,55 @@
 
         <!-- Table Grid -->
         <Border Grid.Row="2" Style="{StaticResource CardBorder}">
-            <DataGrid ItemsSource="{Binding Users}" 
-                      SelectedItem="{Binding SelectedUser}"
-                      AutoGenerateColumns="False" 
-                      IsReadOnly="True" 
-                      SelectionMode="Single"
-                      BorderThickness="0">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Mã số" Binding="{Binding Id}" Width="80"/>
-                    <DataGridTextColumn Header="Tên đăng nhập" Binding="{Binding Username}" Width="150"/>
-                    <DataGridTextColumn Header="Họ và tên" Binding="{Binding HoTen}" Width="*"/>
-                    <DataGridTextColumn Header="Chức vụ" Binding="{Binding VaiTro.TenVaiTro}" Width="150"/>
-                    
-                    <!-- Status Badge Column -->
-                    <DataGridTemplateColumn Header="Trạng thái" Width="150">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <Border x:Name="StatusBadge" CornerRadius="12" Padding="10,4" HorizontalAlignment="Left" Background="#E5F9F6">
-                                    <TextBlock x:Name="StatusText" Text="Đang hoạt động" Foreground="#10B981" FontSize="11.5" FontWeight="SemiBold"/>
-                                </Border>
-                                <DataTemplate.Triggers>
-                                    <DataTrigger Binding="{Binding TrangThai}" Value="False">
-                                        <Setter TargetName="StatusBadge" Property="Background" Value="#FEE2E2"/>
-                                        <Setter TargetName="StatusText" Property="Text" Value="Đã khóa"/>
-                                        <Setter TargetName="StatusText" Property="Foreground" Value="#EF4444"/>
-                                    </DataTrigger>
-                                </DataTemplate.Triggers>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
+            <Grid>
+                <DataGrid ItemsSource="{Binding Users}" 
+                          SelectedItem="{Binding SelectedUser}"
+                          AutoGenerateColumns="False" 
+                          IsReadOnly="True" 
+                          SelectionMode="Single"
+                          BorderThickness="0">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Mã số" Binding="{Binding Id}" Width="80"/>
+                        <DataGridTextColumn Header="Tên đăng nhập" Binding="{Binding Username}" Width="150"/>
+                        <DataGridTextColumn Header="Họ và tên" Binding="{Binding HoTen}" Width="*"/>
+                        <DataGridTextColumn Header="Chức vụ" Binding="{Binding VaiTro.TenVaiTro}" Width="150"/>
+                        
+                        <!-- Status Badge Column -->
+                        <DataGridTemplateColumn Header="Trạng thái" Width="150">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Border x:Name="StatusBadge" CornerRadius="12" Padding="10,4" HorizontalAlignment="Left" Background="#E5F9F6">
+                                        <TextBlock x:Name="StatusText" Text="Đang hoạt động" Foreground="#10B981" FontSize="11.5" FontWeight="SemiBold"/>
+                                    </Border>
+                                    <DataTemplate.Triggers>
+                                        <DataTrigger Binding="{Binding TrangThai}" Value="False">
+                                            <Setter TargetName="StatusBadge" Property="Background" Value="#FEE2E2"/>
+                                            <Setter TargetName="StatusText" Property="Text" Value="Đã khóa"/>
+                                            <Setter TargetName="StatusText" Property="Foreground" Value="#EF4444"/>
+                                        </DataTrigger>
+                                    </DataTemplate.Triggers>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
 
-                    <DataGridTextColumn Header="Ngày tạo" Binding="{Binding NgayTao, StringFormat={}{0:dd/MM/yyyy HH:mm}}" Width="180"/>
-                </DataGrid.Columns>
-            </DataGrid>
+                        <DataGridTextColumn Header="Ngày tạo" Binding="{Binding NgayTao, StringFormat={}{0:dd/MM/yyyy HH:mm}}" Width="180"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <!-- Loading Spinner Overlay -->
+                <Border Background="#80FFFFFF" Visibility="Collapsed" CornerRadius="8">
+                    <Border.Style>
+                        <Style TargetType="Border">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding LoadDataCommand.IsRunning}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                    <controls:LoadingSpinner HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Border>
+            </Grid>
         </Border>
     </Grid>
 </UserControl>
