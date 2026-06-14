@@ -35,6 +35,9 @@
                 <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Button Content="📦 Đơn hàng" Style="{StaticResource OutlinedButton}" Margin="0,0,10,0" Click="NavOrders_Click" x:Name="BtnOrders"/>
                     <Button Content="👥 Khách hàng" Style="{StaticResource OutlinedButton}" Margin="0,0,10,0" Click="NavCustomers_Click" x:Name="BtnCustomers"/>
+                    <Button Content="📊 Báo cáo" Style="{StaticResource OutlinedButton}" Margin="0,0,10,0" Click="NavReports_Click" x:Name="BtnReports"/>
+                    <Button Content="🔑 Nhân viên" Style="{StaticResource OutlinedButton}" Margin="0,0,10,0" Click="NavUsers_Click" x:Name="BtnUsers"/>
+                    <Button Content="⚙ Cài đặt" Style="{StaticResource OutlinedButton}" Click="NavSettings_Click" x:Name="BtnSettings"/>
                 </StackPanel>
 
                 <!-- User Profile & Status -->
@@ -46,11 +49,11 @@
                     
                     <!-- Avatar -->
                     <Border Background="{StaticResource PrimaryColor}" CornerRadius="16" Width="32" Height="32" Margin="0,0,10,0">
-                        <TextBlock Text="N" Foreground="White" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock x:Name="TxtProfileInitials" Text="Q" Foreground="White" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
                     <StackPanel VerticalAlignment="Center">
-                        <TextBlock Text="Nguyễn Văn A" FontSize="14" FontWeight="SemiBold" Foreground="{StaticResource TextPrimaryColor}"/>
-                        <TextBlock Text="Nhân viên" FontSize="11" Foreground="{StaticResource TextSecondaryColor}"/>
+                        <TextBlock x:Name="TxtProfileName" Text="Quản lý" FontSize="14" FontWeight="SemiBold" Foreground="{StaticResource TextPrimaryColor}"/>
+                        <TextBlock x:Name="TxtProfileRole" Text="Quản lý" FontSize="11" Foreground="{StaticResource TextSecondaryColor}"/>
                     </StackPanel>
                 </StackPanel>
             </Grid>
