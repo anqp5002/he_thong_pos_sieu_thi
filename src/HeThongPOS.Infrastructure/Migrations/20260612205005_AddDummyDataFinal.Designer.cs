@@ -4,6 +4,7 @@ using HeThongPOS.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HeThongPOS.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260612205005_AddDummyDataFinal")]
+    partial class AddDummyDataFinal
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -93,233 +96,201 @@ namespace HeThongPOS.Infrastructure.Migrations
                         new
                         {
                             DonHangId = 1,
+                            SanPhamId = 21,
+                            DonGia = 102000m,
+                            SoLuong = 3,
+                            ThanhTien = 0m
+                        },
+                        new
+                        {
+                            DonHangId = 1,
                             SanPhamId = 17,
-                            DonGia = 146000m,
-                            SoLuong = 3,
-                            ThanhTien = 0m
-                        },
-                        new
-                        {
-                            DonHangId = 1,
-                            SanPhamId = 33,
-                            DonGia = 118000m,
-                            SoLuong = 3,
-                            ThanhTien = 0m
-                        },
-                        new
-                        {
-                            DonHangId = 1,
-                            SanPhamId = 36,
-                            DonGia = 196000m,
-                            SoLuong = 4,
-                            ThanhTien = 0m
-                        },
-                        new
-                        {
-                            DonHangId = 1,
-                            SanPhamId = 3,
-                            DonGia = 122000m,
+                            DonGia = 90000m,
                             SoLuong = 1,
                             ThanhTien = 0m
                         },
                         new
                         {
-                            DonHangId = 2,
-                            SanPhamId = 43,
-                            DonGia = 34000m,
-                            SoLuong = 2,
+                            DonHangId = 1,
+                            SanPhamId = 16,
+                            DonGia = 78000m,
+                            SoLuong = 4,
                             ThanhTien = 0m
                         },
                         new
                         {
                             DonHangId = 2,
-                            SanPhamId = 38,
-                            DonGia = 86000m,
-                            SoLuong = 3,
-                            ThanhTien = 0m
-                        },
-                        new
-                        {
-                            DonHangId = 2,
-                            SanPhamId = 5,
-                            DonGia = 132000m,
-                            SoLuong = 3,
+                            SanPhamId = 28,
+                            DonGia = 45000m,
+                            SoLuong = 4,
                             ThanhTien = 0m
                         },
                         new
                         {
                             DonHangId = 3,
-                            SanPhamId = 3,
-                            DonGia = 18000m,
+                            SanPhamId = 32,
+                            DonGia = 82000m,
                             SoLuong = 2,
                             ThanhTien = 0m
                         },
                         new
                         {
+                            DonHangId = 3,
+                            SanPhamId = 41,
+                            DonGia = 120000m,
+                            SoLuong = 4,
+                            ThanhTien = 0m
+                        },
+                        new
+                        {
                             DonHangId = 4,
-                            SanPhamId = 35,
+                            SanPhamId = 33,
+                            DonGia = 102000m,
+                            SoLuong = 3,
+                            ThanhTien = 0m
+                        },
+                        new
+                        {
+                            DonHangId = 5,
+                            SanPhamId = 1,
+                            DonGia = 71000m,
+                            SoLuong = 2,
+                            ThanhTien = 0m
+                        },
+                        new
+                        {
+                            DonHangId = 5,
+                            SanPhamId = 5,
+                            DonGia = 179000m,
+                            SoLuong = 2,
+                            ThanhTien = 0m
+                        },
+                        new
+                        {
+                            DonHangId = 5,
+                            SanPhamId = 40,
+                            DonGia = 47000m,
+                            SoLuong = 3,
+                            ThanhTien = 0m
+                        },
+                        new
+                        {
+                            DonHangId = 5,
+                            SanPhamId = 21,
+                            DonGia = 72000m,
+                            SoLuong = 1,
+                            ThanhTien = 0m
+                        },
+                        new
+                        {
+                            DonHangId = 6,
+                            SanPhamId = 45,
+                            DonGia = 97000m,
+                            SoLuong = 2,
+                            ThanhTien = 0m
+                        },
+                        new
+                        {
+                            DonHangId = 7,
+                            SanPhamId = 33,
+                            DonGia = 18000m,
+                            SoLuong = 1,
+                            ThanhTien = 0m
+                        },
+                        new
+                        {
+                            DonHangId = 8,
+                            SanPhamId = 15,
+                            DonGia = 58000m,
+                            SoLuong = 3,
+                            ThanhTien = 0m
+                        },
+                        new
+                        {
+                            DonHangId = 8,
+                            SanPhamId = 20,
+                            DonGia = 183000m,
+                            SoLuong = 4,
+                            ThanhTien = 0m
+                        },
+                        new
+                        {
+                            DonHangId = 8,
+                            SanPhamId = 23,
+                            DonGia = 108000m,
+                            SoLuong = 3,
+                            ThanhTien = 0m
+                        },
+                        new
+                        {
+                            DonHangId = 8,
+                            SanPhamId = 33,
                             DonGia = 172000m,
                             SoLuong = 3,
                             ThanhTien = 0m
                         },
                         new
                         {
-                            DonHangId = 4,
-                            SanPhamId = 15,
-                            DonGia = 176000m,
-                            SoLuong = 3,
-                            ThanhTien = 0m
-                        },
-                        new
-                        {
-                            DonHangId = 4,
-                            SanPhamId = 16,
-                            DonGia = 178000m,
-                            SoLuong = 3,
-                            ThanhTien = 0m
-                        },
-                        new
-                        {
-                            DonHangId = 5,
-                            SanPhamId = 30,
-                            DonGia = 107000m,
-                            SoLuong = 3,
-                            ThanhTien = 0m
-                        },
-                        new
-                        {
-                            DonHangId = 5,
-                            SanPhamId = 19,
-                            DonGia = 98000m,
-                            SoLuong = 1,
-                            ThanhTien = 0m
-                        },
-                        new
-                        {
-                            DonHangId = 5,
-                            SanPhamId = 41,
-                            DonGia = 33000m,
-                            SoLuong = 1,
-                            ThanhTien = 0m
-                        },
-                        new
-                        {
-                            DonHangId = 6,
-                            SanPhamId = 47,
-                            DonGia = 92000m,
-                            SoLuong = 3,
-                            ThanhTien = 0m
-                        },
-                        new
-                        {
-                            DonHangId = 6,
-                            SanPhamId = 34,
-                            DonGia = 107000m,
-                            SoLuong = 2,
-                            ThanhTien = 0m
-                        },
-                        new
-                        {
-                            DonHangId = 6,
-                            SanPhamId = 48,
-                            DonGia = 150000m,
-                            SoLuong = 3,
-                            ThanhTien = 0m
-                        },
-                        new
-                        {
-                            DonHangId = 7,
-                            SanPhamId = 27,
-                            DonGia = 133000m,
-                            SoLuong = 1,
-                            ThanhTien = 0m
-                        },
-                        new
-                        {
-                            DonHangId = 7,
-                            SanPhamId = 4,
-                            DonGia = 68000m,
-                            SoLuong = 1,
-                            ThanhTien = 0m
-                        },
-                        new
-                        {
-                            DonHangId = 7,
-                            SanPhamId = 49,
-                            DonGia = 102000m,
-                            SoLuong = 1,
-                            ThanhTien = 0m
-                        },
-                        new
-                        {
-                            DonHangId = 7,
-                            SanPhamId = 9,
-                            DonGia = 84000m,
-                            SoLuong = 3,
-                            ThanhTien = 0m
-                        },
-                        new
-                        {
-                            DonHangId = 8,
-                            SanPhamId = 25,
-                            DonGia = 139000m,
-                            SoLuong = 4,
-                            ThanhTien = 0m
-                        },
-                        new
-                        {
-                            DonHangId = 8,
-                            SanPhamId = 35,
-                            DonGia = 177000m,
-                            SoLuong = 4,
-                            ThanhTien = 0m
-                        },
-                        new
-                        {
-                            DonHangId = 8,
-                            SanPhamId = 48,
-                            DonGia = 103000m,
-                            SoLuong = 4,
-                            ThanhTien = 0m
-                        },
-                        new
-                        {
                             DonHangId = 9,
-                            SanPhamId = 24,
-                            DonGia = 88000m,
+                            SanPhamId = 37,
+                            DonGia = 38000m,
                             SoLuong = 3,
                             ThanhTien = 0m
                         },
                         new
                         {
                             DonHangId = 9,
-                            SanPhamId = 4,
-                            DonGia = 170000m,
-                            SoLuong = 3,
+                            SanPhamId = 10,
+                            DonGia = 41000m,
+                            SoLuong = 1,
                             ThanhTien = 0m
                         },
                         new
                         {
                             DonHangId = 9,
-                            SanPhamId = 13,
-                            DonGia = 81000m,
+                            SanPhamId = 39,
+                            DonGia = 30000m,
+                            SoLuong = 1,
+                            ThanhTien = 0m
+                        },
+                        new
+                        {
+                            DonHangId = 9,
+                            SanPhamId = 38,
+                            DonGia = 175000m,
+                            SoLuong = 4,
+                            ThanhTien = 0m
+                        },
+                        new
+                        {
+                            DonHangId = 10,
+                            SanPhamId = 39,
+                            DonGia = 55000m,
                             SoLuong = 1,
                             ThanhTien = 0m
                         },
                         new
                         {
                             DonHangId = 10,
-                            SanPhamId = 47,
-                            DonGia = 93000m,
-                            SoLuong = 1,
+                            SanPhamId = 8,
+                            DonGia = 134000m,
+                            SoLuong = 3,
                             ThanhTien = 0m
                         },
                         new
                         {
                             DonHangId = 10,
-                            SanPhamId = 30,
-                            DonGia = 136000m,
-                            SoLuong = 1,
+                            SanPhamId = 22,
+                            DonGia = 90000m,
+                            SoLuong = 4,
+                            ThanhTien = 0m
+                        },
+                        new
+                        {
+                            DonHangId = 10,
+                            SanPhamId = 26,
+                            DonGia = 118000m,
+                            SoLuong = 3,
                             ThanhTien = 0m
                         });
                 });
@@ -425,12 +396,12 @@ namespace HeThongPOS.Infrastructure.Migrations
                             Id = 1,
                             ChietKhau = 0m,
                             GhiChu = "Đơn hàng mẫu 1",
-                            KhachHangId = 7,
-                            MaDonHang = "DH202605210001",
-                            NgayTao = new DateTime(2026, 5, 21, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2584),
+                            KhachHangId = 14,
+                            MaDonHang = "DH202605290001",
+                            NgayTao = new DateTime(2026, 5, 29, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(212),
                             NhanVienId = 1,
                             ThueVAT = 0m,
-                            TongThanhToan = 204000m,
+                            TongThanhToan = 126000m,
                             TongTienHang = 0m,
                             TrangThai = 3
                         },
@@ -439,26 +410,26 @@ namespace HeThongPOS.Infrastructure.Migrations
                             Id = 2,
                             ChietKhau = 0m,
                             GhiChu = "Đơn hàng mẫu 2",
-                            KhachHangId = 5,
-                            MaDonHang = "DH202606050002",
-                            NgayTao = new DateTime(2026, 6, 5, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2695),
+                            KhachHangId = 4,
+                            MaDonHang = "DH202605150002",
+                            NgayTao = new DateTime(2026, 5, 15, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(281),
                             NhanVienId = 1,
                             ThueVAT = 0m,
-                            TongThanhToan = 175000m,
+                            TongThanhToan = 482000m,
                             TongTienHang = 0m,
-                            TrangThai = 2
+                            TrangThai = 1
                         },
                         new
                         {
                             Id = 3,
                             ChietKhau = 0m,
                             GhiChu = "Đơn hàng mẫu 3",
-                            KhachHangId = 19,
-                            MaDonHang = "DH202606010003",
-                            NgayTao = new DateTime(2026, 6, 1, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2712),
+                            KhachHangId = 14,
+                            MaDonHang = "DH202606120003",
+                            NgayTao = new DateTime(2026, 6, 12, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(285),
                             NhanVienId = 1,
                             ThueVAT = 0m,
-                            TongThanhToan = 174000m,
+                            TongThanhToan = 214000m,
                             TongTienHang = 0m,
                             TrangThai = 2
                         },
@@ -467,14 +438,14 @@ namespace HeThongPOS.Infrastructure.Migrations
                             Id = 4,
                             ChietKhau = 0m,
                             GhiChu = "Đơn hàng mẫu 4",
-                            KhachHangId = 2,
-                            MaDonHang = "DH202605170004",
-                            NgayTao = new DateTime(2026, 5, 17, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2726),
+                            KhachHangId = 3,
+                            MaDonHang = "DH202606060004",
+                            NgayTao = new DateTime(2026, 6, 6, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(289),
                             NhanVienId = 1,
                             ThueVAT = 0m,
-                            TongThanhToan = 321000m,
+                            TongThanhToan = 488000m,
                             TongTienHang = 0m,
-                            TrangThai = 1
+                            TrangThai = 3
                         },
                         new
                         {
@@ -482,25 +453,25 @@ namespace HeThongPOS.Infrastructure.Migrations
                             ChietKhau = 0m,
                             GhiChu = "Đơn hàng mẫu 5",
                             KhachHangId = 1,
-                            MaDonHang = "DH202606020005",
-                            NgayTao = new DateTime(2026, 6, 2, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2740),
+                            MaDonHang = "DH202605220005",
+                            NgayTao = new DateTime(2026, 5, 22, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(292),
                             NhanVienId = 1,
                             ThueVAT = 0m,
-                            TongThanhToan = 474000m,
+                            TongThanhToan = 463000m,
                             TongTienHang = 0m,
-                            TrangThai = 1
+                            TrangThai = 2
                         },
                         new
                         {
                             Id = 6,
                             ChietKhau = 0m,
                             GhiChu = "Đơn hàng mẫu 6",
-                            KhachHangId = 10,
-                            MaDonHang = "DH202605170006",
-                            NgayTao = new DateTime(2026, 5, 17, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2754),
+                            KhachHangId = 8,
+                            MaDonHang = "DH202605270006",
+                            NgayTao = new DateTime(2026, 5, 27, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(296),
                             NhanVienId = 1,
                             ThueVAT = 0m,
-                            TongThanhToan = 262000m,
+                            TongThanhToan = 204000m,
                             TongTienHang = 0m,
                             TrangThai = 3
                         },
@@ -509,56 +480,56 @@ namespace HeThongPOS.Infrastructure.Migrations
                             Id = 7,
                             ChietKhau = 0m,
                             GhiChu = "Đơn hàng mẫu 7",
-                            KhachHangId = 2,
-                            MaDonHang = "DH202605300007",
-                            NgayTao = new DateTime(2026, 5, 30, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2768),
+                            KhachHangId = 9,
+                            MaDonHang = "DH202605150007",
+                            NgayTao = new DateTime(2026, 5, 15, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(300),
                             NhanVienId = 1,
                             ThueVAT = 0m,
-                            TongThanhToan = 160000m,
+                            TongThanhToan = 417000m,
                             TongTienHang = 0m,
-                            TrangThai = 1
+                            TrangThai = 3
                         },
                         new
                         {
                             Id = 8,
                             ChietKhau = 0m,
                             GhiChu = "Đơn hàng mẫu 8",
-                            KhachHangId = 7,
-                            MaDonHang = "DH202605180008",
-                            NgayTao = new DateTime(2026, 5, 18, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2781),
+                            KhachHangId = 3,
+                            MaDonHang = "DH202605280008",
+                            NgayTao = new DateTime(2026, 5, 28, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(303),
                             NhanVienId = 1,
                             ThueVAT = 0m,
-                            TongThanhToan = 231000m,
+                            TongThanhToan = 237000m,
                             TongTienHang = 0m,
-                            TrangThai = 1
+                            TrangThai = 2
                         },
                         new
                         {
                             Id = 9,
                             ChietKhau = 0m,
                             GhiChu = "Đơn hàng mẫu 9",
-                            KhachHangId = 12,
-                            MaDonHang = "DH202606020009",
-                            NgayTao = new DateTime(2026, 6, 2, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2796),
+                            KhachHangId = 11,
+                            MaDonHang = "DH202605240009",
+                            NgayTao = new DateTime(2026, 5, 24, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(306),
                             NhanVienId = 1,
                             ThueVAT = 0m,
-                            TongThanhToan = 406000m,
+                            TongThanhToan = 482000m,
                             TongTienHang = 0m,
-                            TrangThai = 3
+                            TrangThai = 1
                         },
                         new
                         {
                             Id = 10,
                             ChietKhau = 0m,
                             GhiChu = "Đơn hàng mẫu 10",
-                            KhachHangId = 19,
-                            MaDonHang = "DH202606030010",
-                            NgayTao = new DateTime(2026, 6, 3, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2824),
+                            KhachHangId = 18,
+                            MaDonHang = "DH202606070010",
+                            NgayTao = new DateTime(2026, 6, 7, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(309),
                             NhanVienId = 1,
                             ThueVAT = 0m,
-                            TongThanhToan = 476000m,
+                            TongThanhToan = 67000m,
                             TongTienHang = 0m,
-                            TrangThai = 2
+                            TrangThai = 1
                         });
                 });
 
@@ -597,108 +568,6 @@ namespace HeThongPOS.Infrastructure.Migrations
                     b.HasIndex("PhuongThucThanhToanId");
 
                     b.ToTable("GIAO_DICH", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            DonHangId = 1,
-                            MaGiaoDichDoiTac = "",
-                            NgayGiaoDich = new DateTime(2026, 5, 16, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(3071),
-                            PhuongThucThanhToanId = 1,
-                            SoTien = 126000m,
-                            TrangThai = "SUCCESS"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            DonHangId = 2,
-                            MaGiaoDichDoiTac = "",
-                            NgayGiaoDich = new DateTime(2026, 5, 30, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(3076),
-                            PhuongThucThanhToanId = 1,
-                            SoTien = 482000m,
-                            TrangThai = "SUCCESS"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            DonHangId = 3,
-                            MaGiaoDichDoiTac = "",
-                            NgayGiaoDich = new DateTime(2026, 6, 13, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(3078),
-                            PhuongThucThanhToanId = 2,
-                            SoTien = 214000m,
-                            TrangThai = "SUCCESS"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            DonHangId = 4,
-                            MaGiaoDichDoiTac = "",
-                            NgayGiaoDich = new DateTime(2026, 6, 8, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(3081),
-                            PhuongThucThanhToanId = 1,
-                            SoTien = 488000m,
-                            TrangThai = "SUCCESS"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            DonHangId = 5,
-                            MaGiaoDichDoiTac = "",
-                            NgayGiaoDich = new DateTime(2026, 5, 23, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(3083),
-                            PhuongThucThanhToanId = 2,
-                            SoTien = 463000m,
-                            TrangThai = "SUCCESS"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            DonHangId = 6,
-                            MaGiaoDichDoiTac = "",
-                            NgayGiaoDich = new DateTime(2026, 5, 18, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(3087),
-                            PhuongThucThanhToanId = 1,
-                            SoTien = 204000m,
-                            TrangThai = "SUCCESS"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            DonHangId = 7,
-                            MaGiaoDichDoiTac = "",
-                            NgayGiaoDich = new DateTime(2026, 5, 30, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(3089),
-                            PhuongThucThanhToanId = 3,
-                            SoTien = 417000m,
-                            TrangThai = "SUCCESS"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            DonHangId = 8,
-                            MaGiaoDichDoiTac = "",
-                            NgayGiaoDich = new DateTime(2026, 5, 17, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(3092),
-                            PhuongThucThanhToanId = 2,
-                            SoTien = 237000m,
-                            TrangThai = "SUCCESS"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            DonHangId = 9,
-                            MaGiaoDichDoiTac = "",
-                            NgayGiaoDich = new DateTime(2026, 5, 21, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(3094),
-                            PhuongThucThanhToanId = 1,
-                            SoTien = 482000m,
-                            TrangThai = "SUCCESS"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            DonHangId = 10,
-                            MaGiaoDichDoiTac = "",
-                            NgayGiaoDich = new DateTime(2026, 6, 7, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(3108),
-                            PhuongThucThanhToanId = 1,
-                            SoTien = 67000m,
-                            TrangThai = "SUCCESS"
-                        });
                 });
 
             modelBuilder.Entity("HeThongPOS.Core.Entities.KhachHang", b =>
@@ -735,181 +604,181 @@ namespace HeThongPOS.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            DiemTichLuy = 466,
+                            DiemTichLuy = 28,
                             Email = "khachhang1@example.com",
                             HoTen = "Khách hàng 1",
-                            NgayTao = new DateTime(2026, 6, 13, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(1812),
+                            NgayTao = new DateTime(2026, 6, 12, 3, 50, 5, 174, DateTimeKind.Local).AddTicks(9957),
                             SoDienThoai = "0900000001"
                         },
                         new
                         {
                             Id = 2,
-                            DiemTichLuy = 401,
+                            DiemTichLuy = 120,
                             Email = "khachhang2@example.com",
                             HoTen = "Khách hàng 2",
-                            NgayTao = new DateTime(2026, 6, 12, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(1840),
+                            NgayTao = new DateTime(2026, 6, 11, 3, 50, 5, 174, DateTimeKind.Local).AddTicks(9967),
                             SoDienThoai = "0900000002"
                         },
                         new
                         {
                             Id = 3,
-                            DiemTichLuy = 350,
+                            DiemTichLuy = 201,
                             Email = "khachhang3@example.com",
                             HoTen = "Khách hàng 3",
-                            NgayTao = new DateTime(2026, 6, 11, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(1860),
+                            NgayTao = new DateTime(2026, 6, 10, 3, 50, 5, 174, DateTimeKind.Local).AddTicks(9977),
                             SoDienThoai = "0900000003"
                         },
                         new
                         {
                             Id = 4,
-                            DiemTichLuy = 112,
+                            DiemTichLuy = 212,
                             Email = "khachhang4@example.com",
                             HoTen = "Khách hàng 4",
-                            NgayTao = new DateTime(2026, 6, 10, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(1888),
+                            NgayTao = new DateTime(2026, 6, 9, 3, 50, 5, 174, DateTimeKind.Local).AddTicks(9981),
                             SoDienThoai = "0900000004"
                         },
                         new
                         {
                             Id = 5,
-                            DiemTichLuy = 322,
+                            DiemTichLuy = 310,
                             Email = "khachhang5@example.com",
                             HoTen = "Khách hàng 5",
-                            NgayTao = new DateTime(2026, 6, 9, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(1901),
+                            NgayTao = new DateTime(2026, 6, 8, 3, 50, 5, 174, DateTimeKind.Local).AddTicks(9986),
                             SoDienThoai = "0900000005"
                         },
                         new
                         {
                             Id = 6,
-                            DiemTichLuy = 195,
+                            DiemTichLuy = 17,
                             Email = "khachhang6@example.com",
                             HoTen = "Khách hàng 6",
-                            NgayTao = new DateTime(2026, 6, 8, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(1917),
+                            NgayTao = new DateTime(2026, 6, 7, 3, 50, 5, 174, DateTimeKind.Local).AddTicks(9990),
                             SoDienThoai = "0900000006"
                         },
                         new
                         {
                             Id = 7,
-                            DiemTichLuy = 125,
+                            DiemTichLuy = 316,
                             Email = "khachhang7@example.com",
                             HoTen = "Khách hàng 7",
-                            NgayTao = new DateTime(2026, 6, 7, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(1953),
+                            NgayTao = new DateTime(2026, 6, 6, 3, 50, 5, 174, DateTimeKind.Local).AddTicks(9993),
                             SoDienThoai = "0900000007"
                         },
                         new
                         {
                             Id = 8,
-                            DiemTichLuy = 216,
+                            DiemTichLuy = 15,
                             Email = "khachhang8@example.com",
                             HoTen = "Khách hàng 8",
-                            NgayTao = new DateTime(2026, 6, 6, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(1971),
+                            NgayTao = new DateTime(2026, 6, 5, 3, 50, 5, 174, DateTimeKind.Local).AddTicks(9996),
                             SoDienThoai = "0900000008"
                         },
                         new
                         {
                             Id = 9,
-                            DiemTichLuy = 304,
+                            DiemTichLuy = 209,
                             Email = "khachhang9@example.com",
                             HoTen = "Khách hàng 9",
-                            NgayTao = new DateTime(2026, 6, 5, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(1985),
+                            NgayTao = new DateTime(2026, 6, 4, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(4),
                             SoDienThoai = "0900000009"
                         },
                         new
                         {
                             Id = 10,
-                            DiemTichLuy = 122,
+                            DiemTichLuy = 158,
                             Email = "khachhang10@example.com",
                             HoTen = "Khách hàng 10",
-                            NgayTao = new DateTime(2026, 6, 4, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2002),
+                            NgayTao = new DateTime(2026, 6, 3, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(10),
                             SoDienThoai = "0900000010"
                         },
                         new
                         {
                             Id = 11,
-                            DiemTichLuy = 208,
+                            DiemTichLuy = 312,
                             Email = "khachhang11@example.com",
                             HoTen = "Khách hàng 11",
-                            NgayTao = new DateTime(2026, 6, 3, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2014),
+                            NgayTao = new DateTime(2026, 6, 2, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(13),
                             SoDienThoai = "0900000011"
                         },
                         new
                         {
                             Id = 12,
-                            DiemTichLuy = 169,
+                            DiemTichLuy = 417,
                             Email = "khachhang12@example.com",
                             HoTen = "Khách hàng 12",
-                            NgayTao = new DateTime(2026, 6, 2, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2029),
+                            NgayTao = new DateTime(2026, 6, 1, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(15),
                             SoDienThoai = "0900000012"
                         },
                         new
                         {
                             Id = 13,
-                            DiemTichLuy = 326,
+                            DiemTichLuy = 6,
                             Email = "khachhang13@example.com",
                             HoTen = "Khách hàng 13",
-                            NgayTao = new DateTime(2026, 6, 1, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2043),
+                            NgayTao = new DateTime(2026, 5, 31, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(19),
                             SoDienThoai = "0900000013"
                         },
                         new
                         {
                             Id = 14,
-                            DiemTichLuy = 117,
+                            DiemTichLuy = 473,
                             Email = "khachhang14@example.com",
                             HoTen = "Khách hàng 14",
-                            NgayTao = new DateTime(2026, 5, 31, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2055),
+                            NgayTao = new DateTime(2026, 5, 30, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(22),
                             SoDienThoai = "0900000014"
                         },
                         new
                         {
                             Id = 15,
-                            DiemTichLuy = 472,
+                            DiemTichLuy = 300,
                             Email = "khachhang15@example.com",
                             HoTen = "Khách hàng 15",
-                            NgayTao = new DateTime(2026, 5, 30, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2067),
+                            NgayTao = new DateTime(2026, 5, 29, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(24),
                             SoDienThoai = "0900000015"
                         },
                         new
                         {
                             Id = 16,
-                            DiemTichLuy = 353,
+                            DiemTichLuy = 212,
                             Email = "khachhang16@example.com",
                             HoTen = "Khách hàng 16",
-                            NgayTao = new DateTime(2026, 5, 29, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2083),
+                            NgayTao = new DateTime(2026, 5, 28, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(27),
                             SoDienThoai = "0900000016"
                         },
                         new
                         {
                             Id = 17,
-                            DiemTichLuy = 98,
+                            DiemTichLuy = 223,
                             Email = "khachhang17@example.com",
                             HoTen = "Khách hàng 17",
-                            NgayTao = new DateTime(2026, 5, 28, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2096),
+                            NgayTao = new DateTime(2026, 5, 27, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(31),
                             SoDienThoai = "0900000017"
                         },
                         new
                         {
                             Id = 18,
-                            DiemTichLuy = 180,
+                            DiemTichLuy = 497,
                             Email = "khachhang18@example.com",
                             HoTen = "Khách hàng 18",
-                            NgayTao = new DateTime(2026, 5, 27, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2110),
+                            NgayTao = new DateTime(2026, 5, 26, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(35),
                             SoDienThoai = "0900000018"
                         },
                         new
                         {
                             Id = 19,
-                            DiemTichLuy = 295,
+                            DiemTichLuy = 23,
                             Email = "khachhang19@example.com",
                             HoTen = "Khách hàng 19",
-                            NgayTao = new DateTime(2026, 5, 26, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2122),
+                            NgayTao = new DateTime(2026, 5, 25, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(37),
                             SoDienThoai = "0900000019"
                         },
                         new
                         {
                             Id = 20,
-                            DiemTichLuy = 496,
+                            DiemTichLuy = 87,
                             Email = "khachhang20@example.com",
                             HoTen = "Khách hàng 20",
-                            NgayTao = new DateTime(2026, 5, 25, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2137),
+                            NgayTao = new DateTime(2026, 5, 24, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(40),
                             SoDienThoai = "0900000020"
                         });
                 });
@@ -957,7 +826,7 @@ namespace HeThongPOS.Infrastructure.Migrations
                         {
                             Id = 1,
                             HoTen = "Nhân viên 1",
-                            NgayTao = new DateTime(2026, 6, 14, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(1565),
+                            NgayTao = new DateTime(2026, 6, 13, 3, 50, 5, 174, DateTimeKind.Local).AddTicks(9795),
                             PasswordHash = "",
                             TrangThai = true,
                             Username = "",
@@ -983,26 +852,6 @@ namespace HeThongPOS.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("PhuongThucThanhToans");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            TenPhuongThuc = "Tiền mặt",
-                            TrangThai = true
-                        },
-                        new
-                        {
-                            Id = 2,
-                            TenPhuongThuc = "Thẻ ngân hàng",
-                            TrangThai = true
-                        },
-                        new
-                        {
-                            Id = 3,
-                            TenPhuongThuc = "Chuyển khoản",
-                            TrangThai = true
-                        });
                 });
 
             modelBuilder.Entity("HeThongPOS.Core.Entities.SanPham", b =>
@@ -1053,61 +902,61 @@ namespace HeThongPOS.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            DanhMucId = 2,
+                            DanhMucId = 4,
                             DonViTinh = "Hộp",
-                            GiaBan = 416000m,
+                            GiaBan = 367000m,
                             MaVach = "8930000000001",
-                            NgayTao = new DateTime(2026, 6, 14, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2252),
+                            NgayTao = new DateTime(2026, 6, 13, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(75),
                             TenSanPham = "Sản phẩm 1",
-                            TonKho = 81,
+                            TonKho = 63,
                             TrangThai = true
                         },
                         new
                         {
                             Id = 2,
-                            DanhMucId = 4,
+                            DanhMucId = 3,
                             DonViTinh = "Cái",
-                            GiaBan = 150000m,
+                            GiaBan = 254000m,
                             MaVach = "8930000000002",
-                            NgayTao = new DateTime(2026, 6, 14, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2272),
+                            NgayTao = new DateTime(2026, 6, 13, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(84),
                             TenSanPham = "Sản phẩm 2",
-                            TonKho = 75,
+                            TonKho = 78,
                             TrangThai = true
                         },
                         new
                         {
                             Id = 3,
-                            DanhMucId = 4,
+                            DanhMucId = 2,
                             DonViTinh = "Hộp",
-                            GiaBan = 499000m,
+                            GiaBan = 188000m,
                             MaVach = "8930000000003",
-                            NgayTao = new DateTime(2026, 6, 14, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2277),
+                            NgayTao = new DateTime(2026, 6, 13, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(86),
                             TenSanPham = "Sản phẩm 3",
-                            TonKho = 94,
+                            TonKho = 62,
                             TrangThai = true
                         },
                         new
                         {
                             Id = 4,
-                            DanhMucId = 4,
+                            DanhMucId = 2,
                             DonViTinh = "Cái",
-                            GiaBan = 265000m,
+                            GiaBan = 113000m,
                             MaVach = "8930000000004",
-                            NgayTao = new DateTime(2026, 6, 14, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2280),
+                            NgayTao = new DateTime(2026, 6, 13, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(88),
                             TenSanPham = "Sản phẩm 4",
-                            TonKho = 22,
+                            TonKho = 24,
                             TrangThai = true
                         },
                         new
                         {
                             Id = 5,
-                            DanhMucId = 4,
+                            DanhMucId = 3,
                             DonViTinh = "Hộp",
-                            GiaBan = 479000m,
+                            GiaBan = 440000m,
                             MaVach = "8930000000005",
-                            NgayTao = new DateTime(2026, 6, 14, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2283),
+                            NgayTao = new DateTime(2026, 6, 13, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(89),
                             TenSanPham = "Sản phẩm 5",
-                            TonKho = 83,
+                            TonKho = 20,
                             TrangThai = true
                         },
                         new
@@ -1115,11 +964,11 @@ namespace HeThongPOS.Infrastructure.Migrations
                             Id = 6,
                             DanhMucId = 2,
                             DonViTinh = "Cái",
-                            GiaBan = 248000m,
+                            GiaBan = 50000m,
                             MaVach = "8930000000006",
-                            NgayTao = new DateTime(2026, 6, 14, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2287),
+                            NgayTao = new DateTime(2026, 6, 13, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(92),
                             TenSanPham = "Sản phẩm 6",
-                            TonKho = 59,
+                            TonKho = 99,
                             TrangThai = true
                         },
                         new
@@ -1127,47 +976,47 @@ namespace HeThongPOS.Infrastructure.Migrations
                             Id = 7,
                             DanhMucId = 3,
                             DonViTinh = "Hộp",
-                            GiaBan = 327000m,
+                            GiaBan = 349000m,
                             MaVach = "8930000000007",
-                            NgayTao = new DateTime(2026, 6, 14, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2290),
+                            NgayTao = new DateTime(2026, 6, 13, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(94),
                             TenSanPham = "Sản phẩm 7",
-                            TonKho = 18,
+                            TonKho = 29,
                             TrangThai = true
                         },
                         new
                         {
                             Id = 8,
-                            DanhMucId = 4,
+                            DanhMucId = 2,
                             DonViTinh = "Cái",
-                            GiaBan = 324000m,
+                            GiaBan = 496000m,
                             MaVach = "8930000000008",
-                            NgayTao = new DateTime(2026, 6, 14, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2304),
+                            NgayTao = new DateTime(2026, 6, 13, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(95),
                             TenSanPham = "Sản phẩm 8",
-                            TonKho = 71,
+                            TonKho = 76,
                             TrangThai = true
                         },
                         new
                         {
                             Id = 9,
-                            DanhMucId = 4,
+                            DanhMucId = 2,
                             DonViTinh = "Hộp",
-                            GiaBan = 66000m,
+                            GiaBan = 276000m,
                             MaVach = "8930000000009",
-                            NgayTao = new DateTime(2026, 6, 14, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2306),
+                            NgayTao = new DateTime(2026, 6, 13, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(97),
                             TenSanPham = "Sản phẩm 9",
-                            TonKho = 14,
+                            TonKho = 21,
                             TrangThai = true
                         },
                         new
                         {
                             Id = 10,
-                            DanhMucId = 1,
+                            DanhMucId = 3,
                             DonViTinh = "Cái",
-                            GiaBan = 325000m,
+                            GiaBan = 438000m,
                             MaVach = "8930000000010",
-                            NgayTao = new DateTime(2026, 6, 14, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2310),
+                            NgayTao = new DateTime(2026, 6, 13, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(99),
                             TenSanPham = "Sản phẩm 10",
-                            TonKho = 22,
+                            TonKho = 48,
                             TrangThai = true
                         },
                         new
@@ -1175,23 +1024,23 @@ namespace HeThongPOS.Infrastructure.Migrations
                             Id = 11,
                             DanhMucId = 3,
                             DonViTinh = "Hộp",
-                            GiaBan = 148000m,
+                            GiaBan = 231000m,
                             MaVach = "8930000000011",
-                            NgayTao = new DateTime(2026, 6, 14, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2314),
+                            NgayTao = new DateTime(2026, 6, 13, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(105),
                             TenSanPham = "Sản phẩm 11",
-                            TonKho = 66,
+                            TonKho = 51,
                             TrangThai = true
                         },
                         new
                         {
                             Id = 12,
-                            DanhMucId = 3,
+                            DanhMucId = 4,
                             DonViTinh = "Cái",
-                            GiaBan = 471000m,
+                            GiaBan = 230000m,
                             MaVach = "8930000000012",
-                            NgayTao = new DateTime(2026, 6, 14, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2317),
+                            NgayTao = new DateTime(2026, 6, 13, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(107),
                             TenSanPham = "Sản phẩm 12",
-                            TonKho = 18,
+                            TonKho = 20,
                             TrangThai = true
                         },
                         new
@@ -1199,47 +1048,47 @@ namespace HeThongPOS.Infrastructure.Migrations
                             Id = 13,
                             DanhMucId = 2,
                             DonViTinh = "Hộp",
-                            GiaBan = 53000m,
+                            GiaBan = 145000m,
                             MaVach = "8930000000013",
-                            NgayTao = new DateTime(2026, 6, 14, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2320),
+                            NgayTao = new DateTime(2026, 6, 13, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(108),
                             TenSanPham = "Sản phẩm 13",
-                            TonKho = 39,
+                            TonKho = 96,
                             TrangThai = true
                         },
                         new
                         {
                             Id = 14,
-                            DanhMucId = 2,
+                            DanhMucId = 4,
                             DonViTinh = "Cái",
-                            GiaBan = 125000m,
+                            GiaBan = 494000m,
                             MaVach = "8930000000014",
-                            NgayTao = new DateTime(2026, 6, 14, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2323),
+                            NgayTao = new DateTime(2026, 6, 13, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(110),
                             TenSanPham = "Sản phẩm 14",
-                            TonKho = 50,
+                            TonKho = 20,
                             TrangThai = true
                         },
                         new
                         {
                             Id = 15,
-                            DanhMucId = 2,
+                            DanhMucId = 1,
                             DonViTinh = "Hộp",
-                            GiaBan = 138000m,
+                            GiaBan = 368000m,
                             MaVach = "8930000000015",
-                            NgayTao = new DateTime(2026, 6, 14, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2325),
+                            NgayTao = new DateTime(2026, 6, 13, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(111),
                             TenSanPham = "Sản phẩm 15",
-                            TonKho = 93,
+                            TonKho = 66,
                             TrangThai = true
                         },
                         new
                         {
                             Id = 16,
-                            DanhMucId = 2,
+                            DanhMucId = 3,
                             DonViTinh = "Cái",
-                            GiaBan = 139000m,
+                            GiaBan = 22000m,
                             MaVach = "8930000000016",
-                            NgayTao = new DateTime(2026, 6, 14, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2328),
+                            NgayTao = new DateTime(2026, 6, 13, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(112),
                             TenSanPham = "Sản phẩm 16",
-                            TonKho = 40,
+                            TonKho = 16,
                             TrangThai = true
                         },
                         new
@@ -1247,47 +1096,47 @@ namespace HeThongPOS.Infrastructure.Migrations
                             Id = 17,
                             DanhMucId = 2,
                             DonViTinh = "Hộp",
-                            GiaBan = 373000m,
+                            GiaBan = 336000m,
                             MaVach = "8930000000017",
-                            NgayTao = new DateTime(2026, 6, 14, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2330),
+                            NgayTao = new DateTime(2026, 6, 13, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(114),
                             TenSanPham = "Sản phẩm 17",
-                            TonKho = 27,
+                            TonKho = 15,
                             TrangThai = true
                         },
                         new
                         {
                             Id = 18,
-                            DanhMucId = 3,
+                            DanhMucId = 1,
                             DonViTinh = "Cái",
-                            GiaBan = 316000m,
+                            GiaBan = 411000m,
                             MaVach = "8930000000018",
-                            NgayTao = new DateTime(2026, 6, 14, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2334),
+                            NgayTao = new DateTime(2026, 6, 13, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(116),
                             TenSanPham = "Sản phẩm 18",
-                            TonKho = 42,
+                            TonKho = 15,
                             TrangThai = true
                         },
                         new
                         {
                             Id = 19,
-                            DanhMucId = 3,
+                            DanhMucId = 1,
                             DonViTinh = "Hộp",
-                            GiaBan = 319000m,
+                            GiaBan = 238000m,
                             MaVach = "8930000000019",
-                            NgayTao = new DateTime(2026, 6, 14, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2337),
+                            NgayTao = new DateTime(2026, 6, 13, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(117),
                             TenSanPham = "Sản phẩm 19",
-                            TonKho = 93,
+                            TonKho = 71,
                             TrangThai = true
                         },
                         new
                         {
                             Id = 20,
-                            DanhMucId = 4,
+                            DanhMucId = 3,
                             DonViTinh = "Cái",
-                            GiaBan = 51000m,
+                            GiaBan = 223000m,
                             MaVach = "8930000000020",
-                            NgayTao = new DateTime(2026, 6, 14, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2339),
+                            NgayTao = new DateTime(2026, 6, 13, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(119),
                             TenSanPham = "Sản phẩm 20",
-                            TonKho = 20,
+                            TonKho = 55,
                             TrangThai = true
                         },
                         new
@@ -1295,47 +1144,47 @@ namespace HeThongPOS.Infrastructure.Migrations
                             Id = 21,
                             DanhMucId = 3,
                             DonViTinh = "Hộp",
-                            GiaBan = 115000m,
+                            GiaBan = 247000m,
                             MaVach = "8930000000021",
-                            NgayTao = new DateTime(2026, 6, 14, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2342),
+                            NgayTao = new DateTime(2026, 6, 13, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(120),
                             TenSanPham = "Sản phẩm 21",
-                            TonKho = 89,
+                            TonKho = 63,
                             TrangThai = true
                         },
                         new
                         {
                             Id = 22,
-                            DanhMucId = 1,
+                            DanhMucId = 3,
                             DonViTinh = "Cái",
-                            GiaBan = 268000m,
+                            GiaBan = 352000m,
                             MaVach = "8930000000022",
-                            NgayTao = new DateTime(2026, 6, 14, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2345),
+                            NgayTao = new DateTime(2026, 6, 13, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(121),
                             TenSanPham = "Sản phẩm 22",
-                            TonKho = 88,
+                            TonKho = 27,
                             TrangThai = true
                         },
                         new
                         {
                             Id = 23,
-                            DanhMucId = 1,
+                            DanhMucId = 2,
                             DonViTinh = "Hộp",
-                            GiaBan = 148000m,
+                            GiaBan = 426000m,
                             MaVach = "8930000000023",
-                            NgayTao = new DateTime(2026, 6, 14, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2347),
+                            NgayTao = new DateTime(2026, 6, 13, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(123),
                             TenSanPham = "Sản phẩm 23",
-                            TonKho = 98,
+                            TonKho = 21,
                             TrangThai = true
                         },
                         new
                         {
                             Id = 24,
-                            DanhMucId = 2,
+                            DanhMucId = 3,
                             DonViTinh = "Cái",
-                            GiaBan = 284000m,
+                            GiaBan = 27000m,
                             MaVach = "8930000000024",
-                            NgayTao = new DateTime(2026, 6, 14, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2350),
+                            NgayTao = new DateTime(2026, 6, 13, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(124),
                             TenSanPham = "Sản phẩm 24",
-                            TonKho = 91,
+                            TonKho = 74,
                             TrangThai = true
                         },
                         new
@@ -1343,11 +1192,11 @@ namespace HeThongPOS.Infrastructure.Migrations
                             Id = 25,
                             DanhMucId = 1,
                             DonViTinh = "Hộp",
-                            GiaBan = 329000m,
+                            GiaBan = 246000m,
                             MaVach = "8930000000025",
-                            NgayTao = new DateTime(2026, 6, 14, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2353),
+                            NgayTao = new DateTime(2026, 6, 13, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(125),
                             TenSanPham = "Sản phẩm 25",
-                            TonKho = 12,
+                            TonKho = 82,
                             TrangThai = true
                         },
                         new
@@ -1355,83 +1204,83 @@ namespace HeThongPOS.Infrastructure.Migrations
                             Id = 26,
                             DanhMucId = 4,
                             DonViTinh = "Cái",
-                            GiaBan = 444000m,
+                            GiaBan = 90000m,
                             MaVach = "8930000000026",
-                            NgayTao = new DateTime(2026, 6, 14, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2355),
+                            NgayTao = new DateTime(2026, 6, 13, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(126),
                             TenSanPham = "Sản phẩm 26",
-                            TonKho = 68,
+                            TonKho = 62,
                             TrangThai = true
                         },
                         new
                         {
                             Id = 27,
-                            DanhMucId = 1,
+                            DanhMucId = 4,
                             DonViTinh = "Hộp",
-                            GiaBan = 417000m,
+                            GiaBan = 86000m,
                             MaVach = "8930000000027",
-                            NgayTao = new DateTime(2026, 6, 14, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2358),
+                            NgayTao = new DateTime(2026, 6, 13, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(128),
                             TenSanPham = "Sản phẩm 27",
-                            TonKho = 29,
+                            TonKho = 49,
                             TrangThai = true
                         },
                         new
                         {
                             Id = 28,
-                            DanhMucId = 2,
+                            DanhMucId = 3,
                             DonViTinh = "Cái",
-                            GiaBan = 349000m,
+                            GiaBan = 397000m,
                             MaVach = "8930000000028",
-                            NgayTao = new DateTime(2026, 6, 14, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2360),
+                            NgayTao = new DateTime(2026, 6, 13, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(129),
                             TenSanPham = "Sản phẩm 28",
-                            TonKho = 33,
+                            TonKho = 86,
                             TrangThai = true
                         },
                         new
                         {
                             Id = 29,
-                            DanhMucId = 2,
+                            DanhMucId = 4,
                             DonViTinh = "Hộp",
-                            GiaBan = 433000m,
+                            GiaBan = 495000m,
                             MaVach = "8930000000029",
-                            NgayTao = new DateTime(2026, 6, 14, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2363),
+                            NgayTao = new DateTime(2026, 6, 13, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(130),
                             TenSanPham = "Sản phẩm 29",
-                            TonKho = 22,
+                            TonKho = 40,
                             TrangThai = true
                         },
                         new
                         {
                             Id = 30,
-                            DanhMucId = 4,
+                            DanhMucId = 1,
                             DonViTinh = "Cái",
-                            GiaBan = 45000m,
+                            GiaBan = 35000m,
                             MaVach = "8930000000030",
-                            NgayTao = new DateTime(2026, 6, 14, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2366),
+                            NgayTao = new DateTime(2026, 6, 13, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(132),
                             TenSanPham = "Sản phẩm 30",
-                            TonKho = 56,
+                            TonKho = 63,
                             TrangThai = true
                         },
                         new
                         {
                             Id = 31,
-                            DanhMucId = 1,
+                            DanhMucId = 4,
                             DonViTinh = "Hộp",
-                            GiaBan = 450000m,
+                            GiaBan = 355000m,
                             MaVach = "8930000000031",
-                            NgayTao = new DateTime(2026, 6, 14, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2368),
+                            NgayTao = new DateTime(2026, 6, 13, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(133),
                             TenSanPham = "Sản phẩm 31",
-                            TonKho = 13,
+                            TonKho = 81,
                             TrangThai = true
                         },
                         new
                         {
                             Id = 32,
-                            DanhMucId = 2,
+                            DanhMucId = 3,
                             DonViTinh = "Cái",
-                            GiaBan = 360000m,
+                            GiaBan = 453000m,
                             MaVach = "8930000000032",
-                            NgayTao = new DateTime(2026, 6, 14, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2371),
+                            NgayTao = new DateTime(2026, 6, 13, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(134),
                             TenSanPham = "Sản phẩm 32",
-                            TonKho = 72,
+                            TonKho = 46,
                             TrangThai = true
                         },
                         new
@@ -1439,191 +1288,191 @@ namespace HeThongPOS.Infrastructure.Migrations
                             Id = 33,
                             DanhMucId = 2,
                             DonViTinh = "Hộp",
-                            GiaBan = 433000m,
+                            GiaBan = 154000m,
                             MaVach = "8930000000033",
-                            NgayTao = new DateTime(2026, 6, 14, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2373),
+                            NgayTao = new DateTime(2026, 6, 13, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(136),
                             TenSanPham = "Sản phẩm 33",
-                            TonKho = 20,
+                            TonKho = 24,
                             TrangThai = true
                         },
                         new
                         {
                             Id = 34,
-                            DanhMucId = 2,
+                            DanhMucId = 1,
                             DonViTinh = "Cái",
-                            GiaBan = 243000m,
+                            GiaBan = 370000m,
                             MaVach = "8930000000034",
-                            NgayTao = new DateTime(2026, 6, 14, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2377),
+                            NgayTao = new DateTime(2026, 6, 13, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(138),
                             TenSanPham = "Sản phẩm 34",
-                            TonKho = 40,
+                            TonKho = 79,
                             TrangThai = true
                         },
                         new
                         {
                             Id = 35,
-                            DanhMucId = 2,
+                            DanhMucId = 4,
                             DonViTinh = "Hộp",
-                            GiaBan = 69000m,
+                            GiaBan = 450000m,
                             MaVach = "8930000000035",
-                            NgayTao = new DateTime(2026, 6, 14, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2379),
+                            NgayTao = new DateTime(2026, 6, 13, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(140),
                             TenSanPham = "Sản phẩm 35",
-                            TonKho = 45,
+                            TonKho = 35,
                             TrangThai = true
                         },
                         new
                         {
                             Id = 36,
-                            DanhMucId = 1,
+                            DanhMucId = 2,
                             DonViTinh = "Cái",
-                            GiaBan = 112000m,
+                            GiaBan = 119000m,
                             MaVach = "8930000000036",
-                            NgayTao = new DateTime(2026, 6, 14, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2382),
+                            NgayTao = new DateTime(2026, 6, 13, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(141),
                             TenSanPham = "Sản phẩm 36",
-                            TonKho = 60,
+                            TonKho = 81,
                             TrangThai = true
                         },
                         new
                         {
                             Id = 37,
-                            DanhMucId = 1,
+                            DanhMucId = 3,
                             DonViTinh = "Hộp",
-                            GiaBan = 195000m,
+                            GiaBan = 211000m,
                             MaVach = "8930000000037",
-                            NgayTao = new DateTime(2026, 6, 14, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2385),
+                            NgayTao = new DateTime(2026, 6, 13, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(142),
                             TenSanPham = "Sản phẩm 37",
-                            TonKho = 48,
+                            TonKho = 78,
                             TrangThai = true
                         },
                         new
                         {
                             Id = 38,
-                            DanhMucId = 1,
+                            DanhMucId = 3,
                             DonViTinh = "Cái",
-                            GiaBan = 279000m,
+                            GiaBan = 428000m,
                             MaVach = "8930000000038",
-                            NgayTao = new DateTime(2026, 6, 14, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2387),
+                            NgayTao = new DateTime(2026, 6, 13, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(144),
                             TenSanPham = "Sản phẩm 38",
-                            TonKho = 17,
+                            TonKho = 35,
                             TrangThai = true
                         },
                         new
                         {
                             Id = 39,
-                            DanhMucId = 3,
+                            DanhMucId = 4,
                             DonViTinh = "Hộp",
-                            GiaBan = 480000m,
+                            GiaBan = 174000m,
                             MaVach = "8930000000039",
-                            NgayTao = new DateTime(2026, 6, 14, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2400),
+                            NgayTao = new DateTime(2026, 6, 13, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(145),
                             TenSanPham = "Sản phẩm 39",
-                            TonKho = 70,
+                            TonKho = 83,
                             TrangThai = true
                         },
                         new
                         {
                             Id = 40,
-                            DanhMucId = 1,
+                            DanhMucId = 3,
                             DonViTinh = "Cái",
-                            GiaBan = 313000m,
+                            GiaBan = 101000m,
                             MaVach = "8930000000040",
-                            NgayTao = new DateTime(2026, 6, 14, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2403),
+                            NgayTao = new DateTime(2026, 6, 13, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(146),
                             TenSanPham = "Sản phẩm 40",
-                            TonKho = 67,
+                            TonKho = 95,
                             TrangThai = true
                         },
                         new
                         {
                             Id = 41,
-                            DanhMucId = 4,
+                            DanhMucId = 2,
                             DonViTinh = "Hộp",
-                            GiaBan = 369000m,
+                            GiaBan = 318000m,
                             MaVach = "8930000000041",
-                            NgayTao = new DateTime(2026, 6, 14, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2405),
+                            NgayTao = new DateTime(2026, 6, 13, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(147),
                             TenSanPham = "Sản phẩm 41",
-                            TonKho = 63,
+                            TonKho = 32,
                             TrangThai = true
                         },
                         new
                         {
                             Id = 42,
-                            DanhMucId = 2,
+                            DanhMucId = 4,
                             DonViTinh = "Cái",
-                            GiaBan = 394000m,
+                            GiaBan = 155000m,
                             MaVach = "8930000000042",
-                            NgayTao = new DateTime(2026, 6, 14, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2408),
+                            NgayTao = new DateTime(2026, 6, 13, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(149),
                             TenSanPham = "Sản phẩm 42",
-                            TonKho = 45,
+                            TonKho = 55,
                             TrangThai = true
                         },
                         new
                         {
                             Id = 43,
-                            DanhMucId = 4,
+                            DanhMucId = 3,
                             DonViTinh = "Hộp",
-                            GiaBan = 110000m,
+                            GiaBan = 71000m,
                             MaVach = "8930000000043",
-                            NgayTao = new DateTime(2026, 6, 14, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2410),
+                            NgayTao = new DateTime(2026, 6, 13, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(156),
                             TenSanPham = "Sản phẩm 43",
-                            TonKho = 38,
+                            TonKho = 49,
                             TrangThai = true
                         },
                         new
                         {
                             Id = 44,
-                            DanhMucId = 4,
+                            DanhMucId = 3,
                             DonViTinh = "Cái",
-                            GiaBan = 439000m,
+                            GiaBan = 451000m,
                             MaVach = "8930000000044",
-                            NgayTao = new DateTime(2026, 6, 14, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2413),
+                            NgayTao = new DateTime(2026, 6, 13, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(157),
                             TenSanPham = "Sản phẩm 44",
-                            TonKho = 51,
+                            TonKho = 19,
                             TrangThai = true
                         },
                         new
                         {
                             Id = 45,
-                            DanhMucId = 1,
+                            DanhMucId = 3,
                             DonViTinh = "Hộp",
-                            GiaBan = 100000m,
+                            GiaBan = 238000m,
                             MaVach = "8930000000045",
-                            NgayTao = new DateTime(2026, 6, 14, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2415),
+                            NgayTao = new DateTime(2026, 6, 13, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(158),
                             TenSanPham = "Sản phẩm 45",
-                            TonKho = 47,
+                            TonKho = 64,
                             TrangThai = true
                         },
                         new
                         {
                             Id = 46,
-                            DanhMucId = 1,
+                            DanhMucId = 2,
                             DonViTinh = "Cái",
-                            GiaBan = 352000m,
+                            GiaBan = 36000m,
                             MaVach = "8930000000046",
-                            NgayTao = new DateTime(2026, 6, 14, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2418),
+                            NgayTao = new DateTime(2026, 6, 13, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(160),
                             TenSanPham = "Sản phẩm 46",
-                            TonKho = 76,
+                            TonKho = 10,
                             TrangThai = true
                         },
                         new
                         {
                             Id = 47,
-                            DanhMucId = 4,
+                            DanhMucId = 1,
                             DonViTinh = "Hộp",
-                            GiaBan = 306000m,
+                            GiaBan = 216000m,
                             MaVach = "8930000000047",
-                            NgayTao = new DateTime(2026, 6, 14, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2421),
+                            NgayTao = new DateTime(2026, 6, 13, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(161),
                             TenSanPham = "Sản phẩm 47",
-                            TonKho = 88,
+                            TonKho = 81,
                             TrangThai = true
                         },
                         new
                         {
                             Id = 48,
-                            DanhMucId = 1,
+                            DanhMucId = 3,
                             DonViTinh = "Cái",
-                            GiaBan = 241000m,
+                            GiaBan = 327000m,
                             MaVach = "8930000000048",
-                            NgayTao = new DateTime(2026, 6, 14, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2423),
+                            NgayTao = new DateTime(2026, 6, 13, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(163),
                             TenSanPham = "Sản phẩm 48",
-                            TonKho = 28,
+                            TonKho = 49,
                             TrangThai = true
                         },
                         new
@@ -1631,11 +1480,11 @@ namespace HeThongPOS.Infrastructure.Migrations
                             Id = 49,
                             DanhMucId = 1,
                             DonViTinh = "Hộp",
-                            GiaBan = 310000m,
+                            GiaBan = 440000m,
                             MaVach = "8930000000049",
-                            NgayTao = new DateTime(2026, 6, 14, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2426),
+                            NgayTao = new DateTime(2026, 6, 13, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(164),
                             TenSanPham = "Sản phẩm 49",
-                            TonKho = 35,
+                            TonKho = 76,
                             TrangThai = true
                         },
                         new
@@ -1643,11 +1492,11 @@ namespace HeThongPOS.Infrastructure.Migrations
                             Id = 50,
                             DanhMucId = 3,
                             DonViTinh = "Cái",
-                            GiaBan = 95000m,
+                            GiaBan = 378000m,
                             MaVach = "8930000000050",
-                            NgayTao = new DateTime(2026, 6, 14, 2, 57, 47, 815, DateTimeKind.Local).AddTicks(2428),
+                            NgayTao = new DateTime(2026, 6, 13, 3, 50, 5, 175, DateTimeKind.Local).AddTicks(165),
                             TenSanPham = "Sản phẩm 50",
-                            TonKho = 11,
+                            TonKho = 48,
                             TrangThai = true
                         });
                 });

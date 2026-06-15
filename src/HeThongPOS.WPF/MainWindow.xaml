@@ -1,22 +1,67 @@
 <Window x:Class="HeThongPOS.WPF.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:views="clr-namespace:HeThongPOS.WPF.Views"
         Title="Hệ Thống POS Siêu Thị" Height="768" Width="1024"
         WindowStartupLocation="CenterScreen">
-    <Grid>
+    <Grid Background="{StaticResource MainBackgroundColor}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="60"/>
+            <RowDefinition Height="64"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         
-        <!-- Header -->
-        <Border Grid.Row="0" Background="#1a73e8">
-            <TextBlock Text="HỆ THỐNG POS SIÊU THỊ - SPRINT 0" 
-                       Foreground="White" FontSize="24" FontWeight="Bold"
-                       VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <!-- Top Navigation Bar -->
+        <Border Grid.Row="0" Background="{StaticResource TopBarBackgroundColor}" 
+                BorderBrush="{StaticResource BorderColor}" BorderThickness="0,0,0,1">
+            <Grid Margin="20,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Logo -->
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <Border Background="{StaticResource PrimaryColor}" CornerRadius="8" Width="40" Height="40" Margin="0,0,10,0">
+                        <TextBlock Text="🛒" Foreground="White" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <StackPanel VerticalAlignment="Center">
+                        <TextBlock Text="RetailPOS" FontSize="18" FontWeight="Bold" Foreground="{StaticResource TextPrimaryColor}"/>
+                        <TextBlock Text="POINT OF SALE" FontSize="10" Foreground="{StaticResource TextSecondaryColor}"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <!-- Navigation Buttons -->
+                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Button Content="📦 Đơn hàng" Style="{StaticResource OutlinedButton}" Margin="0,0,10,0" Click="NavOrders_Click" x:Name="BtnOrders"/>
+                    <Button Content="🍎 Sản phẩm" Style="{StaticResource OutlinedButton}" Margin="0,0,10,0" Click="NavProducts_Click" x:Name="BtnProducts"/>
+                    <Button Content="👥 Khách hàng" Style="{StaticResource OutlinedButton}" Margin="0,0,10,0" Click="NavCustomers_Click" x:Name="BtnCustomers"/>
+                    <Button Content="📊 Báo cáo" Style="{StaticResource OutlinedButton}" Margin="0,0,10,0" Click="NavReports_Click" x:Name="BtnReports"/>
+                    <Button Content="🕒 Ca làm việc" Style="{StaticResource OutlinedButton}" Margin="0,0,10,0" Click="NavShift_Click" x:Name="BtnShift"/>
+                    <Button Content="🔑 Nhân viên" Style="{StaticResource OutlinedButton}" Margin="0,0,10,0" Click="NavUsers_Click" x:Name="BtnUsers"/>
+                    <Button Content="⚙ Cài đặt" Style="{StaticResource OutlinedButton}" Click="NavSettings_Click" x:Name="BtnSettings"/>
+                </StackPanel>
+
+                <!-- User Profile & Status -->
+                <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
+                    <StackPanel Margin="0,0,15,0" VerticalAlignment="Center" HorizontalAlignment="Right">
+                        <TextBlock Text="Screen ID" FontSize="10" Foreground="{StaticResource TextSecondaryColor}" TextAlignment="Right"/>
+                        <TextBlock Text="S-ADMIN-001" FontSize="12" FontWeight="SemiBold" Foreground="{StaticResource PrimaryColor}" TextAlignment="Right"/>
+                    </StackPanel>
+                    
+                    <!-- Avatar -->
+                    <Border Background="{StaticResource PrimaryColor}" CornerRadius="16" Width="32" Height="32" Margin="0,0,10,0">
+                        <TextBlock x:Name="TxtProfileInitials" Text="Q" Foreground="White" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <StackPanel VerticalAlignment="Center">
+                        <TextBlock x:Name="TxtProfileName" Text="Quản lý" FontSize="14" FontWeight="SemiBold" Foreground="{StaticResource TextPrimaryColor}"/>
+                        <TextBlock x:Name="TxtProfileRole" Text="Quản lý" FontSize="11" Foreground="{StaticResource TextSecondaryColor}"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
         </Border>
         
-        <!-- Main Content (Navigation) -->
-        <Frame x:Name="MainFrame" Grid.Row="1" NavigationUIVisibility="Hidden"/>
+        <!-- Main Content Area -->
+        <ContentControl x:Name="MainContent" Grid.Row="1" Margin="20"/>
     </Grid>
 </Window>

@@ -1,0 +1,43 @@
+<UserControl x:Class="HeThongPOS.WPF.Views.BillPreviewView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:views="clr-namespace:HeThongPOS.WPF.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <StackPanel Grid.Row="0" Margin="0,0,0,15">
+            <TextBlock Text="View Bill Detail" FontSize="20" FontWeight="Bold" Foreground="{StaticResource TextPrimaryColor}"/>
+            <TextBlock Text="Screen ID: S-RECEIPT-001 · Xem và in/xuất hóa đơn" FontSize="11" Foreground="{StaticResource TextSecondaryColor}" Margin="0,2,0,0"/>
+        </StackPanel>
+
+        <!-- Main Layout -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="320"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Left: Thermal Receipt Container -->
+            <ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Background="#F1F5F9" Margin="0,0,20,0">
+                <Border Background="White" CornerRadius="4" Width="300" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20" Padding="0">
+                    <Border.Effect>
+                        <DropShadowEffect Color="#000000" Opacity="0.1" BlurRadius="15" ShadowDepth="3"/>
+                    </Border.Effect>
+                    <!-- FlowDocumentViewer -->
+                    <FlowDocumentScrollViewer x:Name="DocViewer" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Disabled" Zoom="100"/>
+                </Border>
+            </ScrollViewer>
+
+            <!-- Right: Success panel and actions -->
+            <views:OrderSuccessView Grid.Column="1" VerticalAlignment="Stretch"/>
+        </Grid>
+    </Grid>
+</UserControl>
