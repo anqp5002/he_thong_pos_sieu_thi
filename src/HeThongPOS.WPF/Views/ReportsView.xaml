@@ -11,96 +11,218 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- LEFT PANEL: DAILY SALES REPORT [R21] -->
+        <!-- LEFT PANEL: DYNAMIC REPORT DETAILS -->
         <Border Grid.Column="0" Style="{StaticResource CardBorder}" Margin="0,0,15,0">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel Margin="15">
-                    <TextBlock Text="DAILY SALES REPORT [R21]" FontSize="13" FontWeight="Bold" Foreground="{StaticResource TextPrimaryColor}" Margin="0,0,0,2"/>
-                    <TextBlock Text="Sales Date: Hôm nay" FontSize="11" Foreground="{StaticResource TextSecondaryColor}" Margin="0,0,0,15"/>
+                    <TextBlock Text="{Binding SelectedReportType}" FontSize="13" FontWeight="Bold" Foreground="{StaticResource TextPrimaryColor}" Margin="0,0,0,2"/>
+                    <TextBlock FontSize="11" Foreground="{StaticResource TextSecondaryColor}" Margin="0,0,0,15">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Text" Value="Sales Date: Hôm nay"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding SelectedTimePeriod}" Value="History">
+                                        <Setter Property="Text" Value="Sales Date: Lịch sử (30 ngày)"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
 
-                    <!-- Audit Values -->
-                    <Grid Margin="0,0,0,8">
-                        <TextBlock Text="Gross Sale" Foreground="{StaticResource TextSecondaryColor}" FontSize="12"/>
-                        <TextBlock Text="{Binding GrossSales, StringFormat={}{0:N0}đ}" Foreground="{StaticResource TextPrimaryColor}" FontSize="12" FontWeight="SemiBold" HorizontalAlignment="Right"/>
-                    </Grid>
-                    <Grid Margin="0,0,0,12">
-                        <TextBlock Text="= Net Sales" Foreground="{StaticResource TextSecondaryColor}" FontSize="12"/>
-                        <TextBlock Text="{Binding NetSales, StringFormat={}{0:N0}đ}" Foreground="{StaticResource TextPrimaryColor}" FontSize="12" FontWeight="SemiBold" HorizontalAlignment="Right"/>
-                    </Grid>
+                    <!-- PANEL 1: Daily Sales Report [R21] -->
+                    <StackPanel>
+                        <StackPanel.Style>
+                            <Style TargetType="StackPanel">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding SelectedReportType}" Value="Daily Sales Report">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </StackPanel.Style>
+                        
+                        <!-- Audit Values -->
+                        <Grid Margin="0,0,0,8">
+                            <TextBlock Text="Gross Sale" Foreground="{StaticResource TextSecondaryColor}" FontSize="12"/>
+                            <TextBlock Text="{Binding GrossSales, StringFormat={}{0:N0}đ}" Foreground="{StaticResource TextPrimaryColor}" FontSize="12" FontWeight="SemiBold" HorizontalAlignment="Right"/>
+                        </Grid>
+                        <Grid Margin="0,0,0,12">
+                            <TextBlock Text="= Net Sales" Foreground="{StaticResource TextSecondaryColor}" FontSize="12"/>
+                            <TextBlock Text="{Binding NetSales, StringFormat={}{0:N0}đ}" Foreground="{StaticResource TextPrimaryColor}" FontSize="12" FontWeight="SemiBold" HorizontalAlignment="Right"/>
+                        </Grid>
 
-                    <Border Height="1" Background="{StaticResource BorderLightColor}" Margin="0,0,0,12"/>
+                        <Border Height="1" Background="{StaticResource BorderLightColor}" Margin="0,0,0,12"/>
 
-                    <!-- Cash Audit -->
-                    <TextBlock Text="Cash Audit" FontSize="12" FontWeight="Bold" Foreground="{StaticResource TextPrimaryColor}" Margin="0,0,0,8"/>
-                    
-                    <Grid Margin="10,0,0,6">
-                        <TextBlock Text="Net Sales" Foreground="{StaticResource TextSecondaryColor}" FontSize="11.5"/>
-                        <TextBlock Text="{Binding NetSales, StringFormat={}{0:N0}đ}" Foreground="{StaticResource TextPrimaryColor}" FontSize="11.5" HorizontalAlignment="Right"/>
-                    </Grid>
-                    <Grid Margin="10,0,0,6">
-                        <TextBlock Text="= Cash Sales" Foreground="{StaticResource TextSecondaryColor}" FontSize="11.5"/>
-                        <TextBlock Text="{Binding CashSales, StringFormat={}{0:N0}đ}" Foreground="{StaticResource TextPrimaryColor}" FontSize="11.5" HorizontalAlignment="Right"/>
-                    </Grid>
-                    <Grid Margin="10,0,0,6">
-                        <TextBlock Text="+ Opening Fund" Foreground="{StaticResource TextSecondaryColor}" FontSize="11.5"/>
-                        <TextBlock Text="{Binding OpeningFund, StringFormat={}{0:N0}đ}" Foreground="{StaticResource TextPrimaryColor}" FontSize="11.5" HorizontalAlignment="Right"/>
-                    </Grid>
-                    <Grid Margin="10,0,0,6">
-                        <TextBlock Text="+ Cash Received" Foreground="{StaticResource TextSecondaryColor}" FontSize="11.5"/>
-                        <TextBlock Text="{Binding CashReceived, StringFormat={}{0:N0}đ}" Foreground="{StaticResource TextPrimaryColor}" FontSize="11.5" HorizontalAlignment="Right"/>
-                    </Grid>
-                    <Grid Margin="10,0,0,6">
-                        <TextBlock Text="- Till Out" Foreground="{StaticResource TextSecondaryColor}" FontSize="11.5"/>
-                        <TextBlock Text="{Binding TillOut, StringFormat={}{0:N0}đ}" Foreground="{StaticResource TextPrimaryColor}" FontSize="11.5" HorizontalAlignment="Right"/>
-                    </Grid>
-                    <Grid Margin="10,0,0,12">
-                        <TextBlock Text="= Cash Over(-)/Short(+)" Foreground="{StaticResource TextSecondaryColor}" FontSize="11.5"/>
-                        <TextBlock Text="{Binding CashDifference, StringFormat={}{0:N0}đ}" Foreground="#10B981" FontSize="11.5" FontWeight="SemiBold" HorizontalAlignment="Right"/>
-                    </Grid>
+                        <!-- Cash Audit -->
+                        <TextBlock Text="Cash Audit" FontSize="12" FontWeight="Bold" Foreground="{StaticResource TextPrimaryColor}" Margin="0,0,0,8"/>
+                        
+                        <Grid Margin="10,0,0,6">
+                            <TextBlock Text="Net Sales" Foreground="{StaticResource TextSecondaryColor}" FontSize="11.5"/>
+                            <TextBlock Text="{Binding NetSales, StringFormat={}{0:N0}đ}" Foreground="{StaticResource TextPrimaryColor}" FontSize="11.5" HorizontalAlignment="Right"/>
+                        </Grid>
+                        <Grid Margin="10,0,0,6">
+                            <TextBlock Text="= Cash Sales" Foreground="{StaticResource TextSecondaryColor}" FontSize="11.5"/>
+                            <TextBlock Text="{Binding CashSales, StringFormat={}{0:N0}đ}" Foreground="{StaticResource TextPrimaryColor}" FontSize="11.5" HorizontalAlignment="Right"/>
+                        </Grid>
+                        <Grid Margin="10,0,0,6">
+                            <TextBlock Text="+ Opening Fund" Foreground="{StaticResource TextSecondaryColor}" FontSize="11.5"/>
+                            <TextBlock Text="{Binding OpeningFund, StringFormat={}{0:N0}đ}" Foreground="{StaticResource TextPrimaryColor}" FontSize="11.5" HorizontalAlignment="Right"/>
+                        </Grid>
+                        <Grid Margin="10,0,0,6">
+                            <TextBlock Text="+ Cash Received" Foreground="{StaticResource TextSecondaryColor}" FontSize="11.5"/>
+                            <TextBlock Text="{Binding CashReceived, StringFormat={}{0:N0}đ}" Foreground="{StaticResource TextPrimaryColor}" FontSize="11.5" HorizontalAlignment="Right"/>
+                        </Grid>
+                        <Grid Margin="10,0,0,6">
+                            <TextBlock Text="- Till Out" Foreground="{StaticResource TextSecondaryColor}" FontSize="11.5"/>
+                            <TextBlock Text="{Binding TillOut, StringFormat={}{0:N0}đ}" Foreground="{StaticResource TextPrimaryColor}" FontSize="11.5" HorizontalAlignment="Right"/>
+                        </Grid>
+                        <Grid Margin="10,0,0,12">
+                            <TextBlock Text="= Cash Over(-)/Short(+)" Foreground="{StaticResource TextSecondaryColor}" FontSize="11.5"/>
+                            <TextBlock Text="{Binding CashDifference, StringFormat={}{0:N0}đ}" Foreground="#10B981" FontSize="11.5" FontWeight="SemiBold" HorizontalAlignment="Right"/>
+                        </Grid>
 
-                    <Border Height="1" Background="{StaticResource BorderLightColor}" Margin="0,0,0,12"/>
+                        <Border Height="1" Background="{StaticResource BorderLightColor}" Margin="0,0,0,12"/>
 
-                    <!-- Audit Trail -->
-                    <TextBlock Text="Audit Trail" FontSize="12" FontWeight="Bold" Foreground="{StaticResource TextPrimaryColor}" Margin="0,0,0,8"/>
-                    
-                    <Grid Margin="10,0,0,6">
-                        <TextBlock Text="Cashier Void" Foreground="{StaticResource TextSecondaryColor}" FontSize="11.5"/>
-                        <TextBlock Text="{Binding CashierVoidCount}" Foreground="{StaticResource TextPrimaryColor}" FontSize="11.5" HorizontalAlignment="Right"/>
-                    </Grid>
-                    <Grid Margin="10,0,0,6">
-                        <TextBlock Text="Refund (By Item)" Foreground="{StaticResource TextSecondaryColor}" FontSize="11.5"/>
-                        <TextBlock Text="{Binding RefundItemCount}" Foreground="{StaticResource TextPrimaryColor}" FontSize="11.5" HorizontalAlignment="Right"/>
-                    </Grid>
-                    <Grid Margin="10,0,0,12">
-                        <TextBlock Text="Refund (By Amount)" Foreground="{StaticResource TextSecondaryColor}" FontSize="11.5"/>
-                        <TextBlock Text="{Binding RefundAmount, StringFormat={}{0:N0}đ}" Foreground="{StaticResource TextPrimaryColor}" FontSize="11.5" HorizontalAlignment="Right"/>
-                    </Grid>
+                        <!-- Audit Trail -->
+                        <TextBlock Text="Audit Trail" FontSize="12" FontWeight="Bold" Foreground="{StaticResource TextPrimaryColor}" Margin="0,0,0,8"/>
+                        
+                        <Grid Margin="10,0,0,6">
+                            <TextBlock Text="Cashier Void" Foreground="{StaticResource TextSecondaryColor}" FontSize="11.5"/>
+                            <TextBlock Text="{Binding CashierVoidCount}" Foreground="{StaticResource TextPrimaryColor}" FontSize="11.5" HorizontalAlignment="Right"/>
+                        </Grid>
+                        <Grid Margin="10,0,0,6">
+                            <TextBlock Text="Refund (By Item)" Foreground="{StaticResource TextSecondaryColor}" FontSize="11.5"/>
+                            <TextBlock Text="{Binding RefundItemCount}" Foreground="{StaticResource TextPrimaryColor}" FontSize="11.5" HorizontalAlignment="Right"/>
+                        </Grid>
+                        <Grid Margin="10,0,0,12">
+                            <TextBlock Text="Refund (By Amount)" Foreground="{StaticResource TextSecondaryColor}" FontSize="11.5"/>
+                            <TextBlock Text="{Binding RefundAmount, StringFormat={}{0:N0}đ}" Foreground="{StaticResource TextPrimaryColor}" FontSize="11.5" HorizontalAlignment="Right"/>
+                        </Grid>
 
-                    <Border Height="1" Background="{StaticResource BorderLightColor}" Margin="0,0,0,12"/>
+                        <Border Height="1" Background="{StaticResource BorderLightColor}" Margin="0,0,0,12"/>
 
-                    <!-- Open Bill -->
-                    <TextBlock Text="Open Bill" FontSize="12" FontWeight="Bold" Foreground="{StaticResource TextPrimaryColor}" Margin="0,0,0,8"/>
-                    
-                    <Grid Margin="10,0,0,6">
-                        <TextBlock Text="Count" Foreground="{StaticResource TextSecondaryColor}" FontSize="11.5"/>
-                        <TextBlock Text="{Binding OpenBillCount}" Foreground="{StaticResource TextPrimaryColor}" FontSize="11.5" HorizontalAlignment="Right"/>
-                    </Grid>
-                    <Grid Margin="10,0,0,12">
-                        <TextBlock Text="Amount Disp" Foreground="{StaticResource TextSecondaryColor}" FontSize="11.5"/>
-                        <TextBlock Text="{Binding OpenBillAmount, StringFormat={}{0:N0}đ}" Foreground="{StaticResource TextPrimaryColor}" FontSize="11.5" HorizontalAlignment="Right"/>
-                    </Grid>
+                        <!-- Open Bill -->
+                        <TextBlock Text="Open Bill" FontSize="12" FontWeight="Bold" Foreground="{StaticResource TextPrimaryColor}" Margin="0,0,0,8"/>
+                        
+                        <Grid Margin="10,0,0,6">
+                            <TextBlock Text="Count" Foreground="{StaticResource TextSecondaryColor}" FontSize="11.5"/>
+                            <TextBlock Text="{Binding OpenBillCount}" Foreground="{StaticResource TextPrimaryColor}" FontSize="11.5" HorizontalAlignment="Right"/>
+                        </Grid>
+                        <Grid Margin="10,0,0,12">
+                            <TextBlock Text="Amount Disp" Foreground="{StaticResource TextSecondaryColor}" FontSize="11.5"/>
+                            <TextBlock Text="{Binding OpenBillAmount, StringFormat={}{0:N0}đ}" Foreground="{StaticResource TextPrimaryColor}" FontSize="11.5" HorizontalAlignment="Right"/>
+                        </Grid>
 
-                    <Border Height="1" Background="{StaticResource BorderLightColor}" Margin="0,0,0,15"/>
+                        <Border Height="1" Background="{StaticResource BorderLightColor}" Margin="0,0,0,15"/>
 
-                    <!-- Total -->
-                    <Grid>
-                        <TextBlock Text="Total Net Sales" Foreground="{StaticResource TextSecondaryColor}" FontSize="12" FontWeight="SemiBold"/>
-                        <TextBlock Text="{Binding NetSales, StringFormat={}{0:N0}đ}" Foreground="{StaticResource TextPrimaryColor}" FontSize="13" FontWeight="Bold" HorizontalAlignment="Right"/>
-                    </Grid>
-                    <Grid Margin="0,6,0,0">
-                        <TextBlock Text="Grand Total" Foreground="{StaticResource TextSecondaryColor}" FontSize="12" FontWeight="SemiBold"/>
-                        <TextBlock Text="{Binding GrandTotal, StringFormat={}{0:N0}đ}" Foreground="{StaticResource PrimaryColor}" FontSize="13" FontWeight="Bold" HorizontalAlignment="Right"/>
-                    </Grid>
+                        <!-- Total -->
+                        <Grid>
+                            <TextBlock Text="Total Net Sales" Foreground="{StaticResource TextSecondaryColor}" FontSize="12" FontWeight="SemiBold"/>
+                            <TextBlock Text="{Binding NetSales, StringFormat={}{0:N0}đ}" Foreground="{StaticResource TextPrimaryColor}" FontSize="13" FontWeight="Bold" HorizontalAlignment="Right"/>
+                        </Grid>
+                        <Grid Margin="0,6,0,0">
+                            <TextBlock Text="Grand Total" Foreground="{StaticResource TextSecondaryColor}" FontSize="12" FontWeight="SemiBold"/>
+                            <TextBlock Text="{Binding GrandTotal, StringFormat={}{0:N0}đ}" Foreground="{StaticResource PrimaryColor}" FontSize="13" FontWeight="Bold" HorizontalAlignment="Right"/>
+                        </Grid>
+                    </StackPanel>
+
+                    <!-- PANEL 2: Discount Detail Report -->
+                    <StackPanel>
+                        <StackPanel.Style>
+                            <Style TargetType="StackPanel">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding SelectedReportType}" Value="Discount Detail Report">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </StackPanel.Style>
+                        
+                        <!-- Discount Breakdown -->
+                        <Grid Margin="0,0,0,8">
+                            <TextBlock Text="Mã Khuyến Mãi (Promo)" Foreground="{StaticResource TextSecondaryColor}" FontSize="12"/>
+                            <TextBlock Text="{Binding PromoDiscountAmount, StringFormat={}{0:N0}đ}" Foreground="{StaticResource TextPrimaryColor}" FontSize="12" FontWeight="SemiBold" HorizontalAlignment="Right"/>
+                        </Grid>
+                        <Grid Margin="0,0,0,12">
+                            <TextBlock Text="Chiết Khấu TV (Member)" Foreground="{StaticResource TextSecondaryColor}" FontSize="12"/>
+                            <TextBlock Text="{Binding MemberDiscountAmount, StringFormat={}{0:N0}đ}" Foreground="{StaticResource TextPrimaryColor}" FontSize="12" FontWeight="SemiBold" HorizontalAlignment="Right"/>
+                        </Grid>
+                        <Border Height="1" Background="{StaticResource BorderLightColor}" Margin="0,0,0,12"/>
+                        <Grid>
+                            <TextBlock Text="Tổng chiết khấu" Foreground="{StaticResource TextSecondaryColor}" FontSize="12" FontWeight="SemiBold"/>
+                            <TextBlock Text="{Binding TotalDiscountAmount, StringFormat={}{0:N0}đ}" Foreground="{StaticResource DangerColor}" FontSize="13" FontWeight="Bold" HorizontalAlignment="Right"/>
+                        </Grid>
+                    </StackPanel>
+
+                    <!-- PANEL 3: Generic Lists (Sales Mix, Payments, Cashier, Hour, Top Products) -->
+                    <StackPanel>
+                        <StackPanel.Style>
+                            <Style TargetType="StackPanel">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding SelectedReportType}" Value="Sales Mix Report">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding SelectedReportType}" Value="Payment Detail Report">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding SelectedReportType}" Value="Cashier Report">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding SelectedReportType}" Value="Hour Sales Report">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding SelectedReportType}" Value="Top 25 Sales">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding SelectedReportType}" Value="Top 25 Quantity">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </StackPanel.Style>
+
+                        <ItemsControl>
+                            <ItemsControl.Style>
+                                <Style TargetType="ItemsControl">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding SelectedReportType}" Value="Sales Mix Report">
+                                            <Setter Property="ItemsSource" Value="{Binding SalesMixItems}"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding SelectedReportType}" Value="Payment Detail Report">
+                                            <Setter Property="ItemsSource" Value="{Binding PaymentItems}"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding SelectedReportType}" Value="Cashier Report">
+                                            <Setter Property="ItemsSource" Value="{Binding CashierItems}"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding SelectedReportType}" Value="Hour Sales Report">
+                                            <Setter Property="ItemsSource" Value="{Binding HourSalesItems}"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding SelectedReportType}" Value="Top 25 Sales">
+                                            <Setter Property="ItemsSource" Value="{Binding TopProductsSales}"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding SelectedReportType}" Value="Top 25 Quantity">
+                                            <Setter Property="ItemsSource" Value="{Binding TopProductsQty}"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ItemsControl.Style>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="0,0,0,10">
+                                        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Width="180">
+                                            <TextBlock Text="{Binding Name}" Foreground="{StaticResource TextPrimaryColor}" FontSize="11.5" FontWeight="SemiBold" TextTrimming="CharacterEllipsis"/>
+                                            <TextBlock Text="{Binding SubValue}" Foreground="{StaticResource TextSecondaryColor}" FontSize="10"/>
+                                        </StackPanel>
+                                        <TextBlock Text="{Binding Value}" Foreground="{StaticResource PrimaryColor}" FontSize="12" FontWeight="Bold" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+
                 </StackPanel>
             </ScrollViewer>
         </Border>
@@ -123,8 +245,30 @@
                 </StackPanel>
                 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
-                    <Button Content="Today Data" Style="{StaticResource PrimaryButton}" Margin="0,0,10,0" Padding="12,6"/>
-                    <Button Content="History Data" Style="{StaticResource OutlinedButton}" Padding="12,6"/>
+                    <Button Content="Today Data" Command="{Binding SelectTimePeriodCommand}" CommandParameter="Today" Margin="0,0,10,0" Padding="12,6">
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource OutlinedButton}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding SelectedTimePeriod}" Value="Today">
+                                        <Setter Property="Background" Value="#4C8A64"/>
+                                        <Setter Property="Foreground" Value="White"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button Content="History Data" Command="{Binding SelectTimePeriodCommand}" CommandParameter="History" Padding="12,6">
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource OutlinedButton}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding SelectedTimePeriod}" Value="History">
+                                        <Setter Property="Background" Value="#4C8A64"/>
+                                        <Setter Property="Foreground" Value="White"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
                 </StackPanel>
             </Grid>
 
@@ -174,14 +318,117 @@
             <StackPanel Grid.Row="2" Margin="0,0,0,15">
                 <TextBlock Text="LOẠI BÁO CÁO" FontSize="11.5" FontWeight="SemiBold" Foreground="{StaticResource TextSecondaryColor}" Margin="0,0,0,8"/>
                 <UniformGrid Columns="4" Rows="2">
-                    <Button Content="Daily Sales Report" Style="{StaticResource PrimaryButton}" Margin="0,0,8,8" Height="36"/>
-                    <Button Content="Sales Mix Report" Style="{StaticResource OutlinedButton}" Margin="0,0,8,8" Height="36"/>
-                    <Button Content="Discount Detail Report" Style="{StaticResource OutlinedButton}" Margin="0,0,8,8" Height="36"/>
-                    <Button Content="Payment Detail Report" Style="{StaticResource OutlinedButton}" Margin="0,0,0,8" Height="36"/>
-                    <Button Content="Cashier Report" Style="{StaticResource OutlinedButton}" Margin="0,0,8,0" Height="36"/>
-                    <Button Content="Hour Sales Report" Style="{StaticResource OutlinedButton}" Margin="0,0,8,0" Height="36"/>
-                    <Button Content="Top 25 Sales" Style="{StaticResource OutlinedButton}" Margin="0,0,8,0" Height="36"/>
-                    <Button Content="Top 25 Quantity" Style="{StaticResource OutlinedButton}" Height="36"/>
+                    <!-- Daily Sales Report -->
+                    <Button Content="Daily Sales Report" Command="{Binding SelectReportCommand}" CommandParameter="Daily Sales Report" Margin="0,0,8,8" Height="36">
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource OutlinedButton}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding SelectedReportType}" Value="Daily Sales Report">
+                                        <Setter Property="Background" Value="#4C8A64"/>
+                                        <Setter Property="Foreground" Value="White"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    
+                    <!-- Sales Mix Report -->
+                    <Button Content="Sales Mix Report" Command="{Binding SelectReportCommand}" CommandParameter="Sales Mix Report" Margin="0,0,8,8" Height="36">
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource OutlinedButton}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding SelectedReportType}" Value="Sales Mix Report">
+                                        <Setter Property="Background" Value="#4C8A64"/>
+                                        <Setter Property="Foreground" Value="White"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+
+                    <!-- Discount Detail Report -->
+                    <Button Content="Discount Detail Report" Command="{Binding SelectReportCommand}" CommandParameter="Discount Detail Report" Margin="0,0,8,8" Height="36">
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource OutlinedButton}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding SelectedReportType}" Value="Discount Detail Report">
+                                        <Setter Property="Background" Value="#4C8A64"/>
+                                        <Setter Property="Foreground" Value="White"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+
+                    <!-- Payment Detail Report -->
+                    <Button Content="Payment Detail Report" Command="{Binding SelectReportCommand}" CommandParameter="Payment Detail Report" Margin="0,0,0,8" Height="36">
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource OutlinedButton}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding SelectedReportType}" Value="Payment Detail Report">
+                                        <Setter Property="Background" Value="#4C8A64"/>
+                                        <Setter Property="Foreground" Value="White"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+
+                    <!-- Cashier Report -->
+                    <Button Content="Cashier Report" Command="{Binding SelectReportCommand}" CommandParameter="Cashier Report" Margin="0,0,8,0" Height="36">
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource OutlinedButton}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding SelectedReportType}" Value="Cashier Report">
+                                        <Setter Property="Background" Value="#4C8A64"/>
+                                        <Setter Property="Foreground" Value="White"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+
+                    <!-- Hour Sales Report -->
+                    <Button Content="Hour Sales Report" Command="{Binding SelectReportCommand}" CommandParameter="Hour Sales Report" Margin="0,0,8,0" Height="36">
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource OutlinedButton}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding SelectedReportType}" Value="Hour Sales Report">
+                                        <Setter Property="Background" Value="#4C8A64"/>
+                                        <Setter Property="Foreground" Value="White"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+
+                    <!-- Top 25 Sales -->
+                    <Button Content="Top 25 Sales" Command="{Binding SelectReportCommand}" CommandParameter="Top 25 Sales" Margin="0,0,8,0" Height="36">
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource OutlinedButton}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding SelectedReportType}" Value="Top 25 Sales">
+                                        <Setter Property="Background" Value="#4C8A64"/>
+                                        <Setter Property="Foreground" Value="White"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+
+                    <!-- Top 25 Quantity -->
+                    <Button Content="Top 25 Quantity" Command="{Binding SelectReportCommand}" CommandParameter="Top 25 Quantity" Height="36">
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource OutlinedButton}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding SelectedReportType}" Value="Top 25 Quantity">
+                                        <Setter Property="Background" Value="#4C8A64"/>
+                                        <Setter Property="Foreground" Value="White"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
                 </UniformGrid>
             </StackPanel>
 
