@@ -31,12 +31,14 @@ public partial class App : System.Windows.Application
 
         // Repositories
         services.AddScoped<HeThongPOS.Core.Interfaces.IProductRepository, HeThongPOS.Infrastructure.Repositories.ProductRepository>();
+        services.AddScoped<HeThongPOS.Core.Interfaces.IOrderRepository, HeThongPOS.Infrastructure.Repositories.OrderRepository>();
 
         // Services
         services.AddScoped<HeThongPOS.Core.Interfaces.IProductService, HeThongPOS.Application.Services.ProductService>();
         services.AddSingleton<INavigationService, NavigationService>();
         services.AddScoped<IAuthService, AuthService>();
         services.AddScoped<IShiftService, ShiftService>();
+        services.AddScoped<HeThongPOS.Core.Interfaces.IOrderService, HeThongPOS.Application.Services.OrderService>();
 
         // ViewModels
         services.AddTransient<HeThongPOS.WPF.ViewModels.ProductsViewModel>();
