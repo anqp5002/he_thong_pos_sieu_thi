@@ -4,6 +4,7 @@ using HeThongPOS.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HeThongPOS.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260608091950_AddLoginLockFields")]
+    partial class AddLoginLockFields
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -109,32 +112,6 @@ namespace HeThongPOS.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("DanhMucs");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            MoTa = "",
-                            TenDanhMuc = "Đồ ăn nhanh"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            MoTa = "",
-                            TenDanhMuc = "Đồ uống"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            MoTa = "",
-                            TenDanhMuc = "Gia vị"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            MoTa = "",
-                            TenDanhMuc = "Hóa mỹ phẩm"
-                        });
                 });
 
             modelBuilder.Entity("HeThongPOS.Core.Entities.DonHang", b =>

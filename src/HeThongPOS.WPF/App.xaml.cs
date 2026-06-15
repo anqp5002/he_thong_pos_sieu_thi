@@ -3,6 +3,11 @@ using Microsoft.Extensions.DependencyInjection;
 using HeThongPOS.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
+using HeThongPOS.Application.Interfaces;
+using HeThongPOS.Application.Services;
+using HeThongPOS.WPF.Services;
+using HeThongPOS.WPF.ViewModels;
+using HeThongPOS.WPF.Views;
 
 namespace HeThongPOS.WPF;
 
@@ -29,20 +34,45 @@ public partial class App : System.Windows.Application
 
         // Services
         services.AddScoped<HeThongPOS.Core.Interfaces.IProductService, HeThongPOS.Application.Services.ProductService>();
+        services.AddSingleton<INavigationService, NavigationService>();
+        services.AddScoped<IAuthService, AuthService>();
+        services.AddScoped<IShiftService, ShiftService>();
 
         // ViewModels
         services.AddTransient<HeThongPOS.WPF.ViewModels.ProductsViewModel>();
+        services.AddTransient<LoginViewModel>();
+        services.AddTransient<POSViewModel>();
+        services.AddTransient<PaymentViewModel>();
+        services.AddTransient<DashboardViewModel>();
+        services.AddTransient<ShiftViewModel>();
 
         // Views
         services.AddTransient<MainWindow>();
+        services.AddTransient<LoginView>();
+        services.AddTransient<POSView>();
+        services.AddTransient<HeThongPOS.WPF.Controls.PaymentDialog>();
     }
 
-    private void OnStartup(object sender, StartupEventArgs e)
+    private async void OnStartup(object sender, StartupEventArgs e)
     {
         try
         {
+            // 1. Run DataSeeder
+            using (var scope = ServiceProvider.CreateScope())
+            {
+                var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+                await DataSeeder.SeedAsync(dbContext);
+            }
+
+            // 2. Initialize MainWindow and NavigationService
             var mainWindow = ServiceProvider.GetRequiredService<MainWindow>();
+            var navService = (NavigationService)ServiceProvider.GetRequiredService<INavigationService>();
+            navService.Initialize(mainWindow.MainFrame);
+
             mainWindow.Show();
+
+            // 3. Navigate to LoginView
+            navService.NavigateTo<LoginViewModel>();
         }
         catch (Exception ex)
         {

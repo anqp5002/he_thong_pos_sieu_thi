@@ -1,14 +1,14 @@
-# 🛒 Hệ Thống POS Siêu Thị — Desktop App
+# Hệ Thống POS Siêu Thị — Desktop App
 
 > **Nhóm 6** — PTIT HCM — Thực tập Cơ sở  
 > Hệ thống Quản lý Bán hàng tại Quầy (Point of Sale) — Phiên bản Desktop
 
-## 📋 Tổng Quan
+## Tổng Quan
 
 Ứng dụng Desktop POS dành cho siêu thị mini/cửa hàng tiện lợi.  
 Hỗ trợ: quét mã vạch, quản lý giỏ hàng, thanh toán, in hóa đơn, báo cáo doanh thu.
 
-## 🔧 Công Nghệ
+## Công Nghệ
 
 | Layer | Công nghệ |
 |-------|-----------|
@@ -22,7 +22,7 @@ Hỗ trợ: quét mã vạch, quản lý giỏ hàng, thanh toán, in hóa đơn
 | DI | Microsoft.Extensions.DependencyInjection |
 | Testing | xUnit + Moq |
 
-## 🚀 Cách Chạy
+## Cách Chạy
 
 ### Yêu cầu
 - [.NET 8 SDK](https://dotnet.microsoft.com/download)
@@ -50,7 +50,7 @@ cd src/HeThongPOS.WPF
 dotnet run
 ```
 
-## 📁 Cấu Trúc Dự Án
+## Cấu Trúc Dự Án
 
 ```
 HeThongPOS.sln
@@ -65,7 +65,7 @@ HeThongPOS.sln
 └── README.md
 ```
 
-## 👥 Nhóm 6
+## Nhóm 6
 
 | Thành viên | Vai trò |
 |-----------|---------|
@@ -73,6 +73,6 @@ HeThongPOS.sln
 | Dev B | Product CRUD, Order Service, Payment Service, Reports, Testing |
 | Dev C | Customer CRUD, Order List, Invoice/Print, Deploy, Polish |
 
-## 📄 License
+## License
 
 Dự án học thuật — PTIT HCM © 2026
