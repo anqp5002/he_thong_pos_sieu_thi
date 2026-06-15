@@ -2,6 +2,7 @@ using System.Windows;
 using HeThongPOS.WPF.Services;
 using HeThongPOS.WPF.ViewModels;
 using HeThongPOS.WPF.Views;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace HeThongPOS.WPF;
 
@@ -12,13 +13,15 @@ public partial class MainWindow : Window
     private readonly ReportsView _reportsView;
     private readonly UsersView _usersView;
     private readonly SettingsView _settingsView;
+    private readonly ProductsView _productsView;
 
     public MainWindow(
         OrdersViewModel ordersViewModel,
         CustomersViewModel customersViewModel,
         ReportsViewModel reportsViewModel,
         UsersViewModel usersViewModel,
-        SettingsViewModel settingsViewModel)
+        SettingsViewModel settingsViewModel,
+        ProductsViewModel productsViewModel)
     {
         InitializeComponent();
         
@@ -28,6 +31,7 @@ public partial class MainWindow : Window
         _reportsView = new ReportsView { DataContext = reportsViewModel };
         _usersView = new UsersView { DataContext = usersViewModel };
         _settingsView = new SettingsView { DataContext = settingsViewModel };
+        _productsView = new ProductsView { DataContext = productsViewModel };
 
         // Set initial view
         MainContent.Content = _ordersView;
@@ -99,6 +103,12 @@ public partial class MainWindow : Window
         UpdateActiveButton(BtnSettings);
     }
 
+    private void NavProducts_Click(object sender, RoutedEventArgs e)
+    {
+        MainContent.Content = _productsView;
+        UpdateActiveButton(BtnProducts);
+    }
+
     public void NavigateToOrders()
     {
         MainContent.Content = _ordersView;
@@ -110,6 +120,7 @@ public partial class MainWindow : Window
         BtnOrders.Style = (Style)FindResource("OutlinedButton");
         BtnCustomers.Style = (Style)FindResource("OutlinedButton");
         BtnReports.Style = (Style)FindResource("OutlinedButton");
+        BtnProducts.Style = (Style)FindResource("OutlinedButton");
         BtnUsers.Style = (Style)FindResource("OutlinedButton");
         BtnSettings.Style = (Style)FindResource("OutlinedButton");
         

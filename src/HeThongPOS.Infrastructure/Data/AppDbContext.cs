@@ -27,6 +27,7 @@ public class AppDbContext : DbContext
         
         // Apply all configurations from the assembly
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
         // Dummy Data for testing
         modelBuilder.Entity<DanhMuc>().HasData(
             new DanhMuc { Id = 1, TenDanhMuc = "Đồ ăn nhanh" },
