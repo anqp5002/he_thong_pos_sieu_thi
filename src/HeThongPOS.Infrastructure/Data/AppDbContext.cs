@@ -27,7 +27,6 @@ public class AppDbContext : DbContext
         
         // Apply all configurations from the assembly
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-
         // Dummy Data for testing
         modelBuilder.Entity<DanhMuc>().HasData(
             new DanhMuc { Id = 1, TenDanhMuc = "Đồ ăn nhanh" },
@@ -35,5 +34,7 @@ public class AppDbContext : DbContext
             new DanhMuc { Id = 3, TenDanhMuc = "Gia vị" },
             new DanhMuc { Id = 4, TenDanhMuc = "Hóa mỹ phẩm" }
         );
+        modelBuilder.Entity<KhachHang>().HasData(HeThongPOS.Infrastructure.Seeders.DataSeeder.GetSampleCustomers());
+        modelBuilder.Entity<SanPham>().HasData(HeThongPOS.Infrastructure.Seeders.DataSeeder.GetSampleProducts());
     }
 }
