@@ -8,15 +8,31 @@
             <RowDefinition Height="60"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
         
         <!-- Header -->
-        <Border Grid.Row="0" Background="#1a73e8">
-            <TextBlock Text="HỆ THỐNG POS SIÊU THỊ - SPRINT 0" 
+        <Border Grid.Row="0" Grid.ColumnSpan="2" Background="#1a73e8">
+            <TextBlock Text="HỆ THỐNG POS SIÊU THỊ" 
                        Foreground="White" FontSize="24" FontWeight="Bold"
                        VerticalAlignment="Center" HorizontalAlignment="Center"/>
         </Border>
+
+        <!-- Sidebar -->
+        <Border Grid.Row="1" Grid.Column="0" Background="#f3f4f6" BorderBrush="#e5e7eb" BorderThickness="0,0,1,0" Padding="10">
+            <StackPanel>
+                <Button Content="POS Bán Hàng" Click="NavToPOS_Click" Margin="0,5" Padding="10" Background="White" BorderBrush="#d1d5db" />
+                <Button Content="Ca Làm Việc" Click="NavToShift_Click" Margin="0,5" Padding="10" Background="White" BorderBrush="#d1d5db" />
+                <Button Content="Thống Kê (Dashboard)" Click="NavToDashboard_Click" Margin="0,5" Padding="10" Background="White" BorderBrush="#d1d5db" />
+                <Button Content="Sản Phẩm" Click="NavToProducts_Click" Margin="0,5" Padding="10" Background="White" BorderBrush="#d1d5db" />
+                <Button Content="Khách Hàng" Click="NavToCustomers_Click" Margin="0,5" Padding="10" Background="White" BorderBrush="#d1d5db" />
+                <Button Content="Đăng xuất" Click="NavToLogin_Click" Margin="0,30,0,5" Padding="10" Background="#fee2e2" Foreground="Red" BorderBrush="#fca5a5" />
+            </StackPanel>
+        </Border>
         
         <!-- Main Content (Navigation) -->
-        <Frame x:Name="MainFrame" Grid.Row="1" NavigationUIVisibility="Hidden"/>
+        <Frame x:Name="MainFrame" Grid.Row="1" Grid.Column="1" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>
