@@ -1,0 +1,104 @@
+<Page x:Class="HeThongPOS.WPF.Views.CloseShiftView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      mc:Ignorable="d"
+      d:DesignHeight="650" d:DesignWidth="600"
+      Title="Đóng Ca Làm Việc" Background="#f0f2f5">
+
+    <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Width="500">
+        <Border Background="White" CornerRadius="10" Padding="30">
+            <StackPanel>
+                <!-- Tiêu đề -->
+                <TextBlock Text="ĐÓNG CA LÀM VIỆC" FontSize="22" FontWeight="Bold"
+                           Foreground="#111827" HorizontalAlignment="Center" Margin="0,0,0,25"/>
+
+                <!-- Thông tin ca hiện tại -->
+                <Border Background="#f8fafc" CornerRadius="6" Padding="15" Margin="0,0,0,20"
+                        BorderBrush="#e2e8f0" BorderThickness="1">
+                    <StackPanel>
+                        <TextBlock Text="Thông tin ca hiện tại" FontWeight="SemiBold" FontSize="14" Foreground="#374151" Margin="0,0,0,10"/>
+                        <Grid Margin="0,3">
+                            <TextBlock Text="Thời gian bắt đầu:" Foreground="#6b7280"/>
+                            <TextBlock Text="{Binding ThoiGianBatDau}" HorizontalAlignment="Right" FontWeight="SemiBold"/>
+                        </Grid>
+                        <Grid Margin="0,3">
+                            <TextBlock Text="Thời gian làm việc:" Foreground="#6b7280"/>
+                            <TextBlock Text="{Binding ThoiGianLamViec}" HorizontalAlignment="Right" FontWeight="SemiBold"/>
+                        </Grid>
+                        <Separator Margin="0,8"/>
+                        <Grid Margin="0,3">
+                            <TextBlock Text="Số dư đầu ca:" Foreground="#6b7280"/>
+                            <TextBlock Text="{Binding ActiveShift.SoDuDauCa, Converter={StaticResource CurrencyConverter}}"
+                                       HorizontalAlignment="Right" FontWeight="SemiBold"/>
+                        </Grid>
+                        <Grid Margin="0,3">
+                            <TextBlock Text="Tổng doanh thu trong ca:" Foreground="#6b7280"/>
+                            <TextBlock Text="{Binding TongDoanhThuCa, Converter={StaticResource CurrencyConverter}}"
+                                       HorizontalAlignment="Right" FontWeight="SemiBold" Foreground="#1a73e8"/>
+                        </Grid>
+                        <Separator Margin="0,8"/>
+                        <Grid Margin="0,3">
+                            <TextBlock Text="Số dư cuối ca (hệ thống):" FontWeight="SemiBold" Foreground="#374151"/>
+                            <TextBlock Text="{Binding SoDuCuoiCaHeThong, Converter={StaticResource CurrencyConverter}}"
+                                       HorizontalAlignment="Right" FontWeight="Bold" FontSize="16" Foreground="#7c3aed"/>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+                <!-- Nhập tiền thực tế -->
+                <TextBlock Text="Số tiền thực tế trong két:" FontSize="14"
+                           Foreground="#374151" Margin="0,0,0,8"/>
+                <TextBox Text="{Binding SoDuCuoiCaThucTe, UpdateSourceTrigger=PropertyChanged, StringFormat=N0}"
+                         Height="45" Padding="12,0" FontSize="18" FontWeight="Bold"
+                         VerticalContentAlignment="Center"
+                         BorderBrush="#d1d5db" BorderThickness="1" Foreground="#111827"/>
+
+                <!-- Ghi chú -->
+                <TextBlock Text="Ghi chú (tùy chọn):" FontSize="14"
+                           Foreground="#374151" Margin="0,15,0,8"/>
+                <TextBox Text="{Binding GhiChu, UpdateSourceTrigger=PropertyChanged}"
+                         Height="60" Padding="12,8" FontSize="14"
+                         TextWrapping="Wrap" AcceptsReturn="True"
+                         BorderBrush="#d1d5db" BorderThickness="1" Foreground="#111827"
+                         VerticalScrollBarVisibility="Auto"/>
+
+                <!-- Cảnh báo chênh lệch -->
+                <Border Margin="0,15,0,0" CornerRadius="6" Padding="12"
+                        Visibility="{Binding Message, Converter={StaticResource StringToVisibilityConverter}}">
+                    <Border.Style>
+                        <Style TargetType="Border">
+                            <Setter Property="Background" Value="#fef2f2"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsSuccess}" Value="True">
+                                    <Setter Property="Background" Value="#f0fdf4"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                    <TextBlock Text="{Binding Message}" TextWrapping="Wrap" FontSize="13">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Foreground" Value="#dc2626"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsSuccess}" Value="True">
+                                        <Setter Property="Foreground" Value="#059669"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                </Border>
+
+                <!-- Nút đóng ca -->
+                <Button Content="{Binding IsBusy, Converter={StaticResource BooleanToLoginTextConverter}, ConverterParameter=DongCa}"
+                        Command="{Binding CloseShiftCommand}"
+                        IsEnabled="{Binding IsBusy, Converter={StaticResource InverseBooleanConverter}}"
+                        Height="50" FontSize="16" Margin="0,20,0,0"
+                        Background="#dc2626" Foreground="White" BorderThickness="0" Cursor="Hand"
+                        FontWeight="Bold"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Page>

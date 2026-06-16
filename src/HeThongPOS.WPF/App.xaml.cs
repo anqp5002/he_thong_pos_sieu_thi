@@ -1,4 +1,6 @@
 using System.Windows;
+using System.IO;
+using System.Text.Json;
 using Microsoft.Extensions.DependencyInjection;
 using HeThongPOS.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
@@ -24,8 +26,8 @@ public partial class App : System.Windows.Application
 
     private void ConfigureServices(IServiceCollection services)
     {
-        // Database
-        var connectionString = "Server=localhost,14335;Database=HeThongPOS;User Id=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=true;";
+        // Mục 4: Đọc connection string từ appsettings.json thay vì hardcode
+        string connectionString = GetConnectionString();
         services.AddDbContext<AppDbContext>(options =>
             options.UseSqlServer(connectionString));
 
@@ -39,6 +41,12 @@ public partial class App : System.Windows.Application
         services.AddScoped<IAuthService, AuthService>();
         services.AddScoped<IShiftService, ShiftService>();
         services.AddScoped<HeThongPOS.Core.Interfaces.IOrderService, HeThongPOS.Application.Services.OrderService>();
+
+        // Mục 6: SessionManager (Singleton) - Global Auth State
+        services.AddSingleton<SessionManager>();
+
+        // Mục 7: StockAlertService
+        services.AddScoped<StockAlertService>();
 
         // ViewModels
         services.AddTransient<HeThongPOS.WPF.ViewModels.ProductsViewModel>();
@@ -55,6 +63,30 @@ public partial class App : System.Windows.Application
         services.AddTransient<HeThongPOS.WPF.Controls.PaymentDialog>();
     }
 
+    /// <summary>
+    /// Mục 4: Đọc connection string từ appsettings.json
+    /// </summary>
+    private string GetConnectionString()
+    {
+        string defaultConn = "Server=localhost,14335;Database=HeThongPOS;User Id=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=true;";
+        try
+        {
+            string appSettingsPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "appsettings.json");
+            if (File.Exists(appSettingsPath))
+            {
+                string json = File.ReadAllText(appSettingsPath);
+                using var doc = JsonDocument.Parse(json);
+                var connStrings = doc.RootElement.GetProperty("ConnectionStrings");
+                return connStrings.GetProperty("DefaultConnection").GetString() ?? defaultConn;
+            }
+        }
+        catch
+        {
+            // Nếu đọc file lỗi, dùng connection string mặc định
+        }
+        return defaultConn;
+    }
+
     private async void OnStartup(object sender, StartupEventArgs e)
     {
         try
@@ -66,15 +98,19 @@ public partial class App : System.Windows.Application
                 await DataSeeder.SeedAsync(dbContext);
             }
 
-            // 2. Initialize MainWindow and NavigationService
+            // 2. Khởi tạo MainWindow
             var mainWindow = ServiceProvider.GetRequiredService<MainWindow>();
-            var navService = (NavigationService)ServiceProvider.GetRequiredService<INavigationService>();
-            navService.Initialize(mainWindow.MainFrame);
 
+            // 3. Inject services vào MainWindow
+            var navService = ServiceProvider.GetRequiredService<INavigationService>();
+            var sessionManager = ServiceProvider.GetRequiredService<SessionManager>();
+
+            // Tạo scope cho StockAlertService
+            using var alertScope = ServiceProvider.CreateScope();
+            var stockAlertService = alertScope.ServiceProvider.GetRequiredService<StockAlertService>();
+
+            mainWindow.InitializeServices(navService, sessionManager, stockAlertService);
             mainWindow.Show();
-
-            // 3. Navigate to LoginView
-            navService.NavigateTo<LoginViewModel>();
         }
         catch (Exception ex)
         {

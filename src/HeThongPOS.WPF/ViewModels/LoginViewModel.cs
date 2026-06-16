@@ -10,6 +10,7 @@ public partial class LoginViewModel : ObservableObject
 {
     private readonly IAuthService _authService;
     private readonly INavigationService _navigationService;
+    private readonly SessionManager _sessionManager;
 
     [ObservableProperty]
     private string _username = string.Empty;
@@ -23,10 +24,11 @@ public partial class LoginViewModel : ObservableObject
     [ObservableProperty]
     private bool _isBusy;
 
-    public LoginViewModel(IAuthService authService, INavigationService navigationService)
+    public LoginViewModel(IAuthService authService, INavigationService navigationService, SessionManager sessionManager)
     {
         _authService = authService;
         _navigationService = navigationService;
+        _sessionManager = sessionManager;
     }
 
     [RelayCommand]
@@ -48,8 +50,14 @@ public partial class LoginViewModel : ObservableObject
 
         if (isSuccess && user != null)
         {
-            // Chuyển sang màn hình POS sau khi đăng nhập thành công
-            _navigationService.NavigateTo<POSViewModel>();
+            // Lưu thông tin user vào SessionManager (Global Auth State)
+            // SessionManager sẽ phát sự kiện OnSessionChanged
+            // MainWindow lắng nghe sự kiện này để chuyển sang Layout Sidebar
+            _sessionManager.Login(user);
+
+            // Reset form
+            Username = string.Empty;
+            Password = string.Empty;
         }
         else
         {

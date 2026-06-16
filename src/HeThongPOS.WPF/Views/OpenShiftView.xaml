@@ -1,0 +1,76 @@
+<Page x:Class="HeThongPOS.WPF.Views.OpenShiftView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      mc:Ignorable="d"
+      d:DesignHeight="500" d:DesignWidth="600"
+      Title="Mở Ca Làm Việc" Background="#f0f2f5">
+
+    <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Width="450">
+        <Border Background="White" CornerRadius="10" Padding="30">
+            <StackPanel>
+                <!-- Tiêu đề -->
+                <TextBlock Text="MỞ CA LÀM VIỆC" FontSize="22" FontWeight="Bold"
+                           Foreground="#111827" HorizontalAlignment="Center" Margin="0,0,0,25"/>
+
+                <!-- Thông tin nhân viên -->
+                <Border Background="#f8fafc" CornerRadius="6" Padding="15" Margin="0,0,0,20"
+                        BorderBrush="#e2e8f0" BorderThickness="1">
+                    <StackPanel>
+                        <TextBlock Text="Thông tin ca" FontWeight="SemiBold" FontSize="14" Foreground="#374151" Margin="0,0,0,8"/>
+                        <Grid Margin="0,2">
+                            <TextBlock Text="Thời gian:" Foreground="#6b7280"/>
+                            <TextBlock Text="{Binding Source={x:Static System:DateTime.Now}, StringFormat='{}{0:HH:mm dd/MM/yyyy}'}"
+                                       HorizontalAlignment="Right" FontWeight="SemiBold"
+                                       xmlns:System="clr-namespace:System;assembly=mscorlib"/>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+                <!-- Nhập số dư đầu ca -->
+                <TextBlock Text="Số dư đầu ca (tiền mặt trong két):" FontSize="14"
+                           Foreground="#374151" Margin="0,0,0,8"/>
+                <TextBox Text="{Binding SoDuDauCa, UpdateSourceTrigger=PropertyChanged, StringFormat=N0}"
+                         Height="45" Padding="12,0" FontSize="18" FontWeight="Bold"
+                         VerticalContentAlignment="Center"
+                         BorderBrush="#d1d5db" BorderThickness="1" Foreground="#111827"/>
+
+                <!-- Nút gợi ý số tiền -->
+                <WrapPanel Margin="0,10,0,0">
+                    <Button Content="0 đ" Tag="0" Click="QuickAmount_Click"
+                            Margin="0,0,5,5" Width="80" Height="32" Background="#f3f4f6" BorderThickness="0" Cursor="Hand"/>
+                    <Button Content="500,000" Tag="500000" Click="QuickAmount_Click"
+                            Margin="0,0,5,5" Width="80" Height="32" Background="#f3f4f6" BorderThickness="0" Cursor="Hand"/>
+                    <Button Content="1,000,000" Tag="1000000" Click="QuickAmount_Click"
+                            Margin="0,0,5,5" Width="90" Height="32" Background="#f3f4f6" BorderThickness="0" Cursor="Hand"/>
+                    <Button Content="2,000,000" Tag="2000000" Click="QuickAmount_Click"
+                            Margin="0,0,5,5" Width="90" Height="32" Background="#f3f4f6" BorderThickness="0" Cursor="Hand"/>
+                </WrapPanel>
+
+                <!-- Thông báo -->
+                <TextBlock Text="{Binding Message}" TextWrapping="Wrap" Margin="0,15,0,0"
+                           FontSize="13"
+                           Visibility="{Binding Message, Converter={StaticResource StringToVisibilityConverter}}">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Foreground" Value="Red"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsSuccess}" Value="True">
+                                    <Setter Property="Foreground" Value="#059669"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+
+                <!-- Nút mở ca -->
+                <Button Content="{Binding IsBusy, Converter={StaticResource BooleanToLoginTextConverter}, ConverterParameter=MoCa}"
+                        Command="{Binding OpenShiftCommand}"
+                        IsEnabled="{Binding IsBusy, Converter={StaticResource InverseBooleanConverter}}"
+                        Style="{StaticResource PrimaryButton}"
+                        Height="50" FontSize="16" Margin="0,20,0,0"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Page>
