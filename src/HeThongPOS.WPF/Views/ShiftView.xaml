@@ -20,7 +20,8 @@
         <!-- Content -->
         <Grid Grid.Row="1">
             <!-- Khi CHƯA CÓ ca đang mở → Form mở ca -->
-            <Border x:Name="OpenShiftPanel" Background="White" CornerRadius="12" Padding="32">
+            <Border x:Name="OpenShiftPanel" Background="White" CornerRadius="12" Padding="32"
+                    Visibility="{Binding HasActiveShift, Converter={StaticResource InverseBooleanConverter}}">
                 <StackPanel MaxWidth="400" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <TextBlock Text="🕐 Mở Ca Làm Việc" FontSize="20" FontWeight="Bold" 
                                Foreground="#111827" HorizontalAlignment="Center" Margin="0,0,0,24"/>

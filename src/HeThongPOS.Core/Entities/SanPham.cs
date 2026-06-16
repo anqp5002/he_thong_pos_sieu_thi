@@ -14,5 +14,5 @@ public class SanPham
     public bool TrangThai { get; set; } = true;
     public DateTime NgayTao { get; set; } = DateTime.Now;
 
-    public DanhMuc DanhMuc { get; set; } = null!;
+    public DanhMuc? DanhMuc { get; set; }
 }

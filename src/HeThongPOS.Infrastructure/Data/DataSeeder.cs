@@ -58,5 +58,25 @@ public static class DataSeeder
                 await context.SaveChangesAsync();
             }
         }
+
+        // 3. Seed KhachHang
+        if (!await context.KhachHangs.AnyAsync())
+        {
+            var customers = HeThongPOS.Infrastructure.Seeders.DataSeeder.GetSampleCustomers();
+            // Reset ID để SQL Server tự động tăng (Identity)
+            foreach (var c in customers) c.Id = 0; 
+            await context.KhachHangs.AddRangeAsync(customers);
+            await context.SaveChangesAsync();
+        }
+
+        // 4. Seed SanPham
+        if (!await context.SanPhams.AnyAsync())
+        {
+            var products = HeThongPOS.Infrastructure.Seeders.DataSeeder.GetSampleProducts();
+            // Reset ID để SQL Server tự động tăng (Identity)
+            foreach (var p in products) p.Id = 0;
+            await context.SanPhams.AddRangeAsync(products);
+            await context.SaveChangesAsync();
+        }
     }
 }
