@@ -7,12 +7,17 @@ Dự án này sử dụng kiến trúc WPF với .NET 10, Entity Framework Core 
 - **SQL Server** (hoặc SQL Server Express/Developer Edition).
 - **Visual Studio 2022** (khuyến nghị) hoặc **Visual Studio Code** với extension C#.
 
-## 2. Cấu hình Cơ sở dữ liệu
+## 2. Cấu hình Cơ sở dữ liệu (Database)
+
+> **Lưu ý:** Hệ thống sẽ **TỰ ĐỘNG TẠO MỚI** cơ sở dữ liệu (database) và điền sẵn dữ liệu mẫu (tài khoản đăng nhập) cho bạn trong lần chạy đầu tiên. Bạn KHÔNG cần phải tự tạo database bằng tay. 
+Tuy nhiên, bạn vẫn cần khai báo tên SQL Server trên máy bạn để ứng dụng biết phải tạo database ở đâu.
+
 1. Mở thư mục: `src/HeThongPOS.WPF/`
 2. Đổi tên file `appsettings.example.json` thành `appsettings.json`.
-3. Mở file `appsettings.json` và cập nhật chuỗi kết nối (`DefaultConnection`) cho phù hợp với SQL Server của bạn. 
-   - Ví dụ: Thay đổi `Server=YOUR_SERVER_NAME` thành `Server=localhost` hoặc `Server=.\SQLEXPRESS`.
-   - Cập nhật `User Id` và `Password` nếu có dùng SQL Authentication, hoặc chuyển sang dùng `Integrated Security=True`.
+3. Mở file `appsettings.json` và cập nhật thông tin tên Server (`Server=...`) cho đúng với SQL Server đang cài trên máy bạn. 
+   - Nếu bạn xài SQL Express: Thường là `Server=.\SQLEXPRESS`.
+   - Nếu bạn xài bản Developer/Standard: Thường là `Server=localhost` hoặc `Server=(local)`.
+   - Giữ nguyên `Database=HeThongPOS`, hệ thống sẽ tự sinh ra database tên này.
 
 *Ví dụ cấu hình appsettings.json:*
 ```json
