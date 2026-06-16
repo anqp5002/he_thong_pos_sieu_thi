@@ -181,6 +181,28 @@ public partial class PaymentViewModel : ObservableObject
             _context.DonHangs.Add(donHang);
             await _context.SaveChangesAsync();
 
+            // Lấy Phương thức thanh toán từ DB hoặc tạo mới nếu chưa có
+            var ptttTen = PhuongThucThanhToan == "CASH" ? "Tiền mặt" : "Chuyển khoản / Thẻ";
+            var pttt = await _context.PhuongThucThanhToans.FirstOrDefaultAsync(p => p.TenPhuongThuc == ptttTen);
+            if (pttt == null)
+            {
+                pttt = new PhuongThucThanhToan { TenPhuongThuc = ptttTen, TrangThai = true };
+                _context.PhuongThucThanhToans.Add(pttt);
+                await _context.SaveChangesAsync();
+            }
+
+            // Lưu giao dịch
+            var giaoDich = new GiaoDich
+            {
+                DonHangId = donHang.Id,
+                PhuongThucThanhToanId = pttt.Id,
+                SoTien = TongThanhToan,
+                NgayGiaoDich = DateTime.Now,
+                TrangThai = "SUCCESS",
+                MaGiaoDichDoiTac = ""
+            };
+            _context.GiaoDichs.Add(giaoDich);
+
             // 3. Tạo chi tiết đơn hàng
             foreach (var item in CartItems)
             {

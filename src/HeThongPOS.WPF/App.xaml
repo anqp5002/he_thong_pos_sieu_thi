@@ -16,6 +16,8 @@
             <converters:StringMatchToVisibilityConverter x:Key="StringMatchToVisibilityConverter"/>
             <converters:RowIndexConverter x:Key="RowIndexConverter"/>
             <converters:ImageUrlConverter x:Key="ImageUrlConverter"/>
+            <converters:LessThanZeroConverter x:Key="LessThanZeroConverter"/>
+            <converters:GreaterThanZeroConverter x:Key="GreaterThanZeroConverter"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

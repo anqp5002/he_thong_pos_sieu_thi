@@ -82,30 +82,99 @@
                 </StackPanel>
             </Border>
 
-            <!-- ==================== HÀNG 3: Top sản phẩm bán chạy ==================== -->
+            <!-- ==================== HÀNG 3: Báo Cáo & Top Sản Phẩm ==================== -->
             <Border Background="White" CornerRadius="8" Padding="20">
                 <StackPanel>
                     <Grid Margin="0,0,0,15">
-                        <TextBlock Text="Top 10 sản phẩm bán chạy" FontSize="16" FontWeight="Bold" Foreground="#111827"/>
-                        <Button Content="Tải lại" Command="{Binding LoadDataCommand}" 
-                                HorizontalAlignment="Right" Background="#f3f4f6" BorderThickness="0" 
-                                Padding="15,5" Cursor="Hand" FontSize="13"/>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="Chi Tiết Báo Cáo" FontSize="16" FontWeight="Bold" Foreground="#111827" VerticalAlignment="Center"/>
+                        
+                        <Button Grid.Column="1" Content="📥 Xuất Excel Báo Cáo Ca" Command="{Binding ExportToExcelCommand}" 
+                                Margin="0,0,10,0" Background="#10b981" Foreground="White" FontWeight="Bold" BorderThickness="0" 
+                                Padding="15,5" Cursor="Hand" FontSize="13">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="4"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                        
+                        <Button Grid.Column="2" Content="🔄 Tải lại" Command="{Binding LoadDataCommand}" 
+                                Background="#f3f4f6" BorderThickness="0" 
+                                Padding="15,5" Cursor="Hand" FontSize="13">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="4"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
                     </Grid>
-                    <DataGrid ItemsSource="{Binding TopProducts}" AutoGenerateColumns="False"
-                              IsReadOnly="True" CanUserAddRows="False" 
-                              BorderThickness="1" BorderBrush="#e5e7eb"
-                              HeadersVisibility="Column" GridLinesVisibility="Horizontal"
-                              RowHeight="40" ColumnHeaderHeight="40">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="STT" Width="50"
-                                                Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, 
-                                                Converter={StaticResource RowIndexConverter}}"/>
-                            <DataGridTextColumn Header="Tên sản phẩm" Width="*" Binding="{Binding TenSanPham}"/>
-                            <DataGridTextColumn Header="Tổng SL bán" Width="120" Binding="{Binding TongSoLuong}"/>
-                            <DataGridTextColumn Header="Tổng doanh thu" Width="150" 
-                                                Binding="{Binding TongDoanhThu, Converter={StaticResource CurrencyConverter}}"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
+                    
+                    <TabControl Background="Transparent" BorderThickness="0">
+                        <!-- Tab 1: Báo Cáo Ca Làm Việc -->
+                        <TabItem Header="Báo Cáo Ca Hôm Nay" FontSize="14" FontWeight="SemiBold">
+                            <DataGrid ItemsSource="{Binding CaLamViecs}" AutoGenerateColumns="False"
+                                      IsReadOnly="True" CanUserAddRows="False" 
+                                      BorderThickness="1" BorderBrush="#e5e7eb"
+                                      HeadersVisibility="Column" GridLinesVisibility="Horizontal"
+                                      RowHeight="40" ColumnHeaderHeight="40" Margin="0,10,0,0">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Nhân viên" Width="150" Binding="{Binding TenNhanVien}"/>
+                                    <DataGridTextColumn Header="Mở ca" Width="70" Binding="{Binding ThoiGianBatDau}"/>
+                                    <DataGridTextColumn Header="Đóng ca" Width="70" Binding="{Binding ThoiGianKetThuc}"/>
+                                    <DataGridTextColumn Header="Tiền mở ca" Width="120" Binding="{Binding SoDuDauCa, Converter={StaticResource CurrencyConverter}}"/>
+                                    <DataGridTextColumn Header="Doanh thu ca" Width="120" Binding="{Binding TongDoanhThu, Converter={StaticResource CurrencyConverter}}"/>
+                                    <DataGridTextColumn Header="Thực thu" Width="120" Binding="{Binding SoDuCuoiCaThucTe, Converter={StaticResource CurrencyConverter}}"/>
+                                    <DataGridTemplateColumn Header="Độ lệch (Thiếu/Dư)" Width="140">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding ChenhLech, Converter={StaticResource CurrencyConverter}}" 
+                                                           FontWeight="Bold" VerticalAlignment="Center">
+                                                    <TextBlock.Style>
+                                                        <Style TargetType="TextBlock">
+                                                            <Setter Property="Foreground" Value="#6b7280"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding ChenhLech, Converter={StaticResource LessThanZeroConverter}}" Value="True">
+                                                                    <Setter Property="Foreground" Value="#ef4444"/>
+                                                                </DataTrigger>
+                                                                <DataTrigger Binding="{Binding ChenhLech, Converter={StaticResource GreaterThanZeroConverter}}" Value="True">
+                                                                    <Setter Property="Foreground" Value="#10b981"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </TextBlock.Style>
+                                                </TextBlock>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTextColumn Header="Trạng thái" Width="*" Binding="{Binding TrangThai}"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </TabItem>
+                        
+                        <!-- Tab 2: Top Sản Phẩm Bán Chạy -->
+                        <TabItem Header="Top Sản Phẩm Bán Chạy" FontSize="14" FontWeight="SemiBold">
+                            <DataGrid ItemsSource="{Binding TopProducts}" AutoGenerateColumns="False"
+                                      IsReadOnly="True" CanUserAddRows="False" 
+                                      BorderThickness="1" BorderBrush="#e5e7eb"
+                                      HeadersVisibility="Column" GridLinesVisibility="Horizontal"
+                                      RowHeight="40" ColumnHeaderHeight="40" Margin="0,10,0,0">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="STT" Width="50"
+                                                        Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, 
+                                                        Converter={StaticResource RowIndexConverter}}"/>
+                                    <DataGridTextColumn Header="Tên sản phẩm" Width="*" Binding="{Binding TenSanPham}"/>
+                                    <DataGridTextColumn Header="Tổng SL bán" Width="120" Binding="{Binding TongSoLuong}"/>
+                                    <DataGridTextColumn Header="Tổng doanh thu" Width="150" 
+                                                        Binding="{Binding TongDoanhThu, Converter={StaticResource CurrencyConverter}}"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </TabItem>
+                    </TabControl>
                 </StackPanel>
             </Border>
 
