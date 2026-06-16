@@ -55,6 +55,11 @@ public partial class PaymentViewModel : ObservableObject
         UpdateTienThoi();
     }
 
+    partial void OnSearchCustomerKeywordChanged(string value)
+    {
+        _ = SearchCustomerAsync();
+    }
+
     partial void OnKhachDuaChanged(decimal value)
     {
         UpdateTienThoi();
@@ -69,6 +74,7 @@ public partial class PaymentViewModel : ObservableObject
     {
         OnPropertyChanged(nameof(TienThoi));
         OnPropertyChanged(nameof(CanCheckout));
+        CheckoutCommand.NotifyCanExecuteChanged();
     }
 
     [RelayCommand]

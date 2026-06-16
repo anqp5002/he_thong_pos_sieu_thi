@@ -68,7 +68,7 @@ public partial class POSViewModel : ObservableObject
     private async Task LoadSanPhamAsync()
     {
         _allSanPhams = await _context.SanPhams
-            .Where(s => s.TrangThai && s.TonKho > 0)
+            .Where(s => s.TrangThai)
             .OrderBy(s => s.TenSanPham)
             .ToListAsync();
 
@@ -81,6 +81,8 @@ public partial class POSViewModel : ObservableObject
     [RelayCommand]
     private async Task SearchBarcodeAsync()
     {
+        if (!CheckCaLamViec()) return;
+
         if (string.IsNullOrWhiteSpace(BarcodeInput))
             return;
 
@@ -105,6 +107,7 @@ public partial class POSViewModel : ObservableObject
     [RelayCommand]
     private void ThemSanPham(SanPham? sanPham)
     {
+        if (!CheckCaLamViec()) return;
         if (sanPham == null) return;
         ThemVaoGio(sanPham);
     }
@@ -114,6 +117,12 @@ public partial class POSViewModel : ObservableObject
     /// </summary>
     private void ThemVaoGio(SanPham sanPham)
     {
+        if (sanPham.TonKho <= 0)
+        {
+            System.Windows.MessageBox.Show($"Sản phẩm \"{sanPham.TenSanPham}\" đã hết hàng!", "Hết Hàng", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+            return;
+        }
+
         var existing = GioHang.FirstOrDefault(c => c.SanPhamId == sanPham.Id);
 
         if (existing != null)
@@ -124,7 +133,7 @@ public partial class POSViewModel : ObservableObject
             }
             else
             {
-                ErrorMessage = $"Không đủ tồn kho cho \"{sanPham.TenSanPham}\" (còn {sanPham.TonKho}).";
+                System.Windows.MessageBox.Show($"Không đủ tồn kho cho \"{sanPham.TenSanPham}\" (chỉ còn {sanPham.TonKho} SP).", "Quá Số Lượng", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Warning);
                 return;
             }
         }
@@ -140,7 +149,15 @@ public partial class POSViewModel : ObservableObject
             });
         }
 
-        ErrorMessage = string.Empty;
+        if (sanPham.TonKho <= 5)
+        {
+            ErrorMessage = $"⚠️ Cảnh báo: \"{sanPham.TenSanPham}\" sắp hết hàng (còn {sanPham.TonKho} SP).";
+        }
+        else
+        {
+            ErrorMessage = string.Empty;
+        }
+        
         CapNhatTongTien();
     }
 
@@ -152,11 +169,18 @@ public partial class POSViewModel : ObservableObject
     {
         if (item == null) return;
 
-        var sp = DanhSachSanPham.FirstOrDefault(s => s.Id == item.SanPhamId);
-        if (sp != null && item.SoLuong < sp.TonKho)
+        var sp = DanhSachSanPham.FirstOrDefault(s => s.Id == item.SanPhamId) ?? _allSanPhams.FirstOrDefault(s => s.Id == item.SanPhamId);
+        if (sp != null)
         {
-            item.SoLuong++;
-            CapNhatTongTien();
+            if (item.SoLuong < sp.TonKho)
+            {
+                item.SoLuong++;
+                CapNhatTongTien();
+            }
+            else
+            {
+                System.Windows.MessageBox.Show($"Không đủ tồn kho cho \"{sp.TenSanPham}\" (chỉ còn {sp.TonKho} SP).", "Quá Số Lượng", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Warning);
+            }
         }
     }
 
@@ -212,9 +236,22 @@ public partial class POSViewModel : ObservableObject
         OnPropertyChanged(nameof(TongSoLuong));
     }
 
+    private bool CheckCaLamViec()
+    {
+        var shiftVM = _serviceProvider.GetRequiredService<ShiftViewModel>();
+        if (!shiftVM.HasActiveShift)
+        {
+            System.Windows.MessageBox.Show("Bạn chưa mở ca làm việc!\nVui lòng vào mục 'Ca Làm Việc' để mở ca trước khi giao dịch.", "Cảnh Báo Mở Ca", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Warning);
+            return false;
+        }
+        return true;
+    }
+
     [RelayCommand]
     private void OpenPayment()
     {
+        if (!CheckCaLamViec()) return;
+
         if (GioHang.Count == 0)
         {
             ErrorMessage = "Giỏ hàng đang trống, không thể thanh toán.";
