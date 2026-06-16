@@ -11,6 +11,19 @@
     <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="20">
         <StackPanel>
 
+            <!-- ==================== HÀNG 0: Bộ lọc Ngày ==================== -->
+            <Grid Margin="0,0,0,20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Tổng Quan Hoạt Động" FontSize="20" FontWeight="Bold" Foreground="#111827" VerticalAlignment="Center"/>
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <TextBlock Text="Tra cứu ngày:" VerticalAlignment="Center" Margin="0,0,10,0" Foreground="#6b7280" FontWeight="SemiBold" FontSize="14"/>
+                    <DatePicker SelectedDate="{Binding SelectedDate}" Width="150" Height="35" VerticalContentAlignment="Center"/>
+                </StackPanel>
+            </Grid>
+
             <!-- ==================== HÀNG 1: 4 thẻ thống kê ==================== -->
             <UniformGrid Columns="4" Margin="0,0,0,20">
                 <!-- Thẻ Doanh thu hôm nay -->

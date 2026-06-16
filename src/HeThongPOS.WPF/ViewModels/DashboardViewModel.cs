@@ -70,6 +70,15 @@ public partial class DashboardViewModel : ObservableObject
     [ObservableProperty]
     private bool _isShowingShiftReport = false; // False = Top Sản Phẩm, True = Báo cáo Ca
 
+    // --- Bộ lọc ngày ---
+    [ObservableProperty]
+    private DateTime _selectedDate = DateTime.Today;
+
+    partial void OnSelectedDateChanged(DateTime value)
+    {
+        _ = LoadDataAsync();
+    }
+
     public DashboardViewModel(AppDbContext context)
     {
         _context = context;
@@ -96,14 +105,14 @@ public partial class DashboardViewModel : ObservableObject
     /// </summary>
     private async Task LoadOverviewAsync()
     {
-        var today = DateTime.Today;
-        var firstDayOfMonth = new DateTime(today.Year, today.Month, 1);
+        var targetDate = SelectedDate.Date;
+        var firstDayOfMonth = new DateTime(targetDate.Year, targetDate.Month, 1);
 
-        // Lấy tất cả đơn hàng hôm nay kèm Giao dịch
+        // Lấy tất cả đơn hàng theo ngày đã chọn kèm Giao dịch
         var donHangsToday = await _context.DonHangs
             .Include(d => d.GiaoDichs)
             .ThenInclude(g => g.PhuongThucThanhToan)
-            .Where(d => d.NgayTao.Date == today)
+            .Where(d => d.NgayTao.Date == targetDate)
             .ToListAsync();
 
         DoanhThuHomNay = donHangsToday
@@ -160,13 +169,13 @@ public partial class DashboardViewModel : ObservableObject
     }
 
     /// <summary>
-    /// Tải dữ liệu biểu đồ doanh thu 7 ngày gần nhất.
+    /// Tải dữ liệu biểu đồ doanh thu 7 ngày gần nhất (tính từ ngày được chọn).
     /// </summary>
     private async Task LoadSalesChartAsync()
     {
-        var today = DateTime.Today;
+        var targetDate = SelectedDate.Date;
         var last7Days = Enumerable.Range(0, 7)
-            .Select(i => today.AddDays(-6 + i))
+            .Select(i => targetDate.AddDays(-6 + i))
             .ToList();
 
         // Truy vấn doanh thu theo từng ngày
@@ -241,10 +250,10 @@ public partial class DashboardViewModel : ObservableObject
 
     private async Task LoadCaLamViecAsync()
     {
-        var today = DateTime.Today;
+        var targetDate = SelectedDate.Date;
         var shifts = await _context.CaLamViecs
             .Include(c => c.NhanVien)
-            .Where(c => c.ThoiGianBatDau.Date == today)
+            .Where(c => c.ThoiGianBatDau.Date == targetDate)
             .OrderByDescending(c => c.ThoiGianBatDau)
             .ToListAsync();
 
@@ -271,7 +280,7 @@ public partial class DashboardViewModel : ObservableObject
         try
         {
             var desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            var filePath = System.IO.Path.Combine(desktopPath, $"BaoCao_CaLamViec_{DateTime.Now:dd_MM_yyyy}.xlsx");
+            var filePath = System.IO.Path.Combine(desktopPath, $"BaoCao_CaLamViec_{SelectedDate:dd_MM_yyyy}.xlsx");
 
             await Task.Run(() =>
             {
