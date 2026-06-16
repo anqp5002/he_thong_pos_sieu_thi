@@ -41,8 +41,15 @@
         <TextBlock Grid.Row="6" Grid.Column="0" Text="Trạng thái:" VerticalAlignment="Center" Margin="0,0,0,10"/>
         <CheckBox Grid.Row="6" Grid.Column="1" IsChecked="{Binding Product.TrangThai}" Margin="0,0,0,10" VerticalAlignment="Center"/>
 
-        <TextBlock Grid.Row="7" Grid.Column="0" Text="Link ảnh:" VerticalAlignment="Center" Margin="0,0,0,10"/>
-        <TextBox Grid.Row="7" Grid.Column="1" Text="{Binding Product.HinhAnhUrl, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,10" VerticalContentAlignment="Center"/>
+        <TextBlock Grid.Row="7" Grid.Column="0" Text="Ảnh sản phẩm:" VerticalAlignment="Center" Margin="0,0,0,10"/>
+        <Grid Grid.Row="7" Grid.Column="1" Margin="0,0,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBox Grid.Column="0" Text="{Binding Product.HinhAnhUrl, Mode=OneWay}" IsReadOnly="True" VerticalContentAlignment="Center" Margin="0,0,5,0" Foreground="#6b7280"/>
+            <Button Grid.Column="1" Content="Chọn..." Command="{Binding SelectImageCommand}" Padding="10,0"/>
+        </Grid>
 
         <StackPanel Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
             <Button Content="Lưu" Command="{Binding SaveCommand}" Width="80" Margin="0,0,10,0" Style="{StaticResource PrimaryButton}"/>

@@ -65,6 +65,11 @@ public partial class ProductFormViewModel : ObservableObject
     {
         try
         {
+            if (string.IsNullOrWhiteSpace(Product.HinhAnhUrl))
+            {
+                Product.HinhAnhUrl = "pack://application:,,,/Images/default-product.png";
+            }
+
             if (_editingProduct == null)
             {
                 await _productService.AddProductAsync(Product);
@@ -86,5 +91,40 @@ public partial class ProductFormViewModel : ObservableObject
     private void Cancel()
     {
         CloseAction?.Invoke(false);
+    }
+
+    [RelayCommand]
+    private void SelectImage()
+    {
+        var dialog = new Microsoft.Win32.OpenFileDialog
+        {
+            Title = "Chọn ảnh sản phẩm",
+            Filter = "Image Files (*.jpg;*.jpeg;*.png;*.webp)|*.jpg;*.jpeg;*.png;*.webp|All Files (*.*)|*.*"
+        };
+
+        if (dialog.ShowDialog() == true)
+        {
+            try
+            {
+                string imagesDir = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images");
+                if (!System.IO.Directory.Exists(imagesDir))
+                {
+                    System.IO.Directory.CreateDirectory(imagesDir);
+                }
+
+                string ext = System.IO.Path.GetExtension(dialog.FileName);
+                string newFileName = Guid.NewGuid().ToString("N") + ext;
+                string newFilePath = System.IO.Path.Combine(imagesDir, newFileName);
+
+                System.IO.File.Copy(dialog.FileName, newFilePath, true);
+
+                Product.HinhAnhUrl = newFilePath;
+                OnPropertyChanged(nameof(Product));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi copy ảnh: {ex.Message}", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
     }
 }
