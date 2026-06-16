@@ -81,7 +81,7 @@ public partial class POSViewModel : ObservableObject
     [RelayCommand]
     private async Task SearchBarcodeAsync()
     {
-        if (!CheckCaLamViec()) return;
+        if (!await CheckCaLamViecAsync()) return;
 
         if (string.IsNullOrWhiteSpace(BarcodeInput))
             return;
@@ -105,9 +105,9 @@ public partial class POSViewModel : ObservableObject
     /// Thêm sản phẩm vào giỏ hàng khi bấm vào ProductCard.
     /// </summary>
     [RelayCommand]
-    private void ThemSanPham(SanPham? sanPham)
+    private async Task ThemSanPhamAsync(SanPham? sanPham)
     {
-        if (!CheckCaLamViec()) return;
+        if (!await CheckCaLamViecAsync()) return;
         if (sanPham == null) return;
         ThemVaoGio(sanPham);
     }
@@ -236,10 +236,15 @@ public partial class POSViewModel : ObservableObject
         OnPropertyChanged(nameof(TongSoLuong));
     }
 
-    private bool CheckCaLamViec()
+    private async Task<bool> CheckCaLamViecAsync()
     {
-        var shiftVM = _serviceProvider.GetRequiredService<ShiftViewModel>();
-        if (!shiftVM.HasActiveShift)
+        var session = _serviceProvider.GetRequiredService<HeThongPOS.WPF.Services.SessionManager>();
+        var shiftService = _serviceProvider.GetRequiredService<HeThongPOS.Application.Interfaces.IShiftService>();
+
+        if (session.CurrentUser == null) return false;
+
+        var activeShift = await shiftService.GetActiveShiftAsync(session.CurrentUser.Id);
+        if (activeShift == null)
         {
             System.Windows.MessageBox.Show("Bạn chưa mở ca làm việc!\nVui lòng vào mục 'Ca Làm Việc' để mở ca trước khi giao dịch.", "Cảnh Báo Mở Ca", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Warning);
             return false;
@@ -248,9 +253,9 @@ public partial class POSViewModel : ObservableObject
     }
 
     [RelayCommand]
-    private void OpenPayment()
+    private async Task OpenPaymentAsync()
     {
-        if (!CheckCaLamViec()) return;
+        if (!await CheckCaLamViecAsync()) return;
 
         if (GioHang.Count == 0)
         {
