@@ -1,4 +1,5 @@
 using System.Windows;
+using System.Windows.Threading;
 using System.IO;
 using System.Text.Json;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,9 +20,25 @@ public partial class App : System.Windows.Application
 
     public App()
     {
+        // Global exception handler để app không tự thoát khi gặp lỗi
+        this.DispatcherUnhandledException += OnDispatcherUnhandledException;
+
         var services = new ServiceCollection();
         ConfigureServices(services);
         ServiceProvider = services.BuildServiceProvider();
+    }
+
+    /// <summary>
+    /// Bắt mọi exception chưa xử lý trên UI thread, hiện thông báo thay vì crash
+    /// </summary>
+    private void OnDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
+    {
+        MessageBox.Show(
+            $"Đã xảy ra lỗi:\n\n{e.Exception.Message}\n\n{e.Exception.InnerException?.Message}",
+            "Lỗi ứng dụng",
+            MessageBoxButton.OK,
+            MessageBoxImage.Error);
+        e.Handled = true; // Ngăn app tự thoát
     }
 
     private void ConfigureServices(IServiceCollection services)
@@ -42,6 +59,7 @@ public partial class App : System.Windows.Application
         services.AddScoped<IAuthService, AuthService>();
         services.AddScoped<IShiftService, ShiftService>();
         services.AddScoped<HeThongPOS.Core.Interfaces.IOrderService, HeThongPOS.Application.Services.OrderService>();
+        services.AddScoped<HeThongPOS.Core.Interfaces.ICustomerService, HeThongPOS.Application.Services.CustomerService>();
 
         // Mục 6: SessionManager (Singleton) - Global Auth State
         services.AddSingleton<SessionManager>();
@@ -56,6 +74,7 @@ public partial class App : System.Windows.Application
         services.AddTransient<PaymentViewModel>();
         services.AddTransient<DashboardViewModel>();
         services.AddTransient<ShiftViewModel>();
+        services.AddTransient<CustomersViewModel>();
 
         // Views
         services.AddTransient<MainWindow>();
@@ -73,7 +92,7 @@ public partial class App : System.Windows.Application
     /// </summary>
     private string GetConnectionString()
     {
-        string defaultConn = "Server=localhost,14335;Database=HeThongPOS;User Id=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=true;";
+        string defaultConn = "Server=localhost;Database=HeThongPOS;Integrated Security=True;TrustServerCertificate=true;";
         try
         {
             string appSettingsPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "appsettings.json");
