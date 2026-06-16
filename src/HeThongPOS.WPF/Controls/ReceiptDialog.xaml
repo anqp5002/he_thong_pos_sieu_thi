@@ -1,0 +1,130 @@
+<Window x:Class="HeThongPOS.WPF.Controls.ReceiptDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Hóa Đơn Thanh Toán" Height="600" Width="420"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+        Background="White">
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Bill Content (Printable area) -->
+        <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto">
+            <StackPanel x:Name="ReceiptContent" Margin="30,20,30,20">
+                
+                <!-- Store Header -->
+                <TextBlock Text="🛒 SIÊU THỊ POS" FontSize="22" FontWeight="Bold" 
+                           HorizontalAlignment="Center" Foreground="#1a73e8"/>
+                <TextBlock Text="Hệ Thống Quản Lý Bán Hàng" FontSize="11" 
+                           HorizontalAlignment="Center" Foreground="#6b7280" Margin="0,2,0,8"/>
+                
+                <Rectangle Height="2" Fill="#e5e7eb" Margin="0,5"/>
+                
+                <!-- Order Info -->
+                <Grid Margin="0,8,0,4">
+                    <TextBlock Text="Mã đơn:" Foreground="#6b7280" FontSize="12"/>
+                    <TextBlock Text="{Binding MaDonHang}" HorizontalAlignment="Right" FontWeight="SemiBold" FontSize="12"/>
+                </Grid>
+                <Grid Margin="0,0,0,4">
+                    <TextBlock Text="Ngày:" Foreground="#6b7280" FontSize="12"/>
+                    <TextBlock Text="{Binding NgayTao}" HorizontalAlignment="Right" FontSize="12"/>
+                </Grid>
+                <Grid Margin="0,0,0,4">
+                    <TextBlock Text="Thu ngân:" Foreground="#6b7280" FontSize="12"/>
+                    <TextBlock Text="{Binding TenNhanVien}" HorizontalAlignment="Right" FontSize="12"/>
+                </Grid>
+                <Grid Margin="0,0,0,4">
+                    <TextBlock Text="Khách hàng:" Foreground="#6b7280" FontSize="12"/>
+                    <TextBlock Text="{Binding TenKhachHang}" HorizontalAlignment="Right" FontSize="12"/>
+                </Grid>
+                
+                <Rectangle Height="1" Fill="#e5e7eb" Margin="0,8" StrokeDashArray="4 2" Stroke="#d1d5db"/>
+                
+                <!-- Items Header -->
+                <Grid Margin="0,0,0,6">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="80"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Sản phẩm" FontWeight="Bold" FontSize="11" Foreground="#374151"/>
+                    <TextBlock Grid.Column="1" Text="SL" FontWeight="Bold" FontSize="11" HorizontalAlignment="Center" Foreground="#374151"/>
+                    <TextBlock Grid.Column="2" Text="Thành tiền" FontWeight="Bold" FontSize="11" HorizontalAlignment="Right" Foreground="#374151"/>
+                </Grid>
+                
+                <Rectangle Height="1" Fill="#e5e7eb"/>
+                
+                <!-- Items List -->
+                <ItemsControl ItemsSource="{Binding Items}" Margin="0,4,0,4">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="0,3">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="60"/>
+                                    <ColumnDefinition Width="80"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding TenSanPham}" FontSize="12" TextWrapping="Wrap"/>
+                                    <TextBlock Text="{Binding DonGia, StringFormat={}{0:N0}đ}" FontSize="10" Foreground="#9ca3af"/>
+                                </StackPanel>
+                                <TextBlock Grid.Column="1" Text="{Binding SoLuong}" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Column="2" Text="{Binding ThanhTien, StringFormat={}{0:N0}đ}" FontSize="12" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                
+                <Rectangle Height="1" Fill="#e5e7eb" Margin="0,4"/>
+                
+                <!-- Totals -->
+                <Grid Margin="0,6,0,3">
+                    <TextBlock Text="Tổng tiền hàng:" FontSize="13" Foreground="#374151"/>
+                    <TextBlock Text="{Binding TongTienHang, StringFormat={}{0:N0}đ}" HorizontalAlignment="Right" FontSize="13"/>
+                </Grid>
+                <Grid Margin="0,0,0,3">
+                    <TextBlock Text="Thuế VAT (8%):" FontSize="13" Foreground="#374151"/>
+                    <TextBlock Text="{Binding ThueVAT, StringFormat={}{0:N0}đ}" HorizontalAlignment="Right" FontSize="13"/>
+                </Grid>
+                <Rectangle Height="2" Fill="#111827" Margin="0,4"/>
+                <Grid Margin="0,6,0,3">
+                    <TextBlock Text="TỔNG THANH TOÁN:" FontSize="15" FontWeight="Bold" Foreground="#111827"/>
+                    <TextBlock Text="{Binding TongThanhToan, StringFormat={}{0:N0}đ}" HorizontalAlignment="Right" FontSize="15" FontWeight="Bold" Foreground="#1a73e8"/>
+                </Grid>
+                <Grid Margin="0,3,0,3">
+                    <TextBlock Text="Phương thức:" FontSize="12" Foreground="#6b7280"/>
+                    <TextBlock Text="{Binding PhuongThuc}" HorizontalAlignment="Right" FontSize="12"/>
+                </Grid>
+                <Grid Margin="0,0,0,3">
+                    <TextBlock Text="Khách đưa:" FontSize="12" Foreground="#6b7280"/>
+                    <TextBlock Text="{Binding KhachDua, StringFormat={}{0:N0}đ}" HorizontalAlignment="Right" FontSize="12"/>
+                </Grid>
+                <Grid Margin="0,0,0,6">
+                    <TextBlock Text="Tiền thối:" FontSize="13" FontWeight="SemiBold" Foreground="#059669"/>
+                    <TextBlock Text="{Binding TienThoi, StringFormat={}{0:N0}đ}" HorizontalAlignment="Right" FontSize="13" FontWeight="SemiBold" Foreground="#059669"/>
+                </Grid>
+                
+                <Rectangle Height="1" Fill="#e5e7eb" Margin="0,4" StrokeDashArray="4 2" Stroke="#d1d5db"/>
+                
+                <!-- Footer -->
+                <TextBlock Text="Cảm ơn quý khách!" FontSize="14" FontWeight="SemiBold" 
+                           HorizontalAlignment="Center" Foreground="#374151" Margin="0,8,0,2"/>
+                <TextBlock Text="Hẹn gặp lại!" FontSize="12" 
+                           HorizontalAlignment="Center" Foreground="#9ca3af"/>
+            </StackPanel>
+        </ScrollViewer>
+        
+        <!-- Buttons -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,15">
+            <Button Content="🖨️ In Hóa Đơn" Click="PrintReceipt_Click" 
+                    Background="#1a73e8" Foreground="White" FontSize="14" FontWeight="SemiBold"
+                    Padding="20,10" Margin="0,0,10,0" Cursor="Hand" BorderThickness="0"/>
+            <Button Content="Đóng" Click="Close_Click" 
+                    Background="#f3f4f6" Foreground="#374151" FontSize="14"
+                    Padding="20,10" Cursor="Hand" BorderBrush="#d1d5db" BorderThickness="1"/>
+        </StackPanel>
+    </Grid>
+</Window>

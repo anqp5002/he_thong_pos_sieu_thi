@@ -12,7 +12,8 @@ public class InverseBooleanConverter : IValueConverter
         {
             return !b;
         }
-        return value;
+        if (value == null) return true;
+        return false;
     }
 
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

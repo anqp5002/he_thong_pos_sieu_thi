@@ -77,7 +77,7 @@
             <Button Grid.Column="0" Content="Hủy (Esc)" Command="{Binding CancelCommand}"
                     Height="50" FontSize="16" Background="White" BorderBrush="#d1d5db" BorderThickness="1" Foreground="#374151" Cursor="Hand"/>
             <Button Grid.Column="2" Content="HOÀN TẤT THANH TOÁN" Command="{Binding CheckoutCommand}"
-                    Style="{StaticResource PrimaryButton}" Height="50" FontSize="16" IsEnabled="{Binding CanCheckout}"/>
+                    Style="{StaticResource PrimaryButton}" Height="50" FontSize="16" />
         </Grid>
     </Grid>
 </Window>

@@ -263,20 +263,36 @@ public partial class POSViewModel : ObservableObject
             return;
         }
 
+        var session = _serviceProvider.GetRequiredService<HeThongPOS.WPF.Services.SessionManager>();
         var paymentViewModel = _serviceProvider.GetRequiredService<PaymentViewModel>();
-        paymentViewModel.Initialize(TongThanhToan);
+        
+        // Truyền dữ liệu giỏ hàng sang PaymentViewModel
+        var cartItemsList = GioHang.ToList();
+        paymentViewModel.Initialize(
+            TongTienHang, 
+            TongThanhToan, 
+            cartItemsList,
+            session.CurrentUser?.Id ?? 0,
+            session.CurrentUser?.HoTen ?? "Thu ngân"
+        );
 
         var paymentDialog = _serviceProvider.GetRequiredService<PaymentDialog>();
         paymentDialog.DataContext = paymentViewModel;
         
         bool? result = paymentDialog.ShowDialog();
         
-        if (result == true)
+        if (result == true && paymentViewModel.ReceiptData != null)
         {
-            // Thanh toán thành công, xóa giỏ hàng
+            // Hiện hóa đơn
+            var receiptDialog = new Controls.ReceiptDialog();
+            receiptDialog.DataContext = paymentViewModel.ReceiptData;
+            receiptDialog.ShowDialog();
+
+            // Xóa giỏ hàng và reload sản phẩm (cập nhật tồn kho mới)
             GioHang.Clear();
             CapNhatTongTien();
-            ErrorMessage = "Thanh toán thành công!";
+            await LoadSanPhamAsync();
+            ErrorMessage = "✅ Thanh toán thành công!";
         }
     }
 }
