@@ -1,0 +1,99 @@
+<Page x:Class="HeThongPOS.WPF.Views.ShiftView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Ca Làm Việc" Background="#f3f4f6">
+
+    <Page.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+    </Page.Resources>
+
+    <Grid Margin="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <TextBlock Grid.Row="0" Text="Quản Lý Ca Làm Việc" FontSize="22" FontWeight="Bold" 
+                   Foreground="#111827" Margin="0,0,0,20"/>
+
+        <!-- Content -->
+        <Grid Grid.Row="1">
+            <!-- Khi CHƯA CÓ ca đang mở → Form mở ca -->
+            <Border x:Name="OpenShiftPanel" Background="White" CornerRadius="12" Padding="32">
+                <StackPanel MaxWidth="400" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock Text="🕐 Mở Ca Làm Việc" FontSize="20" FontWeight="Bold" 
+                               Foreground="#111827" HorizontalAlignment="Center" Margin="0,0,0,24"/>
+
+                    <TextBlock Text="Số dư đầu ca (VNĐ):" FontSize="14" Foreground="#374151" Margin="0,0,0,8"/>
+                    <TextBox Text="{Binding SoDuDauCa, UpdateSourceTrigger=PropertyChanged}" 
+                             FontSize="16" Padding="12" Margin="0,0,0,20"
+                             BorderBrush="#d1d5db" BorderThickness="1"/>
+
+                    <Button Content="Mở Ca" Command="{Binding OpenShiftCommand}" 
+                            Background="#1d4ed8" Foreground="White" FontSize="16" FontWeight="Bold"
+                            Padding="16,12" Cursor="Hand" BorderThickness="0"/>
+
+                    <!-- Thông báo -->
+                    <TextBlock Text="{Binding Message}" FontSize="13" Margin="0,16,0,0"
+                               HorizontalAlignment="Center" TextWrapping="Wrap"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Khi ĐÃ CÓ ca đang mở → Thông tin ca + Form đóng ca -->
+            <Border x:Name="CloseShiftPanel" Background="White" CornerRadius="12" Padding="32"
+                    Visibility="{Binding HasActiveShift, Converter={StaticResource BoolToVis}}">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel MaxWidth="500" HorizontalAlignment="Center">
+                        <TextBlock Text="✅ Ca Đang Mở" FontSize="20" FontWeight="Bold" 
+                                   Foreground="#059669" HorizontalAlignment="Center" Margin="0,0,0,24"/>
+
+                        <!-- Thông tin ca hiện tại -->
+                        <Border Background="#f0fdf4" CornerRadius="8" Padding="20" Margin="0,0,0,24">
+                            <StackPanel>
+                                <Grid Margin="0,0,0,8">
+                                    <TextBlock Text="Bắt đầu:" Foreground="#6b7280"/>
+                                    <TextBlock Text="{Binding ThoiGianBatDau}" HorizontalAlignment="Right" FontWeight="SemiBold"/>
+                                </Grid>
+                                <Grid Margin="0,0,0,8">
+                                    <TextBlock Text="Thời gian làm việc:" Foreground="#6b7280"/>
+                                    <TextBlock Text="{Binding ThoiGianLamViec}" HorizontalAlignment="Right" FontWeight="SemiBold"/>
+                                </Grid>
+                                <Grid Margin="0,0,0,8">
+                                    <TextBlock Text="Số dư đầu ca:" Foreground="#6b7280"/>
+                                    <TextBlock Text="{Binding ActiveShift.SoDuDauCa, StringFormat={}{0:N0} đ}" HorizontalAlignment="Right" FontWeight="SemiBold"/>
+                                </Grid>
+                                <Grid>
+                                    <TextBlock Text="Doanh thu ca:" Foreground="#6b7280"/>
+                                    <TextBlock Text="{Binding TongDoanhThuCa, StringFormat={}{0:N0} đ}" HorizontalAlignment="Right" FontWeight="SemiBold" Foreground="#1d4ed8"/>
+                                </Grid>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Form đóng ca -->
+                        <TextBlock Text="Đóng Ca" FontSize="16" FontWeight="Bold" Foreground="#111827" Margin="0,0,0,16"/>
+
+                        <TextBlock Text="Số dư cuối ca thực tế (VNĐ):" FontSize="14" Foreground="#374151" Margin="0,0,0,8"/>
+                        <TextBox Text="{Binding SoDuCuoiCaThucTe, UpdateSourceTrigger=PropertyChanged}" 
+                                 FontSize="16" Padding="12" Margin="0,0,0,16"
+                                 BorderBrush="#d1d5db" BorderThickness="1"/>
+
+                        <TextBlock Text="Ghi chú:" FontSize="14" Foreground="#374151" Margin="0,0,0,8"/>
+                        <TextBox Text="{Binding GhiChu, UpdateSourceTrigger=PropertyChanged}" 
+                                 FontSize="14" Padding="12" Margin="0,0,0,20"
+                                 BorderBrush="#d1d5db" BorderThickness="1"
+                                 TextWrapping="Wrap" AcceptsReturn="True" Height="80"/>
+
+                        <Button Content="Đóng Ca" Command="{Binding CloseShiftCommand}" 
+                                Background="#dc2626" Foreground="White" FontSize="16" FontWeight="Bold"
+                                Padding="16,12" Cursor="Hand" BorderThickness="0"/>
+
+                        <!-- Thông báo -->
+                        <TextBlock Text="{Binding Message}" FontSize="13" Margin="0,16,0,0"
+                                   HorizontalAlignment="Center" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </ScrollViewer>
+            </Border>
+        </Grid>
+    </Grid>
+</Page>

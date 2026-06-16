@@ -14,6 +14,7 @@
             <converters:CurrencyConverter x:Key="CurrencyConverter"/>
             <converters:StringToBoolConverter x:Key="StringToBoolConverter"/>
             <converters:StringMatchToVisibilityConverter x:Key="StringMatchToVisibilityConverter"/>
+            <converters:RowIndexConverter x:Key="RowIndexConverter"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -2,9 +2,9 @@ using System.Windows.Controls;
 
 namespace HeThongPOS.WPF.Views;
 
-public partial class CustomersView : Page
+public partial class ShiftView : Page
 {
-    public CustomersView()
+    public ShiftView()
     {
         InitializeComponent();
     }

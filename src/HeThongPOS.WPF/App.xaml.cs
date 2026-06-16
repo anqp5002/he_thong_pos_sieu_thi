@@ -61,6 +61,10 @@ public partial class App : System.Windows.Application
         services.AddTransient<MainWindow>();
         services.AddTransient<LoginView>();
         services.AddTransient<POSView>();
+        services.AddTransient<HeThongPOS.WPF.Views.ShiftView>();
+        services.AddTransient<HeThongPOS.WPF.Views.DashboardView>();
+        services.AddTransient<HeThongPOS.WPF.Views.ProductsView>();
+        services.AddTransient<HeThongPOS.WPF.Views.CustomersView>();
         services.AddTransient<HeThongPOS.WPF.Controls.PaymentDialog>();
     }
 
