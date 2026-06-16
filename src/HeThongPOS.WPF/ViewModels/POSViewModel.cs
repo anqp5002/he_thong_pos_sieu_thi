@@ -263,36 +263,37 @@ public partial class POSViewModel : ObservableObject
             return;
         }
 
-        var session = _serviceProvider.GetRequiredService<HeThongPOS.WPF.Services.SessionManager>();
-        var paymentViewModel = _serviceProvider.GetRequiredService<PaymentViewModel>();
-        
-        // Truyền dữ liệu giỏ hàng sang PaymentViewModel
-        var cartItemsList = GioHang.ToList();
-        paymentViewModel.Initialize(
-            TongTienHang, 
-            TongThanhToan, 
-            cartItemsList,
-            session.CurrentUser?.Id ?? 0,
-            session.CurrentUser?.HoTen ?? "Thu ngân"
-        );
-
         var paymentDialog = _serviceProvider.GetRequiredService<PaymentDialog>();
-        paymentDialog.DataContext = paymentViewModel;
+        if (paymentDialog.DataContext is PaymentViewModel paymentViewModel)
+        {
+            var session = _serviceProvider.GetRequiredService<HeThongPOS.WPF.Services.SessionManager>();
+            
+            // Truyền dữ liệu giỏ hàng sang PaymentViewModel
+            var cartItemsList = GioHang.ToList();
+            paymentViewModel.Initialize(
+                TongTienHang, 
+                TongThanhToan, 
+                cartItemsList,
+                session.CurrentUser?.Id ?? 0,
+                session.CurrentUser?.HoTen ?? "Thu ngân"
+            );
+
         
         bool? result = paymentDialog.ShowDialog();
         
-        if (result == true && paymentViewModel.ReceiptData != null)
-        {
-            // Hiện hóa đơn
-            var receiptDialog = new Controls.ReceiptDialog();
-            receiptDialog.DataContext = paymentViewModel.ReceiptData;
-            receiptDialog.ShowDialog();
+            if (result == true && paymentViewModel.ReceiptData != null)
+            {
+                // Hiện hóa đơn
+                var receiptDialog = new Controls.ReceiptDialog();
+                receiptDialog.DataContext = paymentViewModel.ReceiptData;
+                receiptDialog.ShowDialog();
 
-            // Xóa giỏ hàng và reload sản phẩm (cập nhật tồn kho mới)
-            GioHang.Clear();
-            CapNhatTongTien();
-            await LoadSanPhamAsync();
-            ErrorMessage = "✅ Thanh toán thành công!";
+                // Xóa giỏ hàng và reload sản phẩm (cập nhật tồn kho mới)
+                GioHang.Clear();
+                CapNhatTongTien();
+                await LoadSanPhamAsync();
+                ErrorMessage = "✅ Thanh toán thành công!";
+            }
         }
     }
 }

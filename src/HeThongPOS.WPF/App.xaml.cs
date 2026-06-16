@@ -47,7 +47,8 @@ public partial class App : System.Windows.Application
         string connectionString = GetConnectionString();
         services.AddDbContext<AppDbContext>(options =>
             options.UseSqlServer(connectionString)
-                   .ConfigureWarnings(w => w.Ignore(Microsoft.EntityFrameworkCore.Diagnostics.RelationalEventId.PendingModelChangesWarning)));
+                   .ConfigureWarnings(w => w.Ignore(Microsoft.EntityFrameworkCore.Diagnostics.RelationalEventId.PendingModelChangesWarning)),
+            ServiceLifetime.Transient);
 
         // Repositories
         services.AddScoped<HeThongPOS.Core.Interfaces.IProductRepository, HeThongPOS.Infrastructure.Repositories.ProductRepository>();

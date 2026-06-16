@@ -29,9 +29,14 @@ public partial class OrdersViewModel : ObservableObject
         _ = LoadOrdersAsync();
     }
 
+    private bool _isLoading;
+
     [RelayCommand]
     private async Task LoadOrdersAsync()
     {
+        if (_isLoading) return;
+        _isLoading = true;
+
         try
         {
             var query = _context.DonHangs
@@ -53,6 +58,10 @@ public partial class OrdersViewModel : ObservableObject
         catch (System.Exception ex)
         {
             MessageBox.Show($"Lỗi tải danh sách đơn hàng: {ex.Message}");
+        }
+        finally
+        {
+            _isLoading = false;
         }
     }
 
