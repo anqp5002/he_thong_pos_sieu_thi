@@ -30,10 +30,28 @@
                     </Grid.ColumnDefinitions>
                     <TextBox Grid.Column="0" Text="{Binding BarcodeInput, UpdateSourceTrigger=PropertyChanged}"
                              Height="40" Padding="10,0" FontSize="16" VerticalContentAlignment="Center"
-                             BorderBrush="#d1d5db" BorderThickness="1">
+                             BorderBrush="#d1d5db" BorderThickness="1"
+                             Tag="🔍 Nhập Tên sản phẩm hoặc quét Mã vạch...">
                         <TextBox.InputBindings>
                             <KeyBinding Key="Enter" Command="{Binding SearchBarcodeCommand}"/>
                         </TextBox.InputBindings>
+                        <TextBox.Style>
+                            <Style TargetType="TextBox">
+                                <Style.Triggers>
+                                    <Trigger Property="Text" Value="">
+                                        <Setter Property="Background">
+                                            <Setter.Value>
+                                                <VisualBrush Stretch="None" AlignmentX="Left" AlignmentY="Center">
+                                                    <VisualBrush.Visual>
+                                                        <TextBlock Text="{Binding Tag, RelativeSource={RelativeSource AncestorType=TextBox}}" Foreground="#9ca3af" Margin="10,0,0,0"/>
+                                                    </VisualBrush.Visual>
+                                                </VisualBrush>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBox.Style>
                     </TextBox>
                     <Button Grid.Column="1" Content="Quét" Command="{Binding SearchBarcodeCommand}"
                             Style="{StaticResource PrimaryButton}" Width="80" Height="40" Margin="8,0,0,0"/>
@@ -75,6 +93,9 @@
                                     </Style>
                                 </Border.Style>
                                 <StackPanel VerticalAlignment="Center">
+                                    <Image Source="{Binding HinhAnhUrl, Converter={StaticResource ImageUrlConverter}}" 
+                                           Height="60" Width="60" Stretch="UniformToFill" Margin="0,0,0,5"
+                                           HorizontalAlignment="Center"/>
                                     <TextBlock Text="{Binding TenSanPham}" FontWeight="SemiBold"
                                                FontSize="13" TextWrapping="Wrap" MaxHeight="40"
                                                TextTrimming="CharacterEllipsis"/>

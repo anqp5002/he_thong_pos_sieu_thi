@@ -36,11 +36,29 @@ public partial class POSViewModel : ObservableObject
 
     private readonly IServiceProvider _serviceProvider;
 
+    private List<SanPham> _allSanPhams = new();
+
     public POSViewModel(AppDbContext context, IServiceProvider serviceProvider)
     {
         _context = context;
         _serviceProvider = serviceProvider;
         _ = LoadSanPhamAsync();
+    }
+
+    partial void OnBarcodeInputChanged(string value)
+    {
+        if (string.IsNullOrWhiteSpace(value))
+        {
+            DanhSachSanPham = new ObservableCollection<SanPham>(_allSanPhams);
+            return;
+        }
+
+        var keyword = value.ToLower();
+        var filtered = _allSanPhams.Where(s => 
+            s.TenSanPham.ToLower().Contains(keyword) || 
+            s.MaVach.ToLower().Contains(keyword));
+        
+        DanhSachSanPham = new ObservableCollection<SanPham>(filtered);
     }
 
     /// <summary>
@@ -49,12 +67,12 @@ public partial class POSViewModel : ObservableObject
     [RelayCommand]
     private async Task LoadSanPhamAsync()
     {
-        var sanPhams = await _context.SanPhams
+        _allSanPhams = await _context.SanPhams
             .Where(s => s.TrangThai && s.TonKho > 0)
             .OrderBy(s => s.TenSanPham)
             .ToListAsync();
 
-        DanhSachSanPham = new ObservableCollection<SanPham>(sanPhams);
+        DanhSachSanPham = new ObservableCollection<SanPham>(_allSanPhams);
     }
 
     /// <summary>

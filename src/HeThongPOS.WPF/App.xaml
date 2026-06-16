@@ -15,6 +15,7 @@
             <converters:StringToBoolConverter x:Key="StringToBoolConverter"/>
             <converters:StringMatchToVisibilityConverter x:Key="StringMatchToVisibilityConverter"/>
             <converters:RowIndexConverter x:Key="RowIndexConverter"/>
+            <converters:ImageUrlConverter x:Key="ImageUrlConverter"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

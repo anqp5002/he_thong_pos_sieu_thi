@@ -40,7 +40,8 @@ public partial class ProductFormViewModel : ObservableObject
                 TonKho = _editingProduct.TonKho,
                 DonViTinh = _editingProduct.DonViTinh,
                 DanhMucId = _editingProduct.DanhMucId,
-                TrangThai = _editingProduct.TrangThai
+                TrangThai = _editingProduct.TrangThai,
+                HinhAnhUrl = _editingProduct.HinhAnhUrl
             };
         }
         else

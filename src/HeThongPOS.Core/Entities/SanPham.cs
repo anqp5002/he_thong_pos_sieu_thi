@@ -15,4 +15,5 @@ public class SanPham
     public DateTime NgayTao { get; set; } = DateTime.Now;
 
     public DanhMuc? DanhMuc { get; set; }
+    public string HinhAnhUrl { get; set; } = string.Empty;
 }

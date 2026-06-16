@@ -18,9 +18,9 @@
                    Foreground="#111827" Margin="0,0,0,20"/>
 
         <!-- Content -->
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" Background="White" Margin="-24,0,-24,-24">
             <!-- Khi CHƯA CÓ ca đang mở → Form mở ca -->
-            <Border x:Name="OpenShiftPanel" Background="White" CornerRadius="12" Padding="32"
+            <Border x:Name="OpenShiftPanel" Padding="32" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
                     Visibility="{Binding HasActiveShift, Converter={StaticResource InverseBooleanConverter}}">
                 <StackPanel MaxWidth="400" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <TextBlock Text="🕐 Mở Ca Làm Việc" FontSize="20" FontWeight="Bold" 
@@ -42,7 +42,7 @@
             </Border>
 
             <!-- Khi ĐÃ CÓ ca đang mở → Thông tin ca + Form đóng ca -->
-            <Border x:Name="CloseShiftPanel" Background="White" CornerRadius="12" Padding="32"
+            <Border x:Name="CloseShiftPanel" Padding="32" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
                     Visibility="{Binding HasActiveShift, Converter={StaticResource BoolToVis}}">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <StackPanel MaxWidth="500" HorizontalAlignment="Center">

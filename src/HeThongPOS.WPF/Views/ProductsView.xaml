@@ -21,6 +21,14 @@
 
         <DataGrid Grid.Row="1" ItemsSource="{Binding Products}" SelectedItem="{Binding SelectedProduct}" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False">
             <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Hình Ảnh" Width="80">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding HinhAnhUrl, Converter={StaticResource ImageUrlConverter}}" 
+                                   Height="40" Width="40" Stretch="UniformToFill" Margin="5"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
                 <DataGridTextColumn Header="Mã Vạch" Binding="{Binding MaVach}" Width="150"/>
                 <DataGridTextColumn Header="Tên Sản Phẩm" Binding="{Binding TenSanPham}" Width="*"/>
                 <DataGridTextColumn Header="Danh Mục" Binding="{Binding DanhMuc.TenDanhMuc}" Width="150"/>
