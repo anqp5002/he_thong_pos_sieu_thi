@@ -29,7 +29,8 @@ public partial class App : System.Windows.Application
         // Mục 4: Đọc connection string từ appsettings.json thay vì hardcode
         string connectionString = GetConnectionString();
         services.AddDbContext<AppDbContext>(options =>
-            options.UseSqlServer(connectionString));
+            options.UseSqlServer(connectionString)
+                   .ConfigureWarnings(w => w.Ignore(Microsoft.EntityFrameworkCore.Diagnostics.RelationalEventId.PendingModelChangesWarning)));
 
         // Repositories
         services.AddScoped<HeThongPOS.Core.Interfaces.IProductRepository, HeThongPOS.Infrastructure.Repositories.ProductRepository>();

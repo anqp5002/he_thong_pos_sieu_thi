@@ -11,9 +11,10 @@ public class AppDbContextFactory : IDesignTimeDbContextFactory<AppDbContext>
         
         // This is only used for EF Core CLI migrations.
         // The actual connection string will come from AppSettings/Env during runtime.
-        var connectionString = "Server=localhost,14335;Database=HeThongPOS;User Id=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=true;";
+        var connectionString = "Server=localhost;Database=HeThongPOS;Integrated Security=True;TrustServerCertificate=true;";
         
-        optionsBuilder.UseSqlServer(connectionString);
+        optionsBuilder.UseSqlServer(connectionString)
+                      .ConfigureWarnings(w => w.Ignore(Microsoft.EntityFrameworkCore.Diagnostics.RelationalEventId.PendingModelChangesWarning));
 
         return new AppDbContext(optionsBuilder.Options);
     }
