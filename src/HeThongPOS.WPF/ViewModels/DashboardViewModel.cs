@@ -31,6 +31,22 @@ public partial class DashboardViewModel : ObservableObject
     [ObservableProperty]
     private int _tongSanPham;
 
+    // --- Các thông tin quản lý yêu cầu thêm ---
+    [ObservableProperty]
+    private decimal _tienMatHomNay;
+
+    [ObservableProperty]
+    private decimal _chuyenKhoanHomNay;
+
+    [ObservableProperty]
+    private int _donThanhCongHomNay;
+
+    [ObservableProperty]
+    private int _donThatBaiHomNay;
+
+    [ObservableProperty]
+    private decimal _thueVATHomNay;
+
     // --- Biểu đồ doanh thu 7 ngày ---
     [ObservableProperty]
     private ISeries[] _salesSeries = Array.Empty<ISeries>();
@@ -67,14 +83,36 @@ public partial class DashboardViewModel : ObservableObject
         var today = DateTime.Today;
         var firstDayOfMonth = new DateTime(today.Year, today.Month, 1);
 
-        // Doanh thu hôm nay
-        DoanhThuHomNay = await _context.DonHangs
-            .Where(d => d.NgayTao.Date == today && d.TrangThai == OrderStatus.Completed)
-            .SumAsync(d => d.TongThanhToan);
+        // Lấy tất cả đơn hàng hôm nay
+        var donHangsToday = await _context.DonHangs
+            .Where(d => d.NgayTao.Date == today)
+            .ToListAsync();
 
-        // Số đơn hôm nay
-        SoDonHomNay = await _context.DonHangs
-            .CountAsync(d => d.NgayTao.Date == today && d.TrangThai == OrderStatus.Completed);
+        DoanhThuHomNay = donHangsToday
+            .Where(d => d.TrangThai == OrderStatus.Completed)
+            .Sum(d => d.TongThanhToan);
+
+        DonThanhCongHomNay = donHangsToday.Count(d => d.TrangThai == OrderStatus.Completed);
+        DonThatBaiHomNay = donHangsToday.Count(d => d.TrangThai == OrderStatus.Cancelled);
+        SoDonHomNay = donHangsToday.Count; // Tổng số đơn
+
+        ThueVATHomNay = donHangsToday
+            .Where(d => d.TrangThai == OrderStatus.Completed)
+            .Sum(d => d.ThueVAT);
+
+        // Lấy giao dịch hôm nay để tính tiền mặt/chuyển khoản
+        var giaoDichsToday = await _context.GiaoDichs
+            .Include(g => g.PhuongThucThanhToan)
+            .Where(g => g.NgayGiaoDich.Date == today && g.TrangThai == "SUCCESS")
+            .ToListAsync();
+
+        TienMatHomNay = giaoDichsToday
+            .Where(g => g.PhuongThucThanhToan.TenPhuongThuc.Contains("mặt", StringComparison.OrdinalIgnoreCase))
+            .Sum(g => g.SoTien);
+
+        ChuyenKhoanHomNay = giaoDichsToday
+            .Where(g => !g.PhuongThucThanhToan.TenPhuongThuc.Contains("mặt", StringComparison.OrdinalIgnoreCase))
+            .Sum(g => g.SoTien);
 
         // Doanh thu tháng này
         DoanhThuThangNay = await _context.DonHangs

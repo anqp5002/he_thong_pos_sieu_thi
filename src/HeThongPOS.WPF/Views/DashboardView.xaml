@@ -19,6 +19,12 @@
                         <TextBlock Text="Doanh thu hôm nay" FontSize="13" Foreground="#6b7280"/>
                         <TextBlock Text="{Binding DoanhThuHomNay, Converter={StaticResource CurrencyConverter}}" 
                                    FontSize="24" FontWeight="Bold" Foreground="#1a73e8" Margin="0,8,0,0"/>
+                        <TextBlock FontSize="12" Foreground="#6b7280" Margin="0,5,0,0">
+                            <Run Text="💵 Tiền mặt: "/><Run Text="{Binding TienMatHomNay, Converter={StaticResource CurrencyConverter}}"/>
+                        </TextBlock>
+                        <TextBlock FontSize="12" Foreground="#6b7280" Margin="0,2,0,0">
+                            <Run Text="💳 Chuyển khoản: "/><Run Text="{Binding ChuyenKhoanHomNay, Converter={StaticResource CurrencyConverter}}"/>
+                        </TextBlock>
                     </StackPanel>
                 </Border>
 
@@ -28,24 +34,38 @@
                         <TextBlock Text="Số đơn hôm nay" FontSize="13" Foreground="#6b7280"/>
                         <TextBlock Text="{Binding SoDonHomNay}" 
                                    FontSize="24" FontWeight="Bold" Foreground="#059669" Margin="0,8,0,0"/>
+                        <TextBlock FontSize="12" Foreground="#6b7280" Margin="0,5,0,0">
+                            <Run Text="✅ Thành công: "/><Run Text="{Binding DonThanhCongHomNay}"/>
+                        </TextBlock>
+                        <TextBlock FontSize="12" Foreground="#6b7280" Margin="0,2,0,0">
+                            <Run Text="❌ Thất bại/Hủy: "/><Run Text="{Binding DonThatBaiHomNay}"/>
+                        </TextBlock>
+                    </StackPanel>
+                </Border>
+
+                <!-- Thẻ Tiền thuế (VAT) -->
+                <Border Background="White" CornerRadius="8" Padding="20" Margin="5,0">
+                    <StackPanel>
+                        <TextBlock Text="Tiền thuế (VAT) hôm nay" FontSize="13" Foreground="#6b7280"/>
+                        <TextBlock Text="{Binding ThueVATHomNay, Converter={StaticResource CurrencyConverter}}" 
+                                   FontSize="24" FontWeight="Bold" Foreground="#ea580c" Margin="0,8,0,0"/>
+                        <TextBlock FontSize="12" Foreground="#6b7280" Margin="0,5,0,0">
+                            <Run Text="Mức thuế suất chung: 8%"/>
+                        </TextBlock>
+                        <TextBlock FontSize="12" Foreground="Transparent" Margin="0,2,0,0" Text="Khoảng trống cân bằng thẻ"/>
                     </StackPanel>
                 </Border>
 
                 <!-- Thẻ Doanh thu tháng -->
-                <Border Background="White" CornerRadius="8" Padding="20" Margin="5,0">
+                <Border Background="White" CornerRadius="8" Padding="20" Margin="10,0,0,0">
                     <StackPanel>
                         <TextBlock Text="Doanh thu tháng này" FontSize="13" Foreground="#6b7280"/>
                         <TextBlock Text="{Binding DoanhThuThangNay, Converter={StaticResource CurrencyConverter}}" 
                                    FontSize="24" FontWeight="Bold" Foreground="#7c3aed" Margin="0,8,0,0"/>
-                    </StackPanel>
-                </Border>
-
-                <!-- Thẻ Tổng sản phẩm -->
-                <Border Background="White" CornerRadius="8" Padding="20" Margin="10,0,0,0">
-                    <StackPanel>
-                        <TextBlock Text="Tổng sản phẩm" FontSize="13" Foreground="#6b7280"/>
-                        <TextBlock Text="{Binding TongSanPham}" 
-                                   FontSize="24" FontWeight="Bold" Foreground="#ea580c" Margin="0,8,0,0"/>
+                        <TextBlock FontSize="12" Foreground="#6b7280" Margin="0,5,0,0">
+                            <Run Text="📦 Đang kinh doanh: "/><Run Text="{Binding TongSanPham}"/><Run Text=" SP"/>
+                        </TextBlock>
+                        <TextBlock FontSize="12" Foreground="Transparent" Margin="0,2,0,0" Text="Khoảng trống cân bằng thẻ"/>
                     </StackPanel>
                 </Border>
             </UniformGrid>
