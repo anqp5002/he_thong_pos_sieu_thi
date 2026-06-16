@@ -149,10 +149,14 @@ public partial class PaymentViewModel : ObservableObject
         }
     }
 
-    [RelayCommand(CanExecute = nameof(CanCheckout))]
+    [RelayCommand]
     private async Task CheckoutAsync()
     {
-        if (!CanCheckout) return;
+        if (!CanCheckout) 
+        {
+            System.Windows.MessageBox.Show("Số tiền khách đưa không đủ để thanh toán!", "Cảnh báo", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Warning);
+            return;
+        }
 
         try
         {

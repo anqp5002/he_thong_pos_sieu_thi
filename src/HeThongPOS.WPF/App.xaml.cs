@@ -76,6 +76,7 @@ public partial class App : System.Windows.Application
         services.AddTransient<DashboardViewModel>();
         services.AddTransient<ShiftViewModel>();
         services.AddTransient<CustomersViewModel>();
+        services.AddTransient<OrdersViewModel>();
 
         // Views
         services.AddTransient<MainWindow>();
@@ -85,6 +86,7 @@ public partial class App : System.Windows.Application
         services.AddTransient<HeThongPOS.WPF.Views.DashboardView>();
         services.AddTransient<HeThongPOS.WPF.Views.ProductsView>();
         services.AddTransient<HeThongPOS.WPF.Views.CustomersView>();
+        services.AddTransient<HeThongPOS.WPF.Views.OrdersView>();
         services.AddTransient<HeThongPOS.WPF.Controls.PaymentDialog>();
     }
 

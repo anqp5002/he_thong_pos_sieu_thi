@@ -116,9 +116,10 @@ public partial class MainWindow : Window
         BtnCustomers.Visibility = isAdmin ? Visibility.Visible : Visibility.Collapsed;
         BtnDashboard.Visibility = isAdmin ? Visibility.Visible : Visibility.Collapsed;
 
-        // POS và Ca Làm Việc luôn hiển thị
+        // POS, Ca Làm Việc, Đơn Hàng luôn hiển thị
         BtnPOS.Visibility = Visibility.Visible;
         BtnShift.Visibility = Visibility.Visible;
+        BtnOrders.Visibility = Visibility.Visible;
     }
 
     /// <summary>
@@ -158,6 +159,12 @@ public partial class MainWindow : Window
     {
         _navigationService.NavigateTo<ShiftViewModel>();
         PageTitle.Text = "Quản Lý Ca Làm Việc";
+    }
+
+    private void NavToOrders_Click(object sender, RoutedEventArgs e)
+    {
+        _navigationService.NavigateTo<OrdersViewModel>();
+        PageTitle.Text = "Lịch Sử Đơn Hàng";
     }
 
     private void NavToDashboard_Click(object sender, RoutedEventArgs e)

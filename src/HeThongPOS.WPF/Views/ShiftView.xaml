@@ -31,7 +31,7 @@
                         </Style.Triggers>
                     </Style>
                 </Border.Style>
-                <StackPanel MaxWidth="400" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel VerticalAlignment="Center">
                     <TextBlock Text="🕐 Mở Ca Làm Việc" FontSize="20" FontWeight="Bold" 
                                Foreground="#111827" HorizontalAlignment="Center" Margin="0,0,0,24"/>
 
@@ -63,7 +63,7 @@
                     </Style>
                 </Border.Style>
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <StackPanel MaxWidth="500" HorizontalAlignment="Center">
+                    <StackPanel>
                         <TextBlock Text="✅ Ca Đang Mở" FontSize="20" FontWeight="Bold" 
                                    Foreground="#059669" HorizontalAlignment="Center" Margin="0,0,0,24"/>
 

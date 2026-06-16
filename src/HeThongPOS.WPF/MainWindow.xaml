@@ -120,6 +120,9 @@
                             <Button x:Name="BtnShift" Content="⏰  Ca Làm Việc" 
                                     Style="{StaticResource SidebarButton}" Click="NavToShift_Click"/>
 
+                            <Button x:Name="BtnOrders" Content="🧾  Đơn Hàng" 
+                                    Style="{StaticResource SidebarButton}" Click="NavToOrders_Click"/>
+
                             <!-- Label Admin -->
                             <TextBlock x:Name="LabelQuanLy" Text="QUẢN LÝ" FontSize="10" FontWeight="Bold" 
                                        Foreground="#6b7280" Margin="24,20,0,8"
