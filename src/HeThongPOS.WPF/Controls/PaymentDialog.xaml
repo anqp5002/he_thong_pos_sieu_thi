@@ -64,6 +64,17 @@
 
                 <!-- Vùng nhập tiền (chỉ hiện nếu là tiền mặt) -->
                 <local:CashPaymentControl Visibility="{Binding PhuongThucThanhToan, Converter={StaticResource StringMatchToVisibilityConverter}, ConverterParameter=CASH}"/>
+
+                <!-- Vùng quét QR (chỉ hiện nếu là chuyển khoản) -->
+                <Border Background="White" CornerRadius="6" Padding="15" BorderBrush="#e5e7eb" BorderThickness="1" 
+                        Visibility="{Binding PhuongThucThanhToan, Converter={StaticResource StringMatchToVisibilityConverter}, ConverterParameter=CARD}">
+                    <StackPanel HorizontalAlignment="Center">
+                        <TextBlock Text="Mã VietQR Thanh Toán" FontSize="16" FontWeight="SemiBold" Foreground="#111827" HorizontalAlignment="Center" Margin="0,0,0,10"/>
+                        <Image Source="{Binding VietQRUrl}" Width="200" Height="200" Stretch="Uniform"/>
+                        <TextBlock Text="Khách hàng mở ứng dụng Ngân hàng/MoMo để quét mã" TextWrapping="Wrap" FontSize="13" Foreground="#6b7280" HorizontalAlignment="Center" Margin="0,15,0,0" TextAlignment="Center"/>
+                        <TextBlock Text="Xác nhận giao dịch thành công trước khi bấm Hoàn Tất" TextWrapping="Wrap" FontSize="13" Foreground="#e11d48" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,5,0,0" TextAlignment="Center"/>
+                    </StackPanel>
+                </Border>
             </StackPanel>
         </Grid>
 
