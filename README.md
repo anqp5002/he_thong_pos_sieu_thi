@@ -63,9 +63,18 @@ HeThongPOS.sln
 │   └── HeThongPOS.UnitTests/       # xUnit + Moq
 ├── docker-compose.yml              # SQL Server 2022
 ├── .env.example                    # Biến môi trường (DB, PayOS)
-├── HuongDan_PayOS.md               # Hướng dẫn cấu hình thanh toán tự động PayOS
 └── README.md
 ```
+
+## 💳 Cấu hình Thanh toán Tự động (PayOS)
+
+Dự án đã được tích hợp sẵn mã nguồn kết nối **PayOS** (`src/HeThongPOS.Application/Services/PayOSService.cs`) trường hợp bạn muốn sử dụng tính năng **tự động chốt đơn** khi khách chuyển khoản thành công.
+
+**Cách kích hoạt:**
+1. Đăng ký tài khoản trên [payos.vn](https://payos.vn/) và lấy 3 mã: `Client ID`, `API Key`, `Checksum Key`.
+2. Mở file `.env` (copy từ `.env.example`) và điền 3 mã này vào phần `PAYOS_*`.
+3. Trong `PaymentViewModel.cs`, khi khách chọn "Chuyển khoản / Thẻ", hãy gọi `PayOSService.CreatePaymentLink()` để tạo mã.
+4. Sử dụng `DispatcherTimer` của WPF lặp lại 3 giây/lần để gọi hàm `PayOSService.CheckPaymentStatus()`. Nếu trả về `true` (PAID), tự động gọi hàm `CheckoutAsync()` để hoàn tất đơn hàng mà thu ngân không cần bấm chuột.
 
 ## Nhóm 6
 
