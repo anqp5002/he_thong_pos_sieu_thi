@@ -43,6 +43,9 @@ public partial class PaymentViewModel : ObservableObject
     
     public bool CanCheckout => KhachDua >= TongThanhToan || PhuongThucThanhToan != "CASH";
 
+    // MBBank BIN: 970422, Account: 0702947309
+    public string VietQRUrl => $"https://img.vietqr.io/image/970422-0702947309-compact.png?amount={TongThanhToan:0}&addInfo=Thanh Toan POS&accountName=POS SIÊU THỊ";
+
     // Data truyền từ POS
     public List<CartItem> CartItems { get; set; } = new();
     public int NhanVienId { get; set; }
@@ -73,6 +76,7 @@ public partial class PaymentViewModel : ObservableObject
         SuggestedCustomers.Clear();
         ReceiptData = null;
         UpdateTienThoi();
+        OnPropertyChanged(nameof(VietQRUrl));
     }
 
     partial void OnSearchCustomerKeywordChanged(string value)

@@ -28,7 +28,7 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <TextBox Grid.Column="0" Text="{Binding BarcodeInput, UpdateSourceTrigger=PropertyChanged}"
+                    <TextBox x:Name="BarcodeTextBox" Grid.Column="0" Text="{Binding BarcodeInput, UpdateSourceTrigger=PropertyChanged}"
                              Height="40" Padding="10,0" FontSize="16" VerticalContentAlignment="Center"
                              BorderBrush="#d1d5db" BorderThickness="1"
                              Tag="🔍 Nhập Tên sản phẩm hoặc quét Mã vạch...">
