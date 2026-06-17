@@ -62,6 +62,8 @@ HeThongPOS.sln
 ├── tests/
 │   └── HeThongPOS.UnitTests/       # xUnit + Moq
 ├── docker-compose.yml              # SQL Server 2022
+├── .env.example                    # Biến môi trường (DB, PayOS)
+├── HuongDan_PayOS.md               # Hướng dẫn cấu hình thanh toán tự động PayOS
 └── README.md
 ```
 
