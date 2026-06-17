@@ -80,9 +80,9 @@ Dự án đã được tích hợp sẵn mã nguồn kết nối **PayOS** (`src
 
 | Thành viên | Vai trò |
 |-----------|---------|
-| Dev A | Auth, POS UI, Payment UI, Dashboard, Shift |
-| Dev B | Product CRUD, Order Service, Payment Service, Reports, Testing |
-| Dev C | Customer CRUD, Order List, Invoice/Print, Deploy, Polish |
+| Pham Quốc An | Auth, POS UI, Payment UI, Dashboard, Shift |
+| Nguyễn Trường Hiếu | Product CRUD, Order Service, Payment Service, Reports, Testing |
+| Hồ Văn Đức | Customer CRUD, Order List, Invoice/Print, Deploy, Polish |
 
 ## License
 
