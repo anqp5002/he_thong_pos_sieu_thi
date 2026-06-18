@@ -74,7 +74,7 @@
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <!-- ProductCard -->
-                            <Border Width="150" Height="130" Background="White" CornerRadius="6"
+                            <Border Width="150" Height="180" Background="White" CornerRadius="6"
                                     Margin="5" Padding="10" Cursor="Hand"
                                     BorderBrush="#e5e7eb" BorderThickness="1">
                                 <Border.InputBindings>
